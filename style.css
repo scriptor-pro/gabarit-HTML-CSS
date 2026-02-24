@@ -360,6 +360,22 @@ nav a {
   background: var(--surface);
 }
 
+.font-controls .fieldset-colors {
+  grid-column: 1 / -1;
+}
+
+.font-controls .fieldset-typography {
+  grid-column: 1 / -1;
+}
+
+.fieldset-typography .token-controls {
+  grid-template-columns: repeat(4, minmax(12rem, 1fr));
+}
+
+.fieldset-typography .token-apply-wrap {
+  grid-column: 1 / -1;
+}
+
 .font-controls legend {
   padding: 0 0.35rem;
 }
@@ -1149,6 +1165,10 @@ body > footer {
 
 @media (max-width: 56rem) {
   .font-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldset-typography .token-controls {
     grid-template-columns: 1fr;
   }
 
