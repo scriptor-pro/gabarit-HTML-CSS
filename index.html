@@ -148,6 +148,13 @@
             <option value="pastel-lab">Pastel lab - doux, clair, pedagogique</option>
             <option value="corporate-blue">Corporate blue - institutionnel, net</option>
             <option value="mono-ink">Mono ink - monochrome editorial</option>
+            <option value="amber-ice">Amber ice - ambre chaud et bleus froids</option>
+            <option value="terracotta-mist">Terracotta mist - terre cuite et brume froide</option>
+            <option value="copper-lagoon">Copper lagoon - cuivre chaud et lagon frais</option>
+            <option value="sun-slate">Sun slate - soleil doux et ardoise froide</option>
+            <option value="peach-fjord">Peach fjord - peche chaude et fjord bleute</option>
+            <option value="spice-glacier">Spice glacier - epices douces et glacier net</option>
+            <option value="canyon-breeze">Canyon breeze - canyon chaud et souffle oceane</option>
           </select>
         </p>
       </fieldset>
@@ -157,31 +164,95 @@
           <p>
             <label for="color-accent">Accent</label>
             <input id="color-accent" name="color-accent" type="color" value="#3b63d1" />
+            <small class="token-help">Couleur d'accent (liens, focus, accents UI).</small>
           </p>
           <p>
             <label for="color-bg">Fond</label>
             <input id="color-bg" name="color-bg" type="color" value="#f6f6f6" />
+            <small class="token-help">Fond global de la page.</small>
           </p>
           <p>
             <label for="color-surface">Surface</label>
             <input id="color-surface" name="color-surface" type="color" value="#ffffff" />
+            <small class="token-help">Fond des cartes et blocs principaux.</small>
+          </p>
+          <p>
+            <label for="color-surface-alt">Surface alt</label>
+            <input id="color-surface-alt" name="color-surface-alt" type="color" value="#fafafa" />
+            <small class="token-help">Variante de surface pour zones secondaires.</small>
           </p>
           <p>
             <label for="color-ink">Texte</label>
             <input id="color-ink" name="color-ink" type="color" value="#1f1f1f" />
+            <small class="token-help">Couleur principale du texte.</small>
+          </p>
+          <p>
+            <label for="color-ink-soft">Texte secondaire</label>
+            <input id="color-ink-soft" name="color-ink-soft" type="color" value="#595959" />
+            <small class="token-help">Texte meta, aides, contenus secondaires.</small>
           </p>
           <p>
             <label for="color-line">Bordure</label>
             <input id="color-line" name="color-line" type="color" value="#d4d4d4" />
+            <small class="token-help">Bordures standards et separateurs.</small>
+          </p>
+          <p>
+            <label for="color-line-strong">Bordure forte</label>
+            <input id="color-line-strong" name="color-line-strong" type="color" value="#b8b8b8" />
+            <small class="token-help">Bordures renforcees / contraste fort.</small>
           </p>
           <p class="color-reset-wrap">
             <button type="button" id="color-reset">Reinitialiser couleurs</button>
           </p>
         </div>
       </fieldset>
+      <fieldset>
+        <legend>Voix typographique</legend>
+        <div class="token-controls">
+          <p>
+            <label for="token-font-ui">--font-ui</label>
+            <input id="token-font-ui" name="token-font-ui" type="text" value='"Inter", "Segoe UI", Arial, sans-serif' />
+            <small class="token-help">Pile de police interface (titres, labels, boutons).</small>
+          </p>
+          <p>
+            <label for="token-font-ui-weight">--font-ui-weight</label>
+            <input id="token-font-ui-weight" name="token-font-ui-weight" type="number" min="100" max="900" step="100" value="700" />
+            <small class="token-help">Poids principal de la typo interface.</small>
+          </p>
+          <p>
+            <label for="token-font-content">--font-content</label>
+            <input id="token-font-content" name="token-font-content" type="text" value='"Source Serif 4", Georgia, serif' />
+            <small class="token-help">Pile de police contenu (paragraphes, listes, citations).</small>
+          </p>
+          <p>
+            <label for="token-font-content-weight">--font-content-weight</label>
+            <input id="token-font-content-weight" name="token-font-content-weight" type="number" min="100" max="900" step="100" value="400" />
+            <small class="token-help">Poids principal de la typo de lecture.</small>
+          </p>
+          <p>
+            <label for="token-line-height">--content-line-height</label>
+            <input id="token-line-height" name="token-line-height" type="number" min="1" max="2.4" step="0.001" value="1.618" />
+            <small class="token-help">Hauteur de ligne du contenu texte.</small>
+          </p>
+          <p>
+            <label for="token-letter-spacing">--content-letter-spacing (em)</label>
+            <input id="token-letter-spacing" name="token-letter-spacing" type="number" min="-0.02" max="0.2" step="0.001" value="0.008" />
+            <small class="token-help">Espace moyen entre les lettres (em).</small>
+          </p>
+          <p>
+            <label for="token-word-spacing">--content-word-spacing (em)</label>
+            <input id="token-word-spacing" name="token-word-spacing" type="number" min="-0.05" max="0.4" step="0.001" value="0.03" />
+            <small class="token-help">Espace moyen entre les mots (em).</small>
+          </p>
+          <p class="token-apply-wrap">
+            <button type="button" id="apply-typography-tokens">Appliquer voix typographique</button>
+          </p>
+        </div>
+      </fieldset>
       <p class="font-controls-actions">
         <button type="button" id="apply-fonts">Reappliquer les polices</button>
         <button type="button" id="reset-fonts">Polices par defaut</button>
+        <button type="button" id="reset-all-tokens">Reinitialiser tous les tokens</button>
         <button type="button" id="theme-toggle" aria-pressed="false">Passer en mode fonce</button>
         <button type="button" id="export-current-theme">Exporter theme courant</button>
       </p>
@@ -217,12 +288,19 @@
           <p><time datetime="2025-12-23">23-12-2025</time> — <address>Par Baudouin (exemple)</address></p>
         </header>
 
-        <p>
-          <strong>Strong</strong>, <em>em</em>, <b>b</b>, <i>i</i>, <u>u</u>, <s>s</s>,
-          <mark>mark</mark>, <small>small</small>, H<sub>2</sub>O, 2<sup>10</sup>,
-          <abbr title="World Wide Web">WWW</abbr>, <dfn>définition</dfn>,
-          <q cite="https://example.com">citation courte</q>.
-        </p>
+        <p>Strong<br><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong></p>
+        <p>Em<br><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</em></p>
+        <p>B<br><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b></p>
+        <p>I<br><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
+        <p>U<br><u>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</u></p>
+        <p>S<br><s>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s></p>
+        <p>Mark<br><mark>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mark></p>
+        <p>Small<br><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small></p>
+        <p>Sub (H2O)<br>Lorem H<sub>2</sub>O ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Sup (2^10)<br>Lorem 2<sup>10</sup> ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Abbr (WWW)<br><abbr title="World Wide Web">WWW</abbr> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Dfn<br><dfn>Définition</dfn> : lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Q (citation courte)<br><q cite="https://example.com">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</q></p>
 
 <h4>Paragraphe</h4>
 
@@ -549,26 +627,56 @@ function hello() { return "world"; }</code></pre>
       <p>Exemple de tableau avec en-tête lisible, lignes alternées et survol pour faciliter la lecture.</p>
       <div class="table-wrap" role="region" aria-label="Tableau de démonstration" tabindex="0">
       <table class="demo-table">
-        <caption>Données exemple</caption>
+        <caption>Horaires de train (exemple)</caption>
         <colgroup>
+          <col />
+          <col />
+          <col />
           <col />
           <col />
         </colgroup>
         <thead>
           <tr>
-            <th scope="col">th</th>
-            <th scope="col">th</th>
+            <th scope="col">Train</th>
+            <th scope="col">Départ</th>
+            <th scope="col">Arrivée</th>
+            <th scope="col">Voie</th>
+            <th scope="col">Statut</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>td</td>
-            <td>td</td>
+            <td>IC 530</td>
+            <td>08:12</td>
+            <td>08:47</td>
+            <td>5</td>
+            <td>À l'heure</td>
+          </tr>
+          <tr>
+            <td>S 2081</td>
+            <td>08:25</td>
+            <td>08:58</td>
+            <td>2</td>
+            <td>Retard +4 min</td>
+          </tr>
+          <tr>
+            <td>P 7612</td>
+            <td>08:41</td>
+            <td>09:16</td>
+            <td>7</td>
+            <td>À quai</td>
+          </tr>
+          <tr>
+            <td>IC 541</td>
+            <td>09:03</td>
+            <td>09:39</td>
+            <td>1</td>
+            <td>Embarquement</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="2">Total / résumé</td>
+            <td colspan="5">4 départs planifiés sur la plage 08:00–09:10</td>
           </tr>
         </tfoot>
       </table>
@@ -740,6 +848,7 @@ function hello() { return "world"; }</code></pre>
       const uiActive = document.getElementById("ui-font-active");
       const contentActive = document.getElementById("content-font-active");
       const resetFontsButton = document.getElementById("reset-fonts");
+      const resetAllTokensButton = document.getElementById("reset-all-tokens");
       const openDialogButton = document.getElementById("open-dialog");
       const closeDialogButton = document.getElementById("close-dialog");
       const demoDialog = document.getElementById("demo-dialog");
@@ -762,9 +871,20 @@ function hello() { return "world"; }</code></pre>
       const colorAccent = document.getElementById("color-accent");
       const colorBg = document.getElementById("color-bg");
       const colorSurface = document.getElementById("color-surface");
+      const colorSurfaceAlt = document.getElementById("color-surface-alt");
       const colorInk = document.getElementById("color-ink");
+      const colorInkSoft = document.getElementById("color-ink-soft");
       const colorLine = document.getElementById("color-line");
+      const colorLineStrong = document.getElementById("color-line-strong");
       const colorReset = document.getElementById("color-reset");
+      const tokenFontUi = document.getElementById("token-font-ui");
+      const tokenFontUiWeight = document.getElementById("token-font-ui-weight");
+      const tokenFontContent = document.getElementById("token-font-content");
+      const tokenFontContentWeight = document.getElementById("token-font-content-weight");
+      const tokenLineHeight = document.getElementById("token-line-height");
+      const tokenLetterSpacing = document.getElementById("token-letter-spacing");
+      const tokenWordSpacing = document.getElementById("token-word-spacing");
+      const applyTypographyTokensButton = document.getElementById("apply-typography-tokens");
       const applyButton = document.getElementById("apply-fonts");
       const themeToggle = document.getElementById("theme-toggle");
       const exportThemeButton = document.getElementById("export-current-theme");
@@ -794,8 +914,21 @@ function hello() { return "world"; }</code></pre>
         accent: "#3b63d1",
         bg: "#f6f6f6",
         surface: "#ffffff",
+        surfaceAlt: "#fafafa",
         ink: "#1f1f1f",
+        inkSoft: "#595959",
         line: "#d4d4d4",
+        lineStrong: "#b8b8b8",
+      };
+
+      const defaultTypographyConfig = {
+        fontUi: '"Inter", "Segoe UI", Arial, sans-serif',
+        fontUiWeight: "700",
+        fontContent: '"Source Serif 4", Georgia, serif',
+        fontContentWeight: "400",
+        lineHeight: "1.618",
+        letterSpacing: "0.008",
+        wordSpacing: "0.03",
       };
 
       const aestheticPresets = {
@@ -818,6 +951,13 @@ function hello() { return "world"; }</code></pre>
         "pastel-lab": { accent: "#7d88d9", bg: "#f6f7ff", surface: "#ffffff", ink: "#2b2f47", line: "#d7dcf8" },
         "corporate-blue": { accent: "#1f5fbf", bg: "#eef3fb", surface: "#ffffff", ink: "#1c2a3a", line: "#c7d5ea" },
         "mono-ink": { accent: "#3a3a3a", bg: "#f7f7f7", surface: "#ffffff", ink: "#1b1b1b", line: "#cbcbcb" },
+        "amber-ice": { accent: "#cf7a2f", bg: "#eff6fb", surface: "#fffaf3", ink: "#1f2b34", line: "#c7d7e3" },
+        "terracotta-mist": { accent: "#b8644a", bg: "#edf4f7", surface: "#fff8f5", ink: "#252c31", line: "#c9d7de" },
+        "copper-lagoon": { accent: "#b96b3e", bg: "#e8f4f6", surface: "#fff9f2", ink: "#1d2b2f", line: "#bed2d7" },
+        "sun-slate": { accent: "#d28f3b", bg: "#eef2f6", surface: "#fffaf1", ink: "#232a31", line: "#c9d1da" },
+        "peach-fjord": { accent: "#d9795f", bg: "#e9f3f9", surface: "#fff8f4", ink: "#20303a", line: "#c4d5e3" },
+        "spice-glacier": { accent: "#c26a3b", bg: "#ecf6fa", surface: "#fffaf6", ink: "#1f2c34", line: "#c3d8e4" },
+        "canyon-breeze": { accent: "#bf6f45", bg: "#e7f3f5", surface: "#fff8f2", ink: "#213038", line: "#bfd3da" },
       };
       const defaultAestheticPreset = "neutral";
 
@@ -1027,11 +1167,23 @@ function hello() { return "world"; }</code></pre>
         applyFontConfig("content");
       };
 
+      const resetAllTokens = () => {
+        localStorage.removeItem("aesthetic-preset");
+        localStorage.removeItem("color-config");
+        localStorage.removeItem("typography-config");
+        localStorage.removeItem("font-ui-config");
+        localStorage.removeItem("font-content-config");
+
+        applyAestheticPreset(defaultAestheticPreset);
+        applyTypographyConfig(defaultTypographyConfig);
+        resetFontsToDefault();
+      };
+
       const applyColorConfig = (config) => {
         const mode = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
-        const surfaceAlt = shiftHexColor(config.surface, mode === "dark" ? 0.08 : -0.03);
-        const inkSoft = shiftHexColor(config.ink, mode === "dark" ? -0.28 : 0.35);
-        const lineStrong = shiftHexColor(config.line, mode === "dark" ? 0.25 : -0.15);
+        const surfaceAlt = config.surfaceAlt || shiftHexColor(config.surface, mode === "dark" ? 0.08 : -0.03);
+        const inkSoft = config.inkSoft || shiftHexColor(config.ink, mode === "dark" ? -0.28 : 0.35);
+        const lineStrong = config.lineStrong || shiftHexColor(config.line, mode === "dark" ? 0.25 : -0.15);
 
         root.style.setProperty("--accent", config.accent);
         root.style.setProperty("--bg", config.bg);
@@ -1051,14 +1203,32 @@ function hello() { return "world"; }</code></pre>
         if (colorSurface) {
           colorSurface.value = config.surface;
         }
+        if (colorSurfaceAlt) {
+          colorSurfaceAlt.value = surfaceAlt;
+        }
         if (colorInk) {
           colorInk.value = config.ink;
+        }
+        if (colorInkSoft) {
+          colorInkSoft.value = inkSoft;
         }
         if (colorLine) {
           colorLine.value = config.line;
         }
+        if (colorLineStrong) {
+          colorLineStrong.value = lineStrong;
+        }
 
-        localStorage.setItem("color-config", JSON.stringify(config));
+        localStorage.setItem("color-config", JSON.stringify({
+          accent: config.accent,
+          bg: config.bg,
+          surface: config.surface,
+          surfaceAlt,
+          ink: config.ink,
+          inkSoft,
+          line: config.line,
+          lineStrong,
+        }));
       };
 
       const applyAestheticPreset = (presetKey) => {
@@ -1074,8 +1244,51 @@ function hello() { return "world"; }</code></pre>
         accent: colorAccent ? colorAccent.value : defaultColorConfig.accent,
         bg: colorBg ? colorBg.value : defaultColorConfig.bg,
         surface: colorSurface ? colorSurface.value : defaultColorConfig.surface,
+        surfaceAlt: colorSurfaceAlt ? colorSurfaceAlt.value : defaultColorConfig.surfaceAlt,
         ink: colorInk ? colorInk.value : defaultColorConfig.ink,
+        inkSoft: colorInkSoft ? colorInkSoft.value : defaultColorConfig.inkSoft,
         line: colorLine ? colorLine.value : defaultColorConfig.line,
+        lineStrong: colorLineStrong ? colorLineStrong.value : defaultColorConfig.lineStrong,
+      });
+
+      const applyTypographyConfig = (config) => {
+        const normalized = {
+          fontUi: (config.fontUi || defaultTypographyConfig.fontUi).trim(),
+          fontUiWeight: String(Math.min(900, Math.max(100, Number(config.fontUiWeight) || Number(defaultTypographyConfig.fontUiWeight)))),
+          fontContent: (config.fontContent || defaultTypographyConfig.fontContent).trim(),
+          fontContentWeight: String(Math.min(900, Math.max(100, Number(config.fontContentWeight) || Number(defaultTypographyConfig.fontContentWeight)))),
+          lineHeight: String(Math.min(2.4, Math.max(1, Number(config.lineHeight) || Number(defaultTypographyConfig.lineHeight)))),
+          letterSpacing: String(Math.min(0.2, Math.max(-0.02, Number(config.letterSpacing) || Number(defaultTypographyConfig.letterSpacing)))),
+          wordSpacing: String(Math.min(0.4, Math.max(-0.05, Number(config.wordSpacing) || Number(defaultTypographyConfig.wordSpacing)))),
+        };
+
+        root.style.setProperty("--font-ui", normalized.fontUi);
+        root.style.setProperty("--font-ui-weight", normalized.fontUiWeight);
+        root.style.setProperty("--font-content", normalized.fontContent);
+        root.style.setProperty("--font-content-weight", normalized.fontContentWeight);
+        root.style.setProperty("--content-line-height", normalized.lineHeight);
+        root.style.setProperty("--content-letter-spacing", normalized.letterSpacing + "em");
+        root.style.setProperty("--content-word-spacing", normalized.wordSpacing + "em");
+
+        if (tokenFontUi) tokenFontUi.value = normalized.fontUi;
+        if (tokenFontUiWeight) tokenFontUiWeight.value = normalized.fontUiWeight;
+        if (tokenFontContent) tokenFontContent.value = normalized.fontContent;
+        if (tokenFontContentWeight) tokenFontContentWeight.value = normalized.fontContentWeight;
+        if (tokenLineHeight) tokenLineHeight.value = normalized.lineHeight;
+        if (tokenLetterSpacing) tokenLetterSpacing.value = normalized.letterSpacing;
+        if (tokenWordSpacing) tokenWordSpacing.value = normalized.wordSpacing;
+
+        localStorage.setItem("typography-config", JSON.stringify(normalized));
+      };
+
+      const collectTypographyConfig = () => ({
+        fontUi: tokenFontUi ? tokenFontUi.value : defaultTypographyConfig.fontUi,
+        fontUiWeight: tokenFontUiWeight ? tokenFontUiWeight.value : defaultTypographyConfig.fontUiWeight,
+        fontContent: tokenFontContent ? tokenFontContent.value : defaultTypographyConfig.fontContent,
+        fontContentWeight: tokenFontContentWeight ? tokenFontContentWeight.value : defaultTypographyConfig.fontContentWeight,
+        lineHeight: tokenLineHeight ? tokenLineHeight.value : defaultTypographyConfig.lineHeight,
+        letterSpacing: tokenLetterSpacing ? tokenLetterSpacing.value : defaultTypographyConfig.letterSpacing,
+        wordSpacing: tokenWordSpacing ? tokenWordSpacing.value : defaultTypographyConfig.wordSpacing,
       });
 
       const applyTheme = (mode) => {
@@ -1116,6 +1329,14 @@ function hello() { return "world"; }</code></pre>
           isUi ? "--font-ui-weight" : "--font-content-weight",
           normalizedWeight
         );
+
+        if (isUi) {
+          if (tokenFontUi) tokenFontUi.value = '"' + familyName.replace(/"/g, "") + '", ' + fallbackStack;
+          if (tokenFontUiWeight) tokenFontUiWeight.value = normalizedWeight;
+        } else {
+          if (tokenFontContent) tokenFontContent.value = '"' + familyName.replace(/"/g, "") + '", ' + fallbackStack;
+          if (tokenFontContentWeight) tokenFontContentWeight.value = normalizedWeight;
+        }
 
         const activeTarget = isUi ? uiActive : contentActive;
         if (activeTarget) {
@@ -1181,10 +1402,15 @@ function hello() { return "world"; }</code></pre>
           accent: storedColorConfig?.accent || defaultColorConfig.accent,
           bg: storedColorConfig?.bg || defaultColorConfig.bg,
           surface: storedColorConfig?.surface || defaultColorConfig.surface,
+          surfaceAlt: storedColorConfig?.surfaceAlt || defaultColorConfig.surfaceAlt,
           ink: storedColorConfig?.ink || defaultColorConfig.ink,
+          inkSoft: storedColorConfig?.inkSoft || defaultColorConfig.inkSoft,
           line: storedColorConfig?.line || defaultColorConfig.line,
+          lineStrong: storedColorConfig?.lineStrong || defaultColorConfig.lineStrong,
         });
       }
+
+      const storedTypographyConfig = JSON.parse(localStorage.getItem("typography-config") || "null");
 
       applyButton.addEventListener("click", () => {
         applyFontConfig("ui");
@@ -1194,6 +1420,12 @@ function hello() { return "world"; }</code></pre>
       if (resetFontsButton) {
         resetFontsButton.addEventListener("click", () => {
           resetFontsToDefault();
+        });
+      }
+
+      if (resetAllTokensButton) {
+        resetAllTokensButton.addEventListener("click", () => {
+          resetAllTokens();
         });
       }
 
@@ -1437,11 +1669,17 @@ function hello() { return "world"; }</code></pre>
       contentFamily.addEventListener("change", () => applyFontConfig("content"));
       contentWeight.addEventListener("change", () => applyFontConfig("content"));
 
-      [colorAccent, colorBg, colorSurface, colorInk, colorLine]
+      [colorAccent, colorBg, colorSurface, colorSurfaceAlt, colorInk, colorInkSoft, colorLine, colorLineStrong]
         .filter(Boolean)
         .forEach((input) => {
           input.addEventListener("input", () => applyColorConfig(collectColorConfig()));
         });
+
+      if (applyTypographyTokensButton) {
+        applyTypographyTokensButton.addEventListener("click", () => {
+          applyTypographyConfig(collectTypographyConfig());
+        });
+      }
 
       if (aestheticPreset) {
         aestheticPreset.addEventListener("change", (event) => {
@@ -1480,6 +1718,10 @@ function hello() { return "world"; }</code></pre>
 
       applyFontConfig("ui");
       applyFontConfig("content");
+
+      if (storedTypographyConfig) {
+        applyTypographyConfig(storedTypographyConfig);
+      }
     })();
   </script>
 </body>
