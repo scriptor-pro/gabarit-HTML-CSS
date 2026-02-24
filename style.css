@@ -21,6 +21,9 @@
   --font-content: var(--font-content-serif);
   --font-ui-weight: 600;
   --font-content-weight: 400;
+  --content-line-height: 1.72;
+  --content-letter-spacing: 0.008em;
+  --content-word-spacing: 0.03em;
   color-scheme: light;
 }
 
@@ -53,6 +56,11 @@ body {
   background: var(--bg);
   font-family: var(--font-content);
   font-weight: var(--font-content-weight);
+  line-height: var(--content-line-height);
+  letter-spacing: var(--content-letter-spacing);
+  word-spacing: var(--content-word-spacing);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 header,
@@ -93,8 +101,43 @@ h5,
 h6 {
   margin: 0;
   line-height: 1.2;
+  letter-spacing: 0.01em;
+  word-spacing: 0.01em;
   font-family: var(--font-ui);
   font-weight: var(--font-ui-weight);
+}
+
+p,
+li,
+dd,
+figcaption,
+blockquote,
+td,
+th {
+  line-height: var(--content-line-height);
+  letter-spacing: var(--content-letter-spacing);
+  word-spacing: var(--content-word-spacing);
+}
+
+p {
+  text-wrap: pretty;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+main :where(p, ul, ol, dl, blockquote, pre) {
+  max-width: 72ch;
+}
+
+form :where(p, ul, ol, dl),
+.font-controls :where(p, ul, ol, dl),
+.form-inline-options,
+.form-actions,
+nav ul,
+table,
+.table-wrap,
+figure {
+  max-width: none;
 }
 
 h1 {
@@ -496,6 +539,9 @@ button {
   width: 100%;
   font: inherit;
   color: var(--ink);
+  line-height: 1.4;
+  letter-spacing: normal;
+  word-spacing: normal;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background: var(--surface);

@@ -154,6 +154,7 @@
       </fieldset>
       <p class="font-controls-actions">
         <button type="button" id="apply-fonts">Reappliquer les polices</button>
+        <button type="button" id="reset-fonts">Polices par defaut</button>
         <button type="button" id="theme-toggle" aria-pressed="false">Passer en mode fonce</button>
         <button type="button" id="export-current-theme">Exporter theme courant</button>
       </p>
@@ -617,6 +618,7 @@ function hello() { return "world"; }</code></pre>
       const contentSuggestions = document.getElementById("content-font-suggestions");
       const uiActive = document.getElementById("ui-font-active");
       const contentActive = document.getElementById("content-font-active");
+      const resetFontsButton = document.getElementById("reset-fonts");
       const colorAccent = document.getElementById("color-accent");
       const colorBg = document.getElementById("color-bg");
       const colorSurface = document.getElementById("color-surface");
@@ -635,6 +637,10 @@ function hello() { return "world"; }</code></pre>
       }
 
       const allWeights = "100,200,300,400,500,600,700,800,900";
+      const defaultFontConfig = {
+        ui: { family: "inter", weight: "700" },
+        content: { family: "source-serif-4", weight: "400" },
+      };
       const buildHref = (slug) =>
         "https://fonts.bunny.net/css?family=" + encodeURIComponent(slug) + ":" + allWeights + "&display=swap";
 
@@ -803,6 +809,33 @@ function hello() { return "world"; }</code></pre>
         }
       };
 
+      const resetFontsToDefault = () => {
+        if (uiSearch) {
+          uiSearch.value = "";
+        }
+        if (contentSearch) {
+          contentSearch.value = "";
+        }
+
+        filterFamilyOptions(uiFamily, "");
+        filterFamilyOptions(contentFamily, "");
+
+        restoreSelection(uiFamily, defaultFontConfig.ui.family);
+        restoreSelection(uiWeight, defaultFontConfig.ui.weight);
+        restoreSelection(contentFamily, defaultFontConfig.content.family);
+        restoreSelection(contentWeight, defaultFontConfig.content.weight);
+
+        if (uiSuggestions) {
+          uiSuggestions.replaceChildren();
+        }
+        if (contentSuggestions) {
+          contentSuggestions.replaceChildren();
+        }
+
+        applyFontConfig("ui");
+        applyFontConfig("content");
+      };
+
       const applyColorConfig = (config) => {
         root.style.setProperty("--accent", config.accent);
         root.style.setProperty("--bg", config.bg);
@@ -914,11 +947,17 @@ function hello() { return "world"; }</code></pre>
       if (uiSaved) {
         restoreSelection(uiFamily, uiSaved.family);
         restoreSelection(uiWeight, uiSaved.weight);
+      } else {
+        restoreSelection(uiFamily, defaultFontConfig.ui.family);
+        restoreSelection(uiWeight, defaultFontConfig.ui.weight);
       }
 
       if (contentSaved) {
         restoreSelection(contentFamily, contentSaved.family);
         restoreSelection(contentWeight, contentSaved.weight);
+      } else {
+        restoreSelection(contentFamily, defaultFontConfig.content.family);
+        restoreSelection(contentWeight, defaultFontConfig.content.weight);
       }
 
       const storedColorConfig = JSON.parse(localStorage.getItem("color-config") || "null");
@@ -938,6 +977,12 @@ function hello() { return "world"; }</code></pre>
         applyFontConfig("ui");
         applyFontConfig("content");
       });
+
+      if (resetFontsButton) {
+        resetFontsButton.addEventListener("click", () => {
+          resetFontsToDefault();
+        });
+      }
 
       themeToggle.addEventListener("click", () => {
         const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
