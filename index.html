@@ -141,6 +141,13 @@
             <option value="forest-muted">Foret mutee - vert grise, naturel</option>
             <option value="sunset-soft">Coucher doux - accents chauds, fond clair</option>
             <option value="high-contrast">Haute lisibilite - separation maximale</option>
+            <option value="retro-console">Retro console - contraste vintage numerique</option>
+            <option value="museum-mineral">Musee mineral - pierre froide et sobre</option>
+            <option value="coffee-house">Coffee house - brun chaud, confortable</option>
+            <option value="neon-night">Neon night - accents vifs sur fond sombre</option>
+            <option value="pastel-lab">Pastel lab - doux, clair, pedagogique</option>
+            <option value="corporate-blue">Corporate blue - institutionnel, net</option>
+            <option value="mono-ink">Mono ink - monochrome editorial</option>
           </select>
         </p>
       </fieldset>
@@ -804,7 +811,15 @@ function hello() { return "world"; }</code></pre>
         "forest-muted": { accent: "#4b6f58", bg: "#eef3ed", surface: "#fbfdfb", ink: "#202920", line: "#c9d6c9" },
         "sunset-soft": { accent: "#d06a4b", bg: "#fef2ea", surface: "#fffaf6", ink: "#2d2220", line: "#e5c6b8" },
         "high-contrast": { accent: "#003cff", bg: "#ffffff", surface: "#ffffff", ink: "#000000", line: "#000000" },
+        "retro-console": { accent: "#2ea66f", bg: "#121816", surface: "#18201d", ink: "#d8efe3", line: "#2e413a" },
+        "museum-mineral": { accent: "#6f7b88", bg: "#eff2f4", surface: "#fbfcfd", ink: "#23282d", line: "#c9d1d8" },
+        "coffee-house": { accent: "#8d5a3b", bg: "#f5eee8", surface: "#fffaf5", ink: "#2e221c", line: "#d8c4b4" },
+        "neon-night": { accent: "#4df0d1", bg: "#0f1220", surface: "#171b2b", ink: "#e7efff", line: "#2f3654" },
+        "pastel-lab": { accent: "#7d88d9", bg: "#f6f7ff", surface: "#ffffff", ink: "#2b2f47", line: "#d7dcf8" },
+        "corporate-blue": { accent: "#1f5fbf", bg: "#eef3fb", surface: "#ffffff", ink: "#1c2a3a", line: "#c7d5ea" },
+        "mono-ink": { accent: "#3a3a3a", bg: "#f7f7f7", surface: "#ffffff", ink: "#1b1b1b", line: "#cbcbcb" },
       };
+      const defaultAestheticPreset = "neutral";
 
       const clampColor = (value) => {
         const v = Number.isFinite(value) ? value : 0;
@@ -1013,11 +1028,19 @@ function hello() { return "world"; }</code></pre>
       };
 
       const applyColorConfig = (config) => {
+        const mode = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        const surfaceAlt = shiftHexColor(config.surface, mode === "dark" ? 0.08 : -0.03);
+        const inkSoft = shiftHexColor(config.ink, mode === "dark" ? -0.28 : 0.35);
+        const lineStrong = shiftHexColor(config.line, mode === "dark" ? 0.25 : -0.15);
+
         root.style.setProperty("--accent", config.accent);
         root.style.setProperty("--bg", config.bg);
         root.style.setProperty("--surface", config.surface);
+        root.style.setProperty("--surface-alt", surfaceAlt);
         root.style.setProperty("--ink", config.ink);
+        root.style.setProperty("--ink-soft", inkSoft);
         root.style.setProperty("--line", config.line);
+        root.style.setProperty("--line-strong", lineStrong);
 
         if (colorAccent) {
           colorAccent.value = config.accent;
@@ -1036,6 +1059,15 @@ function hello() { return "world"; }</code></pre>
         }
 
         localStorage.setItem("color-config", JSON.stringify(config));
+      };
+
+      const applyAestheticPreset = (presetKey) => {
+        const key = aestheticPresets[presetKey] ? presetKey : defaultAestheticPreset;
+        if (aestheticPreset) {
+          aestheticPreset.value = key;
+        }
+        applyColorConfig(aestheticPresets[key]);
+        localStorage.setItem("aesthetic-preset", key);
       };
 
       const collectColorConfig = () => ({
@@ -1136,18 +1168,23 @@ function hello() { return "world"; }</code></pre>
         restoreSelection(contentWeight, defaultFontConfig.content.weight);
       }
 
-      const storedColorConfig = JSON.parse(localStorage.getItem("color-config") || "null");
-      applyColorConfig({
-        accent: storedColorConfig?.accent || defaultColorConfig.accent,
-        bg: storedColorConfig?.bg || defaultColorConfig.bg,
-        surface: storedColorConfig?.surface || defaultColorConfig.surface,
-        ink: storedColorConfig?.ink || defaultColorConfig.ink,
-        line: storedColorConfig?.line || defaultColorConfig.line,
-      });
-
       const savedTheme = localStorage.getItem("theme-mode");
       const systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
       applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
+
+      const storedPreset = localStorage.getItem("aesthetic-preset");
+      const storedColorConfig = JSON.parse(localStorage.getItem("color-config") || "null");
+      if (storedPreset && aestheticPresets[storedPreset]) {
+        applyAestheticPreset(storedPreset);
+      } else {
+        applyColorConfig({
+          accent: storedColorConfig?.accent || defaultColorConfig.accent,
+          bg: storedColorConfig?.bg || defaultColorConfig.bg,
+          surface: storedColorConfig?.surface || defaultColorConfig.surface,
+          ink: storedColorConfig?.ink || defaultColorConfig.ink,
+          line: storedColorConfig?.line || defaultColorConfig.line,
+        });
+      }
 
       applyButton.addEventListener("click", () => {
         applyFontConfig("ui");
@@ -1314,6 +1351,7 @@ function hello() { return "world"; }</code></pre>
       themeToggle.addEventListener("click", () => {
         const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
         applyTheme(current === "dark" ? "light" : "dark");
+        applyColorConfig(collectColorConfig());
       });
 
       const extractBaseCssFromLoadedStylesheet = () => {
@@ -1404,6 +1442,12 @@ function hello() { return "world"; }</code></pre>
         .forEach((input) => {
           input.addEventListener("input", () => applyColorConfig(collectColorConfig()));
         });
+
+      if (aestheticPreset) {
+        aestheticPreset.addEventListener("change", (event) => {
+          applyAestheticPreset(event.target.value);
+        });
+      }
 
       if (colorReset) {
         colorReset.addEventListener("click", () => applyColorConfig(defaultColorConfig));
