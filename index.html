@@ -125,6 +125,26 @@
         </p>
       </fieldset>
       <fieldset>
+        <legend>Direction esthetique</legend>
+        <p>
+          <label for="aesthetic-preset">Preset visuel</label>
+          <select id="aesthetic-preset" name="aesthetic-preset">
+            <option value="neutral">Vanilla neutre - base sobre et polyvalente</option>
+            <option value="editorial-soft">Editorial doux - contraste modere, lecture longue</option>
+            <option value="brutalist-bw">Brutaliste N/B - frontal, contraste fort</option>
+            <option value="bauhaus-functional">Bauhaus fonctionnel - geometrique et utilitaire</option>
+            <option value="nordic-calm">Nordique calme - froid, aerien, discret</option>
+            <option value="newspaper-classic">Presse classique - encre + papier</option>
+            <option value="terminal-mono">Terminal mono - technique, faible saturation</option>
+            <option value="warm-paper">Papier chaud - ton creme, ambiance douce</option>
+            <option value="oceanic-clean">Ocean propre - bleu propre et lisible</option>
+            <option value="forest-muted">Foret mutee - vert grise, naturel</option>
+            <option value="sunset-soft">Coucher doux - accents chauds, fond clair</option>
+            <option value="high-contrast">Haute lisibilite - separation maximale</option>
+          </select>
+        </p>
+      </fieldset>
+      <fieldset>
         <legend>Couleurs</legend>
         <div class="color-controls">
           <p>
@@ -551,19 +571,112 @@ function hello() { return "world"; }</code></pre>
     <section id="interactive">
       <h2>Interactif</h2>
 
-      <p>dialog (peut être non supporté selon navigateur) :</p>
-      <dialog open>
-        <p>dialog ouvert</p>
-        <form method="dialog">
-          <button>Fermer</button>
-        </form>
-      </dialog>
+      <p>Zone de test interactive: dialog, popover, accordion, édition inline et bascule inert.</p>
 
-      <p>menu (peu utilisé, support variable) :</p>
-      <menu>
-        <li><button type="button">Action 1</button></li>
-        <li><button type="button">Action 2</button></li>
-      </menu>
+      <div class="interactive-grid">
+        <article class="interactive-panel">
+          <h3>Dialog</h3>
+          <p>
+            <button type="button" id="open-dialog">Ouvrir dialog</button>
+            <button type="button" id="close-dialog">Fermer dialog</button>
+          </p>
+          <dialog id="demo-dialog">
+            <p>Dialogue de démonstration ouvert avec <code>showModal()</code>.</p>
+            <form method="dialog">
+              <button type="submit">Fermer</button>
+            </form>
+          </dialog>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Popover</h3>
+          <p>
+            <button type="button" popovertarget="demo-popover">Ouvrir popover</button>
+            <button type="button" popovertarget="demo-popover" popovertargetaction="hide">Masquer popover</button>
+          </p>
+          <div id="demo-popover" popover>
+            <p>Popover natif HTML.</p>
+          </div>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Details (accordion)</h3>
+          <details name="interactive-accordion">
+            <summary>Panneau A</summary>
+            <p>Contenu du panneau A.</p>
+          </details>
+          <details name="interactive-accordion">
+            <summary>Panneau B</summary>
+            <p>Contenu du panneau B.</p>
+          </details>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Edition Inline</h3>
+          <p contenteditable="true" spellcheck="true">Ce texte est editable (contenteditable=true).</p>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Toggle Inert</h3>
+          <p>
+            <button type="button" id="toggle-inert">Basculer inert</button>
+          </p>
+          <div id="inert-zone">
+            <p>Cette zone devient inactive quand <code>inert</code> est actif.</p>
+            <button type="button">Bouton test</button>
+            <a href="#text">Lien test</a>
+          </div>
+          <p id="inert-state">Etat: actif</p>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Menu</h3>
+          <menu>
+            <li><button type="button">Action 1</button></li>
+            <li><button type="button">Action 2</button></li>
+          </menu>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Fullscreen API</h3>
+          <p>
+            <button type="button" id="enter-fullscreen">Entrer en plein ecran</button>
+            <button type="button" id="exit-fullscreen">Quitter plein ecran</button>
+          </p>
+          <div id="fullscreen-target" class="interactive-surface">
+            <p>Zone cible pour <code>requestFullscreen()</code>.</p>
+          </div>
+          <p id="fullscreen-state">Etat: fenetre normale</p>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Clipboard API</h3>
+          <p>
+            <label for="clipboard-text">Texte presse-papiers</label>
+            <input id="clipboard-text" type="text" value="DIY CSS clipboard sample" />
+          </p>
+          <p>
+            <button type="button" id="copy-clipboard">Copier</button>
+            <button type="button" id="paste-clipboard">Coller</button>
+          </p>
+          <p id="clipboard-state">Etat: inactif</p>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Web Share</h3>
+          <p>
+            <button type="button" id="share-page">Partager cette page</button>
+          </p>
+          <p id="share-state">Etat: en attente</p>
+        </article>
+
+        <article class="interactive-panel">
+          <h3>Drag and Drop</h3>
+          <p id="drag-source" draggable="true" class="draggable-chip">Glisser ce bloc</p>
+          <div id="drop-target" class="drop-zone">Depose ici</div>
+          <p id="drop-state">Etat: rien depose</p>
+        </article>
+      </div>
     </section>
 
     <section id="embedded">
@@ -616,9 +729,29 @@ function hello() { return "world"; }</code></pre>
       const contentWeight = document.getElementById("content-font-weight");
       const contentSearch = document.getElementById("content-font-search");
       const contentSuggestions = document.getElementById("content-font-suggestions");
+      const aestheticPreset = document.getElementById("aesthetic-preset");
       const uiActive = document.getElementById("ui-font-active");
       const contentActive = document.getElementById("content-font-active");
       const resetFontsButton = document.getElementById("reset-fonts");
+      const openDialogButton = document.getElementById("open-dialog");
+      const closeDialogButton = document.getElementById("close-dialog");
+      const demoDialog = document.getElementById("demo-dialog");
+      const toggleInertButton = document.getElementById("toggle-inert");
+      const inertZone = document.getElementById("inert-zone");
+      const inertState = document.getElementById("inert-state");
+      const enterFullscreenButton = document.getElementById("enter-fullscreen");
+      const exitFullscreenButton = document.getElementById("exit-fullscreen");
+      const fullscreenTarget = document.getElementById("fullscreen-target");
+      const fullscreenState = document.getElementById("fullscreen-state");
+      const clipboardText = document.getElementById("clipboard-text");
+      const copyClipboardButton = document.getElementById("copy-clipboard");
+      const pasteClipboardButton = document.getElementById("paste-clipboard");
+      const clipboardState = document.getElementById("clipboard-state");
+      const sharePageButton = document.getElementById("share-page");
+      const shareState = document.getElementById("share-state");
+      const dragSource = document.getElementById("drag-source");
+      const dropTarget = document.getElementById("drop-target");
+      const dropState = document.getElementById("drop-state");
       const colorAccent = document.getElementById("color-accent");
       const colorBg = document.getElementById("color-bg");
       const colorSurface = document.getElementById("color-surface");
@@ -656,6 +789,49 @@ function hello() { return "world"; }</code></pre>
         surface: "#ffffff",
         ink: "#1f1f1f",
         line: "#d4d4d4",
+      };
+
+      const aestheticPresets = {
+        neutral: { accent: "#3b63d1", bg: "#f6f6f6", surface: "#ffffff", ink: "#1f1f1f", line: "#d4d4d4" },
+        "editorial-soft": { accent: "#5f6aa8", bg: "#f4f1eb", surface: "#fffdf9", ink: "#2a2926", line: "#d7cec0" },
+        "brutalist-bw": { accent: "#101010", bg: "#f1f1f1", surface: "#ffffff", ink: "#0c0c0c", line: "#1c1c1c" },
+        "bauhaus-functional": { accent: "#2057bf", bg: "#ece6d8", surface: "#fdf9f0", ink: "#171717", line: "#2c2c2c" },
+        "nordic-calm": { accent: "#3d6f8b", bg: "#eef3f5", surface: "#ffffff", ink: "#1f2a31", line: "#c7d5db" },
+        "newspaper-classic": { accent: "#4b4a46", bg: "#f5f3ef", surface: "#fffefb", ink: "#1f1d1a", line: "#ccc5ba" },
+        "terminal-mono": { accent: "#3b8f5a", bg: "#111316", surface: "#171a1f", ink: "#d5e2da", line: "#2f363f" },
+        "warm-paper": { accent: "#9a5a35", bg: "#f6eee2", surface: "#fff9f0", ink: "#2d241c", line: "#d7c3a8" },
+        "oceanic-clean": { accent: "#0f6fa1", bg: "#ecf5fa", surface: "#ffffff", ink: "#1a2b36", line: "#bed6e5" },
+        "forest-muted": { accent: "#4b6f58", bg: "#eef3ed", surface: "#fbfdfb", ink: "#202920", line: "#c9d6c9" },
+        "sunset-soft": { accent: "#d06a4b", bg: "#fef2ea", surface: "#fffaf6", ink: "#2d2220", line: "#e5c6b8" },
+        "high-contrast": { accent: "#003cff", bg: "#ffffff", surface: "#ffffff", ink: "#000000", line: "#000000" },
+      };
+
+      const clampColor = (value) => {
+        const v = Number.isFinite(value) ? value : 0;
+        return Math.max(0, Math.min(255, Math.round(v)));
+      };
+
+      const shiftHexColor = (hex, ratio) => {
+        const cleaned = String(hex || "").trim().replace("#", "");
+        const normalized = cleaned.length === 3
+          ? cleaned.split("").map((c) => c + c).join("")
+          : cleaned;
+        if (!/^[0-9a-fA-F]{6}$/.test(normalized)) {
+          return hex;
+        }
+
+        const r = parseInt(normalized.slice(0, 2), 16);
+        const g = parseInt(normalized.slice(2, 4), 16);
+        const b = parseInt(normalized.slice(4, 6), 16);
+
+        const adjust = (channel) =>
+          ratio >= 0
+            ? channel + (255 - channel) * ratio
+            : channel * (1 + ratio);
+
+        const toHex = (channel) => clampColor(adjust(channel)).toString(16).padStart(2, "0");
+
+        return "#" + toHex(r) + toHex(g) + toHex(b);
       };
 
       const restoreSelection = (select, value) => {
@@ -981,6 +1157,157 @@ function hello() { return "world"; }</code></pre>
       if (resetFontsButton) {
         resetFontsButton.addEventListener("click", () => {
           resetFontsToDefault();
+        });
+      }
+
+      if (openDialogButton && demoDialog && typeof demoDialog.showModal === "function") {
+        openDialogButton.addEventListener("click", () => {
+          if (!demoDialog.open) {
+            demoDialog.showModal();
+          }
+        });
+      }
+
+      if (closeDialogButton && demoDialog) {
+        closeDialogButton.addEventListener("click", () => {
+          if (demoDialog.open) {
+            demoDialog.close();
+          }
+        });
+      }
+
+      if (toggleInertButton && inertZone) {
+        const updateInertState = () => {
+          const isInert = inertZone.hasAttribute("inert");
+          if (inertState) {
+            inertState.textContent = "Etat: " + (isInert ? "inert actif" : "actif");
+          }
+        };
+
+        updateInertState();
+
+        toggleInertButton.addEventListener("click", () => {
+          if (inertZone.hasAttribute("inert")) {
+            inertZone.removeAttribute("inert");
+          } else {
+            inertZone.setAttribute("inert", "");
+          }
+          updateInertState();
+        });
+      }
+
+      if (enterFullscreenButton && fullscreenTarget && typeof fullscreenTarget.requestFullscreen === "function") {
+        enterFullscreenButton.addEventListener("click", async () => {
+          try {
+            await fullscreenTarget.requestFullscreen();
+          } catch (error) {
+            if (fullscreenState) {
+              fullscreenState.textContent = "Etat: echec plein ecran";
+            }
+          }
+        });
+      }
+
+      if (exitFullscreenButton && typeof document.exitFullscreen === "function") {
+        exitFullscreenButton.addEventListener("click", async () => {
+          if (document.fullscreenElement) {
+            await document.exitFullscreen();
+          }
+        });
+      }
+
+      if (fullscreenState) {
+        document.addEventListener("fullscreenchange", () => {
+          const active = document.fullscreenElement ? "plein ecran actif" : "fenetre normale";
+          fullscreenState.textContent = "Etat: " + active;
+        });
+      }
+
+      if (copyClipboardButton && clipboardText) {
+        copyClipboardButton.addEventListener("click", async () => {
+          try {
+            if (!navigator.clipboard || typeof navigator.clipboard.writeText !== "function") {
+              throw new Error("Clipboard API indisponible");
+            }
+            await navigator.clipboard.writeText(clipboardText.value || "");
+            if (clipboardState) {
+              clipboardState.textContent = "Etat: texte copie";
+            }
+          } catch (error) {
+            if (clipboardState) {
+              clipboardState.textContent = "Etat: copie refusee";
+            }
+          }
+        });
+      }
+
+      if (pasteClipboardButton && clipboardText) {
+        pasteClipboardButton.addEventListener("click", async () => {
+          try {
+            if (!navigator.clipboard || typeof navigator.clipboard.readText !== "function") {
+              throw new Error("Clipboard API indisponible");
+            }
+            const pasted = await navigator.clipboard.readText();
+            clipboardText.value = pasted;
+            if (clipboardState) {
+              clipboardState.textContent = "Etat: texte colle";
+            }
+          } catch (error) {
+            if (clipboardState) {
+              clipboardState.textContent = "Etat: collage refuse";
+            }
+          }
+        });
+      }
+
+      if (sharePageButton) {
+        sharePageButton.addEventListener("click", async () => {
+          try {
+            if (!navigator.share) {
+              throw new Error("Web Share indisponible");
+            }
+            await navigator.share({
+              title: document.title,
+              text: "DIY CSS playground",
+              url: location.href,
+            });
+            if (shareState) {
+              shareState.textContent = "Etat: partage envoye";
+            }
+          } catch (error) {
+            if (shareState) {
+              shareState.textContent = "Etat: partage annule ou indisponible";
+            }
+          }
+        });
+      }
+
+      if (dragSource && dropTarget) {
+        dragSource.addEventListener("dragstart", (event) => {
+          event.dataTransfer.setData("text/plain", "DIY CSS draggable chip");
+          dragSource.classList.add("dragging");
+        });
+
+        dragSource.addEventListener("dragend", () => {
+          dragSource.classList.remove("dragging");
+        });
+
+        dropTarget.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          dropTarget.classList.add("is-over");
+        });
+
+        dropTarget.addEventListener("dragleave", () => {
+          dropTarget.classList.remove("is-over");
+        });
+
+        dropTarget.addEventListener("drop", (event) => {
+          event.preventDefault();
+          dropTarget.classList.remove("is-over");
+          const payload = event.dataTransfer.getData("text/plain");
+          if (dropState) {
+            dropState.textContent = "Etat: depose -> " + payload;
+          }
         });
       }
 

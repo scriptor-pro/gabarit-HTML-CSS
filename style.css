@@ -531,6 +531,34 @@ form p {
   padding-top: var(--space-1);
 }
 
+.interactive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-3);
+}
+
+.interactive-panel {
+  display: grid;
+  gap: var(--space-2);
+}
+
+#demo-popover {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  padding: var(--space-2) var(--space-3);
+  max-width: 28ch;
+}
+
+#demo-popover:popover-open {
+  box-shadow: 0 0 0 1px var(--line-strong);
+}
+
+#inert-zone[inert] {
+  opacity: 0.55;
+}
+
 label,
 legend {
   font-weight: 600;
@@ -743,5 +771,300 @@ dialog:focus-within {
 
   .form-inline-options {
     align-items: flex-start;
+  }
+}
+
+:root {
+  --content-max: 69ch;
+  --shadow-soft: 0 10px 26px -18px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 12px 28px -20px rgba(0, 0, 0, 0.38);
+}
+
+body {
+  background-image:
+    radial-gradient(
+      circle at 12% -4%,
+      color-mix(in srgb, var(--accent) 10%, transparent) 0,
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 88% 0%,
+      color-mix(in srgb, var(--accent) 8%, transparent) 0,
+      transparent 24rem
+    );
+}
+
+header,
+section,
+footer,
+article,
+aside,
+fieldset,
+dialog,
+.table-wrap,
+.font-controls {
+  box-shadow: var(--shadow-soft);
+}
+
+body > header {
+  position: relative;
+  overflow: clip;
+}
+
+body > header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 0 72%,
+    color-mix(in srgb, var(--accent) 7%, transparent) 100%
+  );
+}
+
+header > * {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+h2 {
+  padding-bottom: 0.32rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--accent) 40%, var(--line) 60%);
+}
+
+a {
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+  text-decoration-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+a:hover {
+  text-decoration-color: var(--accent);
+}
+
+main :where(p, ul, ol, dl, blockquote, pre, li, dd) {
+  max-width: var(--content-max);
+}
+
+section > p:first-of-type {
+  color: var(--ink-soft);
+}
+
+nav ul {
+  gap: 0.55rem;
+}
+
+nav a {
+  border-color: color-mix(in srgb, var(--line) 72%, var(--accent) 28%);
+  transition:
+    transform 160ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+nav a:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line) 45%);
+  box-shadow: 0 6px 14px -12px rgba(0, 0, 0, 0.6);
+}
+
+.font-controls {
+  gap: var(--space-3);
+  border-color: color-mix(in srgb, var(--line) 65%, var(--accent) 35%);
+}
+
+.font-controls fieldset {
+  background: color-mix(in srgb, var(--surface) 90%, var(--surface-alt) 10%);
+}
+
+.font-controls legend {
+  font-weight: 700;
+  color: color-mix(in srgb, var(--ink) 75%, var(--accent) 25%);
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: color-mix(in srgb, var(--surface) 70%, var(--accent) 30%);
+  transition:
+    transform 130ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.font-controls-actions > button:first-child {
+  background: color-mix(in srgb, var(--accent) 28%, var(--surface) 72%);
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  border-color: color-mix(in srgb, var(--accent) 70%, var(--line-strong) 30%);
+  transform: translateY(-1px);
+}
+
+button:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+  transform: translateY(0);
+}
+
+input,
+select,
+textarea {
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.demo-form fieldset {
+  border-color: color-mix(in srgb, var(--line) 72%, var(--accent) 28%);
+  background: color-mix(in srgb, var(--surface-alt) 76%, var(--surface) 24%);
+}
+
+.form-inline-options,
+.form-actions {
+  background: color-mix(in srgb, var(--surface) 86%, var(--surface-alt) 14%);
+}
+
+.table-wrap {
+  border-color: color-mix(in srgb, var(--line) 65%, var(--accent) 35%);
+}
+
+.demo-table tbody tr:hover {
+  background: color-mix(in srgb, var(--accent) 13%, var(--surface) 87%);
+}
+
+.interactive-panel {
+  padding: var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--line) 72%, var(--accent) 28%);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface-alt) 78%, var(--surface) 22%);
+  box-shadow: var(--shadow-card);
+}
+
+.interactive-surface {
+  padding: var(--space-2);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.draggable-chip {
+  display: inline-block;
+  width: fit-content;
+  margin: 0;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--line) 68%, var(--accent) 32%);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: grab;
+  user-select: none;
+}
+
+.draggable-chip.dragging {
+  opacity: 0.6;
+  cursor: grabbing;
+}
+
+.drop-zone {
+  min-height: 4.2rem;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink-soft);
+}
+
+.drop-zone.is-over {
+  border-style: solid;
+  border-color: var(--accent);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface) 90%);
+}
+
+menu {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+dialog {
+  border-color: color-mix(in srgb, var(--line) 65%, var(--accent) 35%);
+}
+
+details {
+  background: color-mix(in srgb, var(--surface-alt) 82%, var(--surface) 18%);
+}
+
+summary {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+summary::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 700;
+  transition: transform 140ms ease;
+}
+
+details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+body > footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+}
+
+@media (max-width: 56rem) {
+  .font-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .interactive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body > footer {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
