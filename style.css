@@ -126,7 +126,11 @@ p {
 }
 
 main :where(p, ul, ol, dl, blockquote, pre) {
-  max-width: 72ch;
+  max-width: 69ch;
+}
+
+main :where(li, dd) {
+  max-width: 69ch;
 }
 
 form :where(p, ul, ol, dl),
