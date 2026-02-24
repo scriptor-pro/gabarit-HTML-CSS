@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DIY CSS</title>
+  <meta name="description" content="Page de test listant un grand nombre d’éléments HTML, pour vérifier styles, accessibilité et rendu." />
+  <link rel="preconnect" href="https://fonts.bunny.net" />
+  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=literata:400,600,700&display=swap" />
+  <link id="font-ui-link" rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:100,200,300,400,500,600,700,800,900&display=swap" />
+  <link id="font-content-link" rel="stylesheet" href="https://fonts.bunny.net/css?family=source-serif-4:100,200,300,400,500,600,700,800,900&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <header>
+    <h1>DIY CSS</h1>
+    <p>Objectif : instancier beaucoup d’éléments pour pouvoir leur appliquer des styles et tester le rendu.</p>
+
+    <form class="font-controls" aria-label="Choix des polices">
+      <fieldset>
+        <legend>Interface</legend>
+        <p>
+          <label for="ui-font-search">Recherche catalogue Bunny</label>
+          <input id="ui-font-search" name="ui-font-search" type="search" placeholder="Ex: inter, garamond, serif..." autocomplete="off" list="ui-font-suggestions" />
+        </p>
+        <datalist id="ui-font-suggestions"></datalist>
+        <p class="font-active" id="ui-font-active" aria-live="polite">Police active: Inter (700)</p>
+        <p hidden>
+          <label for="ui-font-family">Police</label>
+          <select id="ui-font-family" name="ui-font-family">
+            <optgroup label="Sans serif">
+              <option value="inter" data-name="Inter" data-class="sans" selected>Inter</option>
+              <option value="open-sans" data-name="Open Sans" data-class="sans">Open Sans</option>
+              <option value="nunito-sans" data-name="Nunito Sans" data-class="sans">Nunito Sans</option>
+              <option value="work-sans" data-name="Work Sans" data-class="sans">Work Sans</option>
+              <option value="dm-sans" data-name="DM Sans" data-class="sans">DM Sans</option>
+              <option value="rubik" data-name="Rubik" data-class="sans">Rubik</option>
+              <option value="roboto" data-name="Roboto" data-class="sans">Roboto</option>
+              <option value="lato" data-name="Lato" data-class="sans">Lato</option>
+              <option value="fira-sans" data-name="Fira Sans" data-class="sans">Fira Sans</option>
+              <option value="source-sans-3" data-name="Source Sans 3" data-class="sans">Source Sans 3</option>
+            </optgroup>
+            <optgroup label="Serif">
+              <option value="source-serif-4" data-name="Source Serif 4" data-class="serif">Source Serif 4</option>
+              <option value="lora" data-name="Lora" data-class="serif">Lora</option>
+              <option value="merriweather" data-name="Merriweather" data-class="serif">Merriweather</option>
+              <option value="pt-serif" data-name="PT Serif" data-class="serif">PT Serif</option>
+              <option value="crimson-text" data-name="Crimson Text" data-class="serif">Crimson Text</option>
+              <option value="libre-baskerville" data-name="Libre Baskerville" data-class="serif">Libre Baskerville</option>
+              <option value="bitter" data-name="Bitter" data-class="serif">Bitter</option>
+              <option value="vollkorn" data-name="Vollkorn" data-class="serif">Vollkorn</option>
+              <option value="cormorant-garamond" data-name="Cormorant Garamond" data-class="serif">Cormorant Garamond</option>
+              <option value="eb-garamond" data-name="EB Garamond" data-class="serif">EB Garamond</option>
+            </optgroup>
+          </select>
+        </p>
+        <p>
+          <label for="ui-font-weight">Poids</label>
+          <select id="ui-font-weight" name="ui-font-weight">
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="300">300</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+            <option value="600">600</option>
+            <option value="700" selected>700</option>
+            <option value="800">800</option>
+            <option value="900">900</option>
+          </select>
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>Contenu</legend>
+        <p>
+          <label for="content-font-search">Recherche catalogue Bunny</label>
+          <input id="content-font-search" name="content-font-search" type="search" placeholder="Ex: merriweather, sans..." autocomplete="off" list="content-font-suggestions" />
+        </p>
+        <datalist id="content-font-suggestions"></datalist>
+        <p class="font-active" id="content-font-active" aria-live="polite">Police active: Source Serif 4 (400)</p>
+        <p hidden>
+          <label for="content-font-family">Police</label>
+          <select id="content-font-family" name="content-font-family">
+            <optgroup label="Serif">
+              <option value="source-serif-4" data-name="Source Serif 4" data-class="serif" selected>Source Serif 4</option>
+              <option value="lora" data-name="Lora" data-class="serif">Lora</option>
+              <option value="merriweather" data-name="Merriweather" data-class="serif">Merriweather</option>
+              <option value="pt-serif" data-name="PT Serif" data-class="serif">PT Serif</option>
+              <option value="crimson-text" data-name="Crimson Text" data-class="serif">Crimson Text</option>
+              <option value="libre-baskerville" data-name="Libre Baskerville" data-class="serif">Libre Baskerville</option>
+              <option value="bitter" data-name="Bitter" data-class="serif">Bitter</option>
+              <option value="vollkorn" data-name="Vollkorn" data-class="serif">Vollkorn</option>
+              <option value="cormorant-garamond" data-name="Cormorant Garamond" data-class="serif">Cormorant Garamond</option>
+              <option value="eb-garamond" data-name="EB Garamond" data-class="serif">EB Garamond</option>
+            </optgroup>
+            <optgroup label="Sans serif">
+              <option value="inter" data-name="Inter" data-class="sans">Inter</option>
+              <option value="open-sans" data-name="Open Sans" data-class="sans">Open Sans</option>
+              <option value="nunito-sans" data-name="Nunito Sans" data-class="sans">Nunito Sans</option>
+              <option value="work-sans" data-name="Work Sans" data-class="sans">Work Sans</option>
+              <option value="dm-sans" data-name="DM Sans" data-class="sans">DM Sans</option>
+              <option value="rubik" data-name="Rubik" data-class="sans">Rubik</option>
+              <option value="roboto" data-name="Roboto" data-class="sans">Roboto</option>
+              <option value="lato" data-name="Lato" data-class="sans">Lato</option>
+              <option value="fira-sans" data-name="Fira Sans" data-class="sans">Fira Sans</option>
+              <option value="source-sans-3" data-name="Source Sans 3" data-class="sans">Source Sans 3</option>
+            </optgroup>
+          </select>
+        </p>
+        <p>
+          <label for="content-font-weight">Poids</label>
+          <select id="content-font-weight" name="content-font-weight">
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="300">300</option>
+            <option value="400" selected>400</option>
+            <option value="500">500</option>
+            <option value="600">600</option>
+            <option value="700">700</option>
+            <option value="800">800</option>
+            <option value="900">900</option>
+          </select>
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>Couleurs</legend>
+        <div class="color-controls">
+          <p>
+            <label for="color-accent">Accent</label>
+            <input id="color-accent" name="color-accent" type="color" value="#3b63d1" />
+          </p>
+          <p>
+            <label for="color-bg">Fond</label>
+            <input id="color-bg" name="color-bg" type="color" value="#f6f6f6" />
+          </p>
+          <p>
+            <label for="color-surface">Surface</label>
+            <input id="color-surface" name="color-surface" type="color" value="#ffffff" />
+          </p>
+          <p>
+            <label for="color-ink">Texte</label>
+            <input id="color-ink" name="color-ink" type="color" value="#1f1f1f" />
+          </p>
+          <p>
+            <label for="color-line">Bordure</label>
+            <input id="color-line" name="color-line" type="color" value="#d4d4d4" />
+          </p>
+          <p class="color-reset-wrap">
+            <button type="button" id="color-reset">Reinitialiser couleurs</button>
+          </p>
+        </div>
+      </fieldset>
+      <p class="font-controls-actions">
+        <button type="button" id="apply-fonts">Reappliquer les polices</button>
+        <button type="button" id="theme-toggle" aria-pressed="false">Passer en mode fonce</button>
+        <button type="button" id="export-current-theme">Exporter theme courant</button>
+      </p>
+      <p class="font-controls-help">
+        Autocomplete actif a partir de 5 caracteres. L'application est automatique; le bouton reste optionnel.
+      </p>
+      <p class="font-catalog-status" id="font-catalog-status" role="status" aria-live="polite">
+        Chargement du catalogue Bunny...
+      </p>
+    </form>
+
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a href="#text">Texte</a></li>
+        <li><a href="#media">Média</a></li>
+        <li><a href="#forms">Formulaires</a></li>
+        <li><a href="#tables">Tableaux</a></li>
+        <li><a href="#interactive">Interactif</a></li>
+        <li><a href="#embedded">Embarqué</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="text">
+      <header>
+        <h2>Texte, structure, sémantique</h2>
+      </header>
+
+      <article>
+        <header>
+          <h3>Article + headings</h3>
+          <p><time datetime="2025-12-23">23-12-2025</time> — <address>Par Baudouin (exemple)</address></p>
+        </header>
+
+        <p>
+          <strong>Strong</strong>, <em>em</em>, <b>b</b>, <i>i</i>, <u>u</u>, <s>s</s>,
+          <mark>mark</mark>, <small>small</small>, H<sub>2</sub>O, 2<sup>10</sup>,
+          <abbr title="World Wide Web">WWW</abbr>, <dfn>définition</dfn>,
+          <q cite="https://example.com">citation courte</q>.
+        </p>
+
+<h4>Paragraphe</h4>
+
+<p>Aliquam ultrices quis lorem quis aliquam. Etiam et est et risus lobortis tincidunt. Cras placerat <abbr title="tempus">ⓘ</abbr> mattis. Etiam lacinia orci et scelerisque rhoncus. Nunc accumsan turpis eu rhoncus aliquet. Proin volutpat nibh dui, eget congue urna ornare at. Integer ac porta nibh. Vestibulum suscipit sapien a ullamcorper dapibus. Suspendisse hendrerit, nisi et luctus efficitur, purus nibh malesuada tortor, vel dictum tortor lorem vel purus. Morbi laoreet, est in luctus interdum, odio sapien sollicitudin lorem, eget scelerisque quam magna a mi. Nam ut tortor vulputate, fermentum nisl sit amet, tempor ligula. Duis iaculis tristique arcu luctus ultricies. Donec eu turpis bibendum, aliquam nisl non, euismod odio. Aenean eu purus ipsum. Vestibulum nulla lectus, placerat euismod urna non, auctor aliquam ipsum. Mauris leo enim, pulvinar vel diam ut, rutrum facilisis diam. </p>
+
+        <p>
+          <a href="https://example.com" rel="noopener">Lien</a>,
+          <span>span</span>,
+          <wbr> (wbr) pour césure.
+        </p>
+
+        <p>
+          <code>code</code>, <kbd>kbd</kbd>, <samp>samp</samp>, <var>var</var>.
+        </p>
+
+        <pre><code>pre + code
+function hello() { return "world"; }</code></pre>
+
+        <blockquote cite="https://example.com">
+          <p>blockquote : citation longue. Sed sollicitudin orci id consequat accumsan. Pellentesque suscipit enim vel odio lacinia porttitor. Ut libero nibh, rhoncus nec aliquam sit amet, elementum vel nulla. Aliquam erat volutpat. Nunc commodo, tortor quis posuere eleifend, ante augue venenatis leo, in posuere orci tortor non lectus. Aliquam aliquam nec orci id mattis. Duis at dignissim tortor, sed accumsan ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse varius, mi vitae facilisis fringilla, lectus quam sodales risus, id tincidunt lorem ante sit amet tortor. Donec commodo metus eu rhoncus cursus. Vestibulum sagittis ante sed est blandit, sit amet aliquam erat imperdiet. Phasellus ullamcorper ex eros, sed feugiat lorem lacinia et.  </p>
+        </blockquote>
+
+        <p>Rupture thématique :</p>
+        <hr />
+
+        <p>Retour à la ligne explicite<br />avec br.</p>
+
+        <p>
+          <cite>cite</cite> et <data value="42">data</data>.
+        </p>
+
+        <p>
+          <bdi>BDI</bdi> — <bdo dir="rtl">BDO RTL</bdo>.
+        </p>
+
+        <p>
+          <ruby>漢<rt>kan</rt></ruby>
+          <ruby>字<rp>(</rp><rt>ji</rt><rp>)</rp></ruby>
+        </p>
+
+        <p>
+          <del datetime="2025-12-01">del</del>
+          <ins datetime="2025-12-02">ins</ins>
+        </p>
+
+        <details>
+          <summary>details / summary</summary>
+          <p>Contenu repliable.</p>
+        </details>
+
+        <figure>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect width='100%25' height='100%25' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='16'%3EImage placeholder%3C/text%3E%3C/svg%3E"
+               alt="Image de test (placeholder)" width="320" height="180" />
+          <figcaption>figure + figcaption</figcaption>
+        </figure>
+
+        <ul>
+          <li>ul / li</li>
+          <li>Deuxième item</li>
+        </ul>
+
+        <ol>
+          <li>ol / li</li>
+          <li>Deuxième item</li>
+        </ol>
+
+        <dl>
+          <dt>dt</dt>
+          <dd>dd</dd>
+        </dl>
+
+        <p>Texte “monospace”:</p>
+        <tt>tt (obsolète historiquement, mais certains navigateurs le supportent encore — à éviter en prod)</tt>
+
+        <footer>
+          <p>Footer d’article.</p>
+        </footer>
+      </article>
+
+      <aside class="aside-demo" aria-label="Exemple de contenu annexe">
+        <h3>aside</h3>
+        <p class="main-copy"><strong>Texte principal (normal) :</strong> Ce paragraphe est le fil principal de lecture de la page.</p>
+        <p class="aside-copy"><strong>Texte d’aside :</strong> Ce bloc apporte un contexte annexe (note, précision, encart) sans faire partie du contenu principal.</p>
+      </aside>
+    </section>
+
+    <section id="media">
+      <h2>Média</h2>
+
+      <p>picture / source / img :</p>
+      <picture>
+        <source media="(min-width: 800px)" srcset="https://picsum.photos/seed/picsum/200/323" />
+        <img src="https://picsum.photos/seed/picsum/200/323"
+             alt="Exemple picture" width="200" height="323" />
+      </picture>
+
+      <p>audio :</p>
+      <p><strong>Titre :</strong> Für Elise — Ludwig van Beethoven (enregistrement libre)</p>
+      <audio controls>
+        <source src="https://commons.wikimedia.org/wiki/Special:FilePath/Fur-elise-beethoven-216331.ogg" type="audio/ogg" />
+        Votre navigateur ne supporte pas audio.
+      </audio>
+
+      <p>video :</p>
+      <p><strong>Titre :</strong> Big Buck Bunny (Blender Open Movie)</p>
+      <p><strong>Licence :</strong> Creative Commons CC BY 3.0</p>
+      <video controls width="320">
+        <source src="https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas video.
+      </video>
+
+      <p>track (exemple, vide) :</p>
+      <video controls width="320">
+        <source src="" type="video/mp4" />
+        <track kind="captions" srclang="fr" label="Français" default />
+      </video>
+
+      <p>canvas :</p>
+      <canvas width="320" height="120">Canvas fallback.</canvas>
+
+      <p>svg inline :</p>
+      <svg width="320" height="80" role="img" aria-label="SVG de test">
+        <rect x="0" y="0" width="320" height="80" />
+        <text x="12" y="50">SVG inline</text>
+      </svg>
+    </section>
+
+    <section id="forms">
+      <h2>Formulaires</h2>
+
+      <p>Exemple de formulaire avec hiérarchie claire, libellés explicites et zones d’action distinctes.</p>
+
+      <form class="demo-form" action="#" method="post">
+        <fieldset>
+          <legend>Informations principales</legend>
+          <div class="form-grid">
+            <p>
+              <label for="t1">Nom complet</label>
+              <input id="t1" name="t1" type="text" autocomplete="name" placeholder="Ex: Alice Martin" />
+            </p>
+
+            <p>
+              <label for="t2">Email</label>
+              <input id="t2" name="t2" type="email" autocomplete="email" placeholder="nom@exemple.fr" />
+            </p>
+
+            <p>
+              <label for="t3">Mot de passe</label>
+              <input id="t3" name="t3" type="password" />
+            </p>
+
+            <p>
+              <label for="t4">Quantité</label>
+              <input id="t4" name="t4" type="number" min="0" max="10" />
+            </p>
+
+            <p>
+              <label for="t5">Date</label>
+              <input id="t5" name="t5" type="date" />
+            </p>
+
+            <p>
+              <label for="t6">Heure</label>
+              <input id="t6" name="t6" type="time" />
+            </p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Préférences</legend>
+          <div class="form-grid">
+            <p>
+              <label for="t7">Couleur</label>
+              <input id="t7" name="t7" type="color" value="#3366ff" />
+            </p>
+
+            <p>
+              <label for="t8">Intensité</label>
+              <input id="t8" name="t8" type="range" min="0" max="100" />
+            </p>
+
+            <p>
+              <label for="t10">Sélection</label>
+              <select id="t10" name="t10">
+                <optgroup label="Groupe A">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                </optgroup>
+                <optgroup label="Groupe B">
+                  <option>Option 3</option>
+                </optgroup>
+              </select>
+            </p>
+
+            <p>
+              <label for="t11">Recherche rapide (datalist)</label>
+              <input id="t11" name="t11" list="dl1" placeholder="Alpha, Beta..." />
+              <datalist id="dl1">
+                <option value="Alpha"></option>
+                <option value="Beta"></option>
+                <option value="Gamma"></option>
+              </datalist>
+            </p>
+
+            <p class="form-grid-wide">
+              <label for="t9">Message</label>
+              <textarea id="t9" name="t9" rows="3" placeholder="Ajoute un commentaire..."></textarea>
+            </p>
+          </div>
+
+          <p class="form-inline-options">
+            <span>Choix :</span>
+            <input id="c1" name="c1" type="checkbox" />
+            <label for="c1">Accepter les conditions</label>
+            <input id="r1" name="rg" type="radio" />
+            <label for="r1">Option A</label>
+            <input id="r2" name="rg" type="radio" />
+            <label for="r2">Option B</label>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>État et actions</legend>
+          <p>
+            <output name="out1">Output: prêt</output>
+          </p>
+
+          <p>
+            <label for="m1">Meter</label>
+            <meter id="m1" value="0.6">0.6</meter>
+          </p>
+
+          <p>
+            <label for="p1">Progress</label>
+            <progress id="p1" value="35" max="100">35%</progress>
+          </p>
+
+          <p class="form-actions">
+            <button type="button">Action secondaire</button>
+            <input type="submit" value="Valider" />
+            <input type="reset" value="Réinitialiser" />
+          </p>
+        </fieldset>
+      </form>
+    </section>
+    
+    <section id="extended">
+  <h2>Éléments HTML étendus et rares</h2>
+
+  <article>
+    <h3>Éléments de structuration avancée</h3>
+
+    <search>
+      <form role="search">
+        <label for="q">Recherche</label>
+        <input id="q" type="search" name="q" />
+        <button type="submit">OK</button>
+      </form>
+    </search>
+
+    <main hidden>
+      <p>main avec attribut hidden</p>
+    </main>
+
+    <div>
+      <p>div (neutre mais encore nécessaire parfois)</p>
+    </div>
+  </article>
+
+  <article>
+    <h3>Éléments liés aux Web Components</h3>
+
+    <template id="tpl-card">
+      <article>
+        <h4>Titre dans template</h4>
+        <p>Contenu non rendu tant qu’il n’est pas instancié.</p>
+        <slot name="content"></slot>
+      </article>
+    </template>
+
+    <p>slot (hors shadow DOM, ici purement démonstratif) :</p>
+    <slot name="demo-slot">Fallback du slot</slot>
+  </article>
+
+  <article>
+    <h3>Éléments techniques divers</h3>
+
+    <p>Fallback
+      <object data="about:blank" type="text/html">
+        <param name="example" value="1" />
+        Fallback object.
+      </object>
+    </p>
+
+    <p>Iframe
+      <iframe srcdoc="<p>iframe srcdoc</p>" title="iframe srcdoc"></iframe>
+    </p>
+
+    <p>Embed
+      <embed src="about:blank" type="text/html" />
+    </p>
+  </article>
+
+  <article>
+    <h3>Éléments peu connus mais valides</h3>
+
+    <p>
+      <time datetime="2025-12-23T10:00">Temps lisible - ex: 2025-12-23T10:00</time>
+    </p>
+
+    <p>
+      <data value="2025">Année encodée ex: 2025 </data>
+    </p>
+
+    <p>Résultat Calculé
+      <output name="calc">Résultat calculé</output>
+    </p>
+  </article>
+</section>
+
+
+    <section id="tables">
+      <h2>Tableaux</h2>
+      <p>Exemple de tableau avec en-tête lisible, lignes alternées et survol pour faciliter la lecture.</p>
+      <div class="table-wrap" role="region" aria-label="Tableau de démonstration" tabindex="0">
+      <table class="demo-table">
+        <caption>Données exemple</caption>
+        <colgroup>
+          <col />
+          <col />
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">th</th>
+            <th scope="col">th</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>td</td>
+            <td>td</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">Total / résumé</td>
+          </tr>
+        </tfoot>
+      </table>
+      </div>
+    </section>
+
+    <section id="interactive">
+      <h2>Interactif</h2>
+
+      <p>dialog (peut être non supporté selon navigateur) :</p>
+      <dialog open>
+        <p>dialog ouvert</p>
+        <form method="dialog">
+          <button>Fermer</button>
+        </form>
+      </dialog>
+
+      <p>menu (peu utilisé, support variable) :</p>
+      <menu>
+        <li><button type="button">Action 1</button></li>
+        <li><button type="button">Action 2</button></li>
+      </menu>
+    </section>
+
+    <section id="embedded">
+      <h2>Contenu embarqué / scripting</h2>
+
+      <p>iframe :</p>
+      <iframe title="iframe exemple" src="about:blank"></iframe>
+
+      <p>embed (vide) :</p>
+      <embed type="text/html" src="about:blank" />
+
+      <p>object (vide) + param :</p>
+      <object data="about:blank" type="text/html">
+        <param name="foo" value="bar" />
+        Fallback object.
+      </object>
+
+      <p>map + area :</p>
+      <img alt="Image map" width="320" height="120"
+           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='120'%3E%3Crect width='100%25' height='100%25' fill='%23eee'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif'%3EImage map%3C/text%3E%3C/svg%3E"
+           usemap="#m1" />
+      <map name="m1">
+        <area shape="rect" coords="0,0,160,120" href="#text" alt="Aller à Texte" />
+        <area shape="rect" coords="160,0,320,120" href="#forms" alt="Aller à Formulaires" />
+      </map>
+
+      <p>noscript :</p>
+      <noscript>Ce message s’affiche si JavaScript est désactivé.</noscript>
+
+      <p>template :</p>
+      <template>
+        <p>Contenu template non rendu.</p>
+      </template>
+    </section>
+  </main>
+
+  <footer>
+    <p><small>Fin de page — <time datetime="2025-12-23">23-12-2025</time></small></p>
+    <p><small>made with 🍫 in Brussels</small></p>
+  </footer>
+
+  <script>
+    (async () => {
+      const root = document.documentElement;
+      const uiFamily = document.getElementById("ui-font-family");
+      const uiWeight = document.getElementById("ui-font-weight");
+      const uiSearch = document.getElementById("ui-font-search");
+      const uiSuggestions = document.getElementById("ui-font-suggestions");
+      const contentFamily = document.getElementById("content-font-family");
+      const contentWeight = document.getElementById("content-font-weight");
+      const contentSearch = document.getElementById("content-font-search");
+      const contentSuggestions = document.getElementById("content-font-suggestions");
+      const uiActive = document.getElementById("ui-font-active");
+      const contentActive = document.getElementById("content-font-active");
+      const colorAccent = document.getElementById("color-accent");
+      const colorBg = document.getElementById("color-bg");
+      const colorSurface = document.getElementById("color-surface");
+      const colorInk = document.getElementById("color-ink");
+      const colorLine = document.getElementById("color-line");
+      const colorReset = document.getElementById("color-reset");
+      const applyButton = document.getElementById("apply-fonts");
+      const themeToggle = document.getElementById("theme-toggle");
+      const exportThemeButton = document.getElementById("export-current-theme");
+      const catalogStatus = document.getElementById("font-catalog-status");
+      const uiLink = document.getElementById("font-ui-link");
+      const contentLink = document.getElementById("font-content-link");
+
+      if (!uiFamily || !uiWeight || !uiSearch || !contentFamily || !contentWeight || !contentSearch || !applyButton || !themeToggle || !exportThemeButton || !uiLink || !contentLink) {
+        return;
+      }
+
+      const allWeights = "100,200,300,400,500,600,700,800,900";
+      const buildHref = (slug) =>
+        "https://fonts.bunny.net/css?family=" + encodeURIComponent(slug) + ":" + allWeights + "&display=swap";
+
+      const normalizeText = (value) =>
+        value
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+
+      const defaultColorConfig = {
+        accent: "#3b63d1",
+        bg: "#f6f6f6",
+        surface: "#ffffff",
+        ink: "#1f1f1f",
+        line: "#d4d4d4",
+      };
+
+      const restoreSelection = (select, value) => {
+        if (!value) {
+          return;
+        }
+        const exists = Array.from(select.options).some((option) => option.value === value);
+        if (exists) {
+          select.value = value;
+        }
+      };
+
+      const slugToFamilyName = (slug) =>
+        slug
+          .split("-")
+          .filter(Boolean)
+          .map((part) => (part.length ? part[0].toUpperCase() + part.slice(1) : part))
+          .join(" ");
+
+      const inferClassFromSlug = (slug) =>
+        /(serif|slab|garamond|baskerville|bodoni|mincho|didone|roman|antiqua)/i.test(slug)
+          ? "serif"
+          : "sans";
+
+      const populateFamilySelect = (select, slugs, fallbackSlug) => {
+        const previous = select.value;
+        const fragment = document.createDocumentFragment();
+
+        slugs.forEach((slug) => {
+          const option = document.createElement("option");
+          option.value = slug;
+          option.dataset.name = slugToFamilyName(slug);
+          option.dataset.class = inferClassFromSlug(slug);
+          option.textContent = option.dataset.name;
+          fragment.appendChild(option);
+        });
+
+        select.replaceChildren(fragment);
+        restoreSelection(select, previous);
+        if (!select.value && slugs.length > 0) {
+          restoreSelection(select, fallbackSlug);
+        }
+      };
+
+      const loadBunnyCatalog = async () => {
+        const response = await fetch("https://fonts.bunny.net/sitemap.xml", { cache: "force-cache" });
+        if (!response.ok) {
+          throw new Error("Impossible de charger le sitemap Bunny");
+        }
+        const xmlText = await response.text();
+        const xml = new DOMParser().parseFromString(xmlText, "application/xml");
+        const locNodes = Array.from(xml.querySelectorAll("url > loc"));
+
+        const slugs = locNodes
+          .map((node) => node.textContent || "")
+          .map((url) => {
+            const match = url.match(/\/family\/([a-z0-9-]+)$/i);
+            return match ? match[1].toLowerCase() : "";
+          })
+          .filter(Boolean);
+
+        return Array.from(new Set(slugs)).sort((a, b) => a.localeCompare(b));
+      };
+
+      const filterFamilyOptions = (select, query) => {
+        const needle = normalizeText(query.trim());
+        const groups = Array.from(select.querySelectorAll("optgroup"));
+
+        if (groups.length === 0) {
+          let visibleCount = 0;
+          Array.from(select.options).forEach((option) => {
+            const haystack = normalizeText([option.textContent || "", option.value || ""].join(" "));
+            const visible = needle.length === 0 || haystack.includes(needle);
+            option.hidden = !visible;
+            if (visible) {
+              visibleCount += 1;
+            }
+          });
+          if (visibleCount > 0 && select.options[select.selectedIndex]?.hidden) {
+            const fallback = Array.from(select.options).find((option) => !option.hidden);
+            if (fallback) {
+              select.value = fallback.value;
+            }
+          }
+          return;
+        }
+
+        groups.forEach((group) => {
+          let visibleCount = 0;
+          Array.from(group.querySelectorAll("option")).forEach((option) => {
+            const haystack = normalizeText(
+              [option.textContent || "", option.dataset.name || "", option.value || "", group.label || ""].join(" ")
+            );
+            const visible = needle.length === 0 || haystack.includes(needle);
+            option.hidden = !visible;
+            if (visible) {
+              visibleCount += 1;
+            }
+          });
+          group.hidden = visibleCount === 0;
+        });
+
+        const selected = select.options[select.selectedIndex];
+        if (selected && selected.hidden) {
+          const fallback = Array.from(select.options).find((option) => !option.hidden);
+          if (fallback) {
+            select.value = fallback.value;
+          }
+        }
+      };
+
+      const updateAutocomplete = (select, datalist, query) => {
+        if (!datalist) {
+          return;
+        }
+
+        datalist.replaceChildren();
+        const needle = normalizeText(query.trim());
+        if (needle.length < 5) {
+          return;
+        }
+
+        const matches = [];
+        Array.from(select.options).forEach((option) => {
+          const name = option.dataset.name || option.textContent || "";
+          const haystack = normalizeText(name + " " + (option.value || ""));
+          if (haystack.includes(needle)) {
+            matches.push(name.trim());
+          }
+        });
+
+        Array.from(new Set(matches)).slice(0, 8).forEach((name) => {
+          const opt = document.createElement("option");
+          opt.value = name;
+          datalist.appendChild(opt);
+        });
+      };
+
+      const selectExactMatch = (select, query) => {
+        const needle = normalizeText(query.trim());
+        if (needle.length < 5) {
+          return;
+        }
+        const exact = Array.from(select.options).find((option) => {
+          const name = normalizeText((option.dataset.name || option.textContent || "").trim());
+          const slug = normalizeText((option.value || "").trim());
+          return name === needle || slug === needle;
+        });
+        if (exact) {
+          select.value = exact.value;
+        }
+      };
+
+      const applyColorConfig = (config) => {
+        root.style.setProperty("--accent", config.accent);
+        root.style.setProperty("--bg", config.bg);
+        root.style.setProperty("--surface", config.surface);
+        root.style.setProperty("--ink", config.ink);
+        root.style.setProperty("--line", config.line);
+
+        if (colorAccent) {
+          colorAccent.value = config.accent;
+        }
+        if (colorBg) {
+          colorBg.value = config.bg;
+        }
+        if (colorSurface) {
+          colorSurface.value = config.surface;
+        }
+        if (colorInk) {
+          colorInk.value = config.ink;
+        }
+        if (colorLine) {
+          colorLine.value = config.line;
+        }
+
+        localStorage.setItem("color-config", JSON.stringify(config));
+      };
+
+      const collectColorConfig = () => ({
+        accent: colorAccent ? colorAccent.value : defaultColorConfig.accent,
+        bg: colorBg ? colorBg.value : defaultColorConfig.bg,
+        surface: colorSurface ? colorSurface.value : defaultColorConfig.surface,
+        ink: colorInk ? colorInk.value : defaultColorConfig.ink,
+        line: colorLine ? colorLine.value : defaultColorConfig.line,
+      });
+
+      const applyTheme = (mode) => {
+        const resolved = mode === "dark" ? "dark" : "light";
+        root.setAttribute("data-theme", resolved);
+        themeToggle.setAttribute("aria-pressed", resolved === "dark" ? "true" : "false");
+        themeToggle.textContent = resolved === "dark" ? "Passer en mode clair" : "Passer en mode fonce";
+        localStorage.setItem("theme-mode", resolved);
+      };
+
+      const applyFontConfig = (group) => {
+        const isUi = group === "ui";
+        const familyInput = isUi ? uiFamily : contentFamily;
+        const weightInput = isUi ? uiWeight : contentWeight;
+        const link = isUi ? uiLink : contentLink;
+
+        const selected = familyInput.options[familyInput.selectedIndex];
+        if (!selected) {
+          return;
+        }
+        const slug = familyInput.value;
+        const familyName = selected.dataset.name || selected.textContent.trim() || "Inter";
+        const familyClass = selected.dataset.class === "serif" ? "serif" : "sans";
+        const normalizedWeight = String(Math.min(900, Math.max(100, Number(weightInput.value) || 400)));
+        const fallbackStack =
+          familyClass === "serif"
+            ? '"Times New Roman", Times, serif'
+            : '"Helvetica Neue", Arial, sans-serif';
+
+        weightInput.value = normalizedWeight;
+        link.href = buildHref(slug);
+
+        root.style.setProperty(
+          isUi ? "--font-ui" : "--font-content",
+          '"' + familyName.replace(/"/g, "") + '", ' + fallbackStack
+        );
+        root.style.setProperty(
+          isUi ? "--font-ui-weight" : "--font-content-weight",
+          normalizedWeight
+        );
+
+        const activeTarget = isUi ? uiActive : contentActive;
+        if (activeTarget) {
+          activeTarget.textContent = "Police active: " + familyName + " (" + normalizedWeight + ")";
+        }
+
+        localStorage.setItem(
+          isUi ? "font-ui-config" : "font-content-config",
+          JSON.stringify({
+            family: slug,
+            weight: normalizedWeight,
+          })
+        );
+      };
+
+      const uiSaved = JSON.parse(localStorage.getItem("font-ui-config") || "null");
+      const contentSaved = JSON.parse(localStorage.getItem("font-content-config") || "null");
+
+      try {
+        const bunnySlugs = await loadBunnyCatalog();
+        if (bunnySlugs.length > 0) {
+          populateFamilySelect(uiFamily, bunnySlugs, "inter");
+          populateFamilySelect(contentFamily, bunnySlugs, "source-serif-4");
+          if (catalogStatus) {
+            catalogStatus.textContent = bunnySlugs.length + " polices disponibles";
+          }
+        } else if (catalogStatus) {
+          catalogStatus.textContent = "Catalogue Bunny vide, liste locale conservee.";
+        }
+      } catch (error) {
+        console.error(error);
+        if (catalogStatus) {
+          catalogStatus.textContent = "Catalogue Bunny indisponible, liste locale conservee.";
+        }
+      }
+
+      if (uiSaved) {
+        restoreSelection(uiFamily, uiSaved.family);
+        restoreSelection(uiWeight, uiSaved.weight);
+      }
+
+      if (contentSaved) {
+        restoreSelection(contentFamily, contentSaved.family);
+        restoreSelection(contentWeight, contentSaved.weight);
+      }
+
+      const storedColorConfig = JSON.parse(localStorage.getItem("color-config") || "null");
+      applyColorConfig({
+        accent: storedColorConfig?.accent || defaultColorConfig.accent,
+        bg: storedColorConfig?.bg || defaultColorConfig.bg,
+        surface: storedColorConfig?.surface || defaultColorConfig.surface,
+        ink: storedColorConfig?.ink || defaultColorConfig.ink,
+        line: storedColorConfig?.line || defaultColorConfig.line,
+      });
+
+      const savedTheme = localStorage.getItem("theme-mode");
+      const systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
+
+      applyButton.addEventListener("click", () => {
+        applyFontConfig("ui");
+        applyFontConfig("content");
+      });
+
+      themeToggle.addEventListener("click", () => {
+        const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        applyTheme(current === "dark" ? "light" : "dark");
+      });
+
+      const extractBaseCssFromLoadedStylesheet = () => {
+        const sheets = Array.from(document.styleSheets || []);
+        for (const sheet of sheets) {
+          const href = sheet.href || "";
+          if (!href || !href.includes("style.css")) {
+            continue;
+          }
+          try {
+            const rules = Array.from(sheet.cssRules || []);
+            if (rules.length > 0) {
+              return rules.map((rule) => rule.cssText).join("\n\n");
+            }
+          } catch (error) {
+            // Some environments block direct cssRules access.
+          }
+        }
+        return "";
+      };
+
+      exportThemeButton.addEventListener("click", async () => {
+        try {
+          let baseCss = "";
+          try {
+            const response = await fetch("style.css", { cache: "no-store" });
+            if (response.ok) {
+              baseCss = await response.text();
+            }
+          } catch (error) {
+            // Fallback below for local file:// usage.
+          }
+
+          if (!baseCss) {
+            baseCss = extractBaseCssFromLoadedStylesheet();
+          }
+
+          const computed = getComputedStyle(root);
+          const vars = [
+            "--bg",
+            "--surface",
+            "--surface-alt",
+            "--ink",
+            "--ink-soft",
+            "--accent",
+            "--line",
+            "--line-strong",
+            "--font-ui",
+            "--font-content",
+            "--font-ui-weight",
+            "--font-content-weight",
+            "--radius",
+          ];
+
+          const lines = vars.map((name) => "  " + name + ": " + computed.getPropertyValue(name).trim() + ";");
+          const mode = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+          const themeBlock =
+            "\n\n/* --- Theme current export --- */\n" +
+            ":root {\n" + lines.join("\n") + "\n}\n" +
+            "/* Theme mode at export: " + mode + " */\n";
+
+          const cssText =
+            (baseCss || "/* Base style indisponible en contexte file://. */\n") +
+            themeBlock;
+
+          const blob = new Blob([cssText], { type: "text/css;charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "style-with-theme-current.css";
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          URL.revokeObjectURL(url);
+        } catch (error) {
+          console.error(error);
+          alert("Export impossible. Ouvre la page via un serveur local (ex: Live Server). ");
+        }
+      });
+
+      uiFamily.addEventListener("change", () => applyFontConfig("ui"));
+      uiWeight.addEventListener("change", () => applyFontConfig("ui"));
+      contentFamily.addEventListener("change", () => applyFontConfig("content"));
+      contentWeight.addEventListener("change", () => applyFontConfig("content"));
+
+      [colorAccent, colorBg, colorSurface, colorInk, colorLine]
+        .filter(Boolean)
+        .forEach((input) => {
+          input.addEventListener("input", () => applyColorConfig(collectColorConfig()));
+        });
+
+      if (colorReset) {
+        colorReset.addEventListener("click", () => applyColorConfig(defaultColorConfig));
+      }
+
+      uiSearch.addEventListener("input", (event) => {
+        const query = event.target.value;
+        updateAutocomplete(uiFamily, uiSuggestions, query);
+        filterFamilyOptions(uiFamily, query);
+        selectExactMatch(uiFamily, query);
+        applyFontConfig("ui");
+      });
+
+      contentSearch.addEventListener("input", (event) => {
+        const query = event.target.value;
+        updateAutocomplete(contentFamily, contentSuggestions, query);
+        filterFamilyOptions(contentFamily, query);
+        selectExactMatch(contentFamily, query);
+        applyFontConfig("content");
+      });
+
+      const form = document.querySelector(".font-controls");
+      if (form) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          applyFontConfig("ui");
+          applyFontConfig("content");
+        });
+      }
+
+      applyFontConfig("ui");
+      applyFontConfig("content");
+    })();
+  </script>
+</body>
+</html>
