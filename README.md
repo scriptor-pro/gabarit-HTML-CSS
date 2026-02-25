@@ -28,6 +28,11 @@ Then open `http://localhost:5173`.
 - Opening via `file://` can limit some browser features.
 - For reliable export behavior, use a local server.
 
+### Versioning
+
+- This project now follows SemVer (`MAJOR.MINOR.PATCH`).
+- Current version: `0.1.0`.
+
 ---
 
 ## FR
@@ -57,3 +62,8 @@ Puis ouvre `http://localhost:5173`.
 
 - L'ouverture en `file://` peut limiter certaines fonctions navigateur.
 - Pour un export fiable, utilise un serveur local.
+
+### Versioning
+
+- Le projet suit desormais SemVer (`MAJOR.MINOR.PATCH`).
+- Version actuelle : `0.1.0`.

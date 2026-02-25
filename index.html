@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DIY CSS</title>
   <meta name="description" content="Page de test listant un grand nombre d’éléments HTML, pour vérifier styles, accessibilité et rendu." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%A7%B0%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.bunny.net" />
   <link rel="stylesheet" href="https://fonts.bunny.net/css?family=literata:400,600,700&display=swap" />
   <link id="font-ui-link" rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:100,200,300,400,500,600,700,800,900&display=swap" />
@@ -17,17 +18,17 @@
 
   <header>
     <h1>DIY CSS</h1>
-    <p>Objectif : instancier beaucoup d’éléments pour pouvoir leur appliquer des styles et tester le rendu.</p>
+    <p>Ceci est un terrain de test : il instancie beaucoup d’elements pour verifier les styles et le rendu.</p>
 
-    <form class="font-controls" aria-label="Choix des polices">
+    <form class="font-controls" aria-label="Reglages visuels">
       <fieldset>
         <legend>Interface</legend>
         <p>
-          <label for="ui-font-search">Recherche catalogue Bunny</label>
-          <input id="ui-font-search" name="ui-font-search" type="search" placeholder="Ex: inter, garamond, serif..." autocomplete="off" list="ui-font-suggestions" />
+          <label for="ui-font-search">Rechercher une police Bunny</label>
+          <input id="ui-font-search" name="ui-font-search" type="search" placeholder="Ex: Inter, Garamond, serif..." autocomplete="off" list="ui-font-suggestions" />
         </p>
         <datalist id="ui-font-suggestions"></datalist>
-        <p class="font-active" id="ui-font-active" aria-live="polite">Police active: Inter (700)</p>
+        <p class="font-active" id="ui-font-active" aria-live="polite">Police active (interface) : Inter (700)</p>
         <p hidden>
           <label for="ui-font-family">Police</label>
           <select id="ui-font-family" name="ui-font-family">
@@ -75,11 +76,11 @@
       <fieldset>
         <legend>Contenu</legend>
         <p>
-          <label for="content-font-search">Recherche catalogue Bunny</label>
-          <input id="content-font-search" name="content-font-search" type="search" placeholder="Ex: merriweather, sans..." autocomplete="off" list="content-font-suggestions" />
+          <label for="content-font-search">Rechercher une police Bunny</label>
+          <input id="content-font-search" name="content-font-search" type="search" placeholder="Ex: Merriweather, sans..." autocomplete="off" list="content-font-suggestions" />
         </p>
         <datalist id="content-font-suggestions"></datalist>
-        <p class="font-active" id="content-font-active" aria-live="polite">Police active: Source Serif 4 (400)</p>
+        <p class="font-active" id="content-font-active" aria-live="polite">Police active (contenu) : Source Serif 4 (400)</p>
         <p hidden>
           <label for="content-font-family">Police</label>
           <select id="content-font-family" name="content-font-family">
@@ -125,9 +126,9 @@
         </p>
       </fieldset>
       <fieldset>
-        <legend>Direction esthetique</legend>
+        <legend>Ambiance visuelle</legend>
         <p>
-          <label for="aesthetic-preset">Preset visuel</label>
+          <label for="aesthetic-preset">Palette de depart</label>
           <select id="aesthetic-preset" name="aesthetic-preset">
             <option value="neutral">Vanilla neutre - base sobre et polyvalente</option>
             <option value="editorial-soft">Editorial doux - contraste modere, lecture longue</option>
@@ -160,108 +161,82 @@
       </fieldset>
       <fieldset class="fieldset-colors">
         <legend>Couleurs</legend>
+        <p class="color-controls-intro">Ceci est la zone palette : ajuste les couleurs par usage, les valeurs HEX se mettent a jour en direct.</p>
         <div class="color-controls">
-          <p>
-            <label for="color-accent">Accent</label>
-            <input id="color-accent" name="color-accent" type="color" value="#3b63d1" />
-            <small class="token-help">Couleur d'accent (liens, focus, accents UI).</small>
-          </p>
-          <p>
-            <label for="color-bg">Fond</label>
-            <input id="color-bg" name="color-bg" type="color" value="#f6f6f6" />
-            <small class="token-help">Fond global de la page.</small>
-          </p>
-          <p>
-            <label for="color-surface">Surface</label>
-            <input id="color-surface" name="color-surface" type="color" value="#ffffff" />
-            <small class="token-help">Fond des cartes et blocs principaux.</small>
-          </p>
-          <p>
-            <label for="color-surface-alt">Surface alt</label>
-            <input id="color-surface-alt" name="color-surface-alt" type="color" value="#fafafa" />
-            <small class="token-help">Variante de surface pour zones secondaires.</small>
-          </p>
-          <p>
-            <label for="color-ink">Texte</label>
-            <input id="color-ink" name="color-ink" type="color" value="#1f1f1f" />
-            <small class="token-help">Couleur principale du texte.</small>
-          </p>
-          <p>
-            <label for="color-ink-soft">Texte secondaire</label>
-            <input id="color-ink-soft" name="color-ink-soft" type="color" value="#595959" />
-            <small class="token-help">Texte meta, aides, contenus secondaires.</small>
-          </p>
-          <p>
-            <label for="color-line">Bordure</label>
-            <input id="color-line" name="color-line" type="color" value="#d4d4d4" />
-            <small class="token-help">Bordures standards et separateurs.</small>
-          </p>
-          <p>
-            <label for="color-line-strong">Bordure forte</label>
-            <input id="color-line-strong" name="color-line-strong" type="color" value="#b8b8b8" />
-            <small class="token-help">Bordures renforcees / contraste fort.</small>
-          </p>
-          <p class="color-reset-wrap">
-            <button type="button" id="color-reset">Reinitialiser couleurs</button>
-          </p>
+          <section class="color-group color-group-accent" aria-labelledby="color-group-accent-title">
+            <h3 id="color-group-accent-title">Accent</h3>
+            <p class="color-field">
+              <label for="color-accent">Accent principal <output class="color-value" id="color-accent-value" for="color-accent">#3B63D1</output></label>
+              <input id="color-accent" name="color-accent" type="color" value="#3b63d1" />
+              <small class="token-help">Couleur d'accent (liens, focus, accents UI).</small>
+            </p>
+          </section>
+
+          <section class="color-group" aria-labelledby="color-group-bg-title">
+            <h3 id="color-group-bg-title">Fonds</h3>
+            <p class="color-field">
+              <label for="color-bg">Fond <output class="color-value" id="color-bg-value" for="color-bg">#F6F6F6</output></label>
+              <input id="color-bg" name="color-bg" type="color" value="#f6f6f6" />
+              <small class="token-help">Fond global de la page.</small>
+            </p>
+            <p class="color-field">
+              <label for="color-surface">Surface <output class="color-value" id="color-surface-value" for="color-surface">#FFFFFF</output></label>
+              <input id="color-surface" name="color-surface" type="color" value="#ffffff" />
+              <small class="token-help">Fond des cartes et blocs principaux.</small>
+            </p>
+            <p class="color-field">
+              <label for="color-surface-alt">Surface alt <output class="color-value" id="color-surface-alt-value" for="color-surface-alt">#FAFAFA</output></label>
+              <input id="color-surface-alt" name="color-surface-alt" type="color" value="#fafafa" />
+              <small class="token-help">Variante de surface pour zones secondaires.</small>
+            </p>
+          </section>
+
+          <section class="color-group" aria-labelledby="color-group-text-title">
+            <h3 id="color-group-text-title">Texte</h3>
+            <p class="color-field">
+              <label for="color-ink">Texte principal <output class="color-value" id="color-ink-value" for="color-ink">#1F1F1F</output></label>
+              <input id="color-ink" name="color-ink" type="color" value="#1f1f1f" />
+              <small class="token-help">Couleur principale du texte.</small>
+            </p>
+            <p class="color-field">
+              <label for="color-ink-soft">Texte secondaire <output class="color-value" id="color-ink-soft-value" for="color-ink-soft">#595959</output></label>
+              <input id="color-ink-soft" name="color-ink-soft" type="color" value="#595959" />
+              <small class="token-help">Texte meta, aides, contenus secondaires.</small>
+            </p>
+          </section>
+
+          <section class="color-group" aria-labelledby="color-group-lines-title">
+            <h3 id="color-group-lines-title">Bordures</h3>
+            <p class="color-field">
+              <label for="color-line">Bordure <output class="color-value" id="color-line-value" for="color-line">#D4D4D4</output></label>
+              <input id="color-line" name="color-line" type="color" value="#d4d4d4" />
+              <small class="token-help">Bordures standards et separateurs.</small>
+            </p>
+            <p class="color-field">
+              <label for="color-line-strong">Bordure forte <output class="color-value" id="color-line-strong-value" for="color-line-strong">#B8B8B8</output></label>
+              <input id="color-line-strong" name="color-line-strong" type="color" value="#b8b8b8" />
+              <small class="token-help">Bordures renforcees / contraste fort.</small>
+            </p>
+          </section>
         </div>
-      </fieldset>
-      <fieldset class="fieldset-typography">
-        <legend>Voix typographique</legend>
-        <div class="token-controls">
-          <p>
-            <label for="token-font-ui">--font-ui</label>
-            <input id="token-font-ui" name="token-font-ui" type="text" value='"Inter", "Segoe UI", Arial, sans-serif' />
-            <small class="token-help">Pile de police interface (titres, labels, boutons).</small>
-          </p>
-          <p>
-            <label for="token-font-ui-weight">--font-ui-weight</label>
-            <input id="token-font-ui-weight" name="token-font-ui-weight" type="number" min="100" max="900" step="100" value="700" />
-            <small class="token-help">Poids principal de la typo interface.</small>
-          </p>
-          <p>
-            <label for="token-font-content">--font-content</label>
-            <input id="token-font-content" name="token-font-content" type="text" value='"Source Serif 4", Georgia, serif' />
-            <small class="token-help">Pile de police contenu (paragraphes, listes, citations).</small>
-          </p>
-          <p>
-            <label for="token-font-content-weight">--font-content-weight</label>
-            <input id="token-font-content-weight" name="token-font-content-weight" type="number" min="100" max="900" step="100" value="400" />
-            <small class="token-help">Poids principal de la typo de lecture.</small>
-          </p>
-          <p>
-            <label for="token-line-height">--content-line-height</label>
-            <input id="token-line-height" name="token-line-height" type="number" min="1" max="2.4" step="0.001" value="1.618" />
-            <small class="token-help">Hauteur de ligne du contenu texte.</small>
-          </p>
-          <p>
-            <label for="token-letter-spacing">--content-letter-spacing (em)</label>
-            <input id="token-letter-spacing" name="token-letter-spacing" type="number" min="-0.02" max="0.2" step="0.001" value="0.008" />
-            <small class="token-help">Espace moyen entre les lettres (em).</small>
-          </p>
-          <p>
-            <label for="token-word-spacing">--content-word-spacing (em)</label>
-            <input id="token-word-spacing" name="token-word-spacing" type="number" min="-0.05" max="0.4" step="0.001" value="0.03" />
-            <small class="token-help">Espace moyen entre les mots (em).</small>
-          </p>
-          <p class="token-apply-wrap">
-            <button type="button" id="apply-typography-tokens">Appliquer voix typographique</button>
-          </p>
-        </div>
+        <p class="palette-actions">
+          <button type="button" id="copy-palette">Copier la palette (CSS)</button>
+          <button type="button" id="color-reset">Remettre les couleurs par defaut</button>
+          <span class="palette-copy-state" id="palette-copy-state" role="status" aria-live="polite"></span>
+        </p>
+        <p class="contrast-warning" id="contrast-warning" role="status" aria-live="polite" hidden>
+          Ceci est une alerte contraste : texte/fond faible. Vise au moins 4.5:1.
+        </p>
       </fieldset>
       <p class="font-controls-actions">
-        <button type="button" id="apply-fonts">Reappliquer les polices</button>
-        <button type="button" id="reset-fonts">Polices par defaut</button>
-        <button type="button" id="reset-all-tokens">Reinitialiser tous les tokens</button>
+        <button type="button" id="apply-fonts">Appliquer les polices choisies</button>
+        <button type="button" id="reset-fonts">Remettre les polices par defaut</button>
+        <button type="button" id="reset-all-tokens">Remettre palette et polices par defaut</button>
         <button type="button" id="theme-toggle" aria-pressed="false">Passer en mode fonce</button>
         <button type="button" id="export-current-theme">Exporter theme courant</button>
       </p>
-      <p class="font-controls-help">
-        Autocomplete actif a partir de 5 caracteres. L'application est automatique; le bouton reste optionnel.
-      </p>
-      <p class="font-catalog-status" id="font-catalog-status" role="status" aria-live="polite">
-        Chargement du catalogue Bunny...
-      </p>
+      <p class="font-controls-help">Ceci est une application automatique. Utilise "Appliquer les polices choisies" seulement pour forcer une mise a jour.</p>
+      <p class="font-catalog-status" id="font-catalog-status" role="status" aria-live="polite">Chargement du catalogue Bunny...</p>
     </form>
 
     <nav aria-label="Navigation principale">
@@ -284,37 +259,58 @@
 
       <article>
         <header>
-          <h3>Article + headings</h3>
-          <p><time datetime="2025-12-23">23-12-2025</time> — <address>Par Baudouin (exemple)</address></p>
+          <h3>Ceci est un article</h3>
+          <p>
+            <strong>Date de publication</strong> : <time datetime="2025-12-23">23-12-2025</time><br />
+            <strong>Auteur</strong> : <span>Par Baudouin (exemple)</span>
+          </p>
         </header>
 
-        <p>Strong<br><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong></p>
-        <p>Em<br><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</em></p>
-        <p>B<br><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b></p>
-        <p>I<br><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
-        <p>U<br><u>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</u></p>
-        <p>S<br><s>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s></p>
-        <p>Mark<br><mark>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mark></p>
-        <p>Small<br><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small></p>
-        <p>Sub (H2O)<br>Lorem H<sub>2</sub>O ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <p>Sup (2^10)<br>Lorem 2<sup>10</sup> ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <p>Abbr (WWW)<br><abbr title="World Wide Web">WWW</abbr> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <p>Dfn<br><dfn>Définition</dfn> : lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <p>Q (citation courte)<br><q cite="https://example.com">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</q></p>
+        <p><strong>Intro dummy</strong> : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere, velit at aliquet finibus, nisl dui porttitor justo, in egestas augue arcu at sapien.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis, risus in porttitor bibendum, neque diam varius purus, non fermentum lorem massa at augue.</p>
+
+        <p><strong>Strong</strong> : <strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong></p>
+        <p><strong>Em</strong> : <em>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</em></p>
+        <p><strong>B</strong> : <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b></p>
+        <p><strong>I</strong> : <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
+        <p><strong>U</strong> : <u>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</u></p>
+        <p><strong>S</strong> : <s>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</s></p>
+        <p><strong>Mark</strong> : <mark>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mark></p>
+        <p><strong>Small</strong> : <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small></p>
+        <p><strong>Sub (H2O)</strong> : Lorem H<sub>2</sub>O ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p><strong>Sup (2^10)</strong> : Lorem 2<sup>10</sup> ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p><strong>Abbr (WWW)</strong> : <abbr title="World Wide Web">WWW</abbr> lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p><strong>Dfn</strong> : <dfn>Definition</dfn> : lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p><strong>Q (citation courte)</strong> : <q cite="https://example.com">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</q></p>
 
 <h4>Paragraphe</h4>
 
 <p>Aliquam ultrices quis lorem quis aliquam. Etiam et est et risus lobortis tincidunt. Cras placerat <abbr title="tempus">ⓘ</abbr> mattis. Etiam lacinia orci et scelerisque rhoncus. Nunc accumsan turpis eu rhoncus aliquet. Proin volutpat nibh dui, eget congue urna ornare at. Integer ac porta nibh. Vestibulum suscipit sapien a ullamcorper dapibus. Suspendisse hendrerit, nisi et luctus efficitur, purus nibh malesuada tortor, vel dictum tortor lorem vel purus. Morbi laoreet, est in luctus interdum, odio sapien sollicitudin lorem, eget scelerisque quam magna a mi. Nam ut tortor vulputate, fermentum nisl sit amet, tempor ligula. Duis iaculis tristique arcu luctus ultricies. Donec eu turpis bibendum, aliquam nisl non, euismod odio. Aenean eu purus ipsum. Vestibulum nulla lectus, placerat euismod urna non, auctor aliquam ipsum. Mauris leo enim, pulvinar vel diam ut, rutrum facilisis diam. </p>
 
-        <p>
-          <a href="https://example.com" rel="noopener">Lien</a>,
-          <span>span</span>,
-          <wbr> (wbr) pour césure.
-        </p>
+        <h4>Section demo : contenu editorial</h4>
+        <p>Ce bloc sert de contenu dummy pour tester lisibilite, rythme vertical, et cohesion des styles. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis, lacus et feugiat posuere, dolor lorem malesuada odio, id condimentum sapien est nec risus.</p>
+        <p>Donec viverra sem vel orci laoreet, vel blandit nisl posuere. Praesent eleifend erat sit amet mi pharetra, ut vulputate metus feugiat. Cras viverra mauris non magna finibus, sed varius erat consequat. Curabitur fermentum, mauris et scelerisque vulputate, justo tortor tristique velit, in posuere ipsum sem non est.</p>
 
-        <p>
-          <code>code</code>, <kbd>kbd</kbd>, <samp>samp</samp>, <var>var</var>.
-        </p>
+        <h5>Encart explicatif (H5)</h5>
+        <p>Ut accumsan, sapien ac interdum facilisis, orci turpis mattis arcu, a convallis arcu purus a lectus. Nunc consequat nisl nec faucibus facilisis. Fusce a erat et mauris finibus faucibus at et lectus.</p>
+        <ul>
+          <li>Point dummy A : verifier l'alignement des listes.</li>
+          <li>Point dummy B : verifier les marges et l'interligne.</li>
+          <li>Point dummy C : verifier le contraste dans un flux long.</li>
+        </ul>
+
+        <p>Conclusion dummy : Sed dignissim, nisl id volutpat tristique, velit mauris aliquam nunc, et facilisis turpis mi ut risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+
+        <p><strong>Lien</strong> : <a href="https://example.com/docs" rel="noopener">Ouvrir la documentation du projet</a>.</p>
+        <p><strong>Demo etat de lien</strong> : <a href="https://example.com/lien-non-visite-demo" rel="noopener">Lien non visite (pointille)</a> — au survol, le pointille devient une ligne pleine.</p>
+        <p><strong>Demo lien visite</strong> : <a href="https://example.com/lien-visite-demo" rel="noopener">Lien visite (surligneur jaune)</a> — clique le lien puis reviens sur la page pour voir l'etat visite.</p>
+        <p><strong>span</strong> : La livraison est <span>prévue vendredi à 14:00</span> (inline, sans rupture de ligne).</p>
+        <p><strong>wbr (césure)</strong> : URL longue -> https://example.com/ressources/guide-html<wbr>/accessibilite<wbr>/bonnes-pratiques.</p>
+
+        <p><strong>code</strong> : Utilise <code>npm run dev</code> pour lancer le serveur de développement.</p>
+        <p><strong>kbd</strong> : Sauvegarde rapide avec <kbd>Ctrl</kbd> + <kbd>S</kbd>.</p>
+        <p><strong>samp</strong> : Résultat terminal : <samp>Build completed in 1.2s</samp>.</p>
+        <p><strong>var</strong> : Dans la formule <var>total</var> = <var>prix</var> x <var>quantite</var>, chaque terme est une variable.</p>
 
         <pre><code>pre + code
 function hello() { return "world"; }</code></pre>
@@ -328,9 +324,8 @@ function hello() { return "world"; }</code></pre>
 
         <p>Retour à la ligne explicite<br />avec br.</p>
 
-        <p>
-          <cite>cite</cite> et <data value="42">data</data>.
-        </p>
+        <p><strong>cite</strong> : Source mentionnee <cite>Designing with Web Standards</cite>.</p>
+        <p><strong>data</strong> : Stock visible <data value="42">42 unites</data> (valeur machine = 42).</p>
 
         <p>
           <bdi>BDI</bdi> — <bdo dir="rtl">BDO RTL</bdo>.
@@ -829,8 +824,7 @@ function hello() { return "world"; }</code></pre>
   </main>
 
   <footer>
-    <p><small>Fin de page — <time datetime="2025-12-23">23-12-2025</time></small></p>
-    <p><small>made with 🍫 in Brussels</small></p>
+    <p><small>fait avec 🍫 a Bruxelles</small></p>
   </footer>
 
   <script>
@@ -876,15 +870,19 @@ function hello() { return "world"; }</code></pre>
       const colorInkSoft = document.getElementById("color-ink-soft");
       const colorLine = document.getElementById("color-line");
       const colorLineStrong = document.getElementById("color-line-strong");
+      const colorAccentValue = document.getElementById("color-accent-value");
+      const colorBgValue = document.getElementById("color-bg-value");
+      const colorSurfaceValue = document.getElementById("color-surface-value");
+      const colorSurfaceAltValue = document.getElementById("color-surface-alt-value");
+      const colorInkValue = document.getElementById("color-ink-value");
+      const colorInkSoftValue = document.getElementById("color-ink-soft-value");
+      const colorLineValue = document.getElementById("color-line-value");
+      const colorLineStrongValue = document.getElementById("color-line-strong-value");
       const colorReset = document.getElementById("color-reset");
-      const tokenFontUi = document.getElementById("token-font-ui");
-      const tokenFontUiWeight = document.getElementById("token-font-ui-weight");
-      const tokenFontContent = document.getElementById("token-font-content");
-      const tokenFontContentWeight = document.getElementById("token-font-content-weight");
-      const tokenLineHeight = document.getElementById("token-line-height");
-      const tokenLetterSpacing = document.getElementById("token-letter-spacing");
-      const tokenWordSpacing = document.getElementById("token-word-spacing");
-      const applyTypographyTokensButton = document.getElementById("apply-typography-tokens");
+      const colorFieldset = document.querySelector(".fieldset-colors");
+      const copyPaletteButton = document.getElementById("copy-palette");
+      const paletteCopyState = document.getElementById("palette-copy-state");
+      const contrastWarning = document.getElementById("contrast-warning");
       const applyButton = document.getElementById("apply-fonts");
       const themeToggle = document.getElementById("theme-toggle");
       const exportThemeButton = document.getElementById("export-current-theme");
@@ -903,6 +901,8 @@ function hello() { return "world"; }</code></pre>
       };
       const buildHref = (slug) =>
         "https://fonts.bunny.net/css?family=" + encodeURIComponent(slug) + ":" + allWeights + "&display=swap";
+      const minSearchChars = 2;
+      const minAutocompleteChars = 3;
 
       const normalizeText = (value) =>
         value
@@ -919,16 +919,6 @@ function hello() { return "world"; }</code></pre>
         inkSoft: "#595959",
         line: "#d4d4d4",
         lineStrong: "#b8b8b8",
-      };
-
-      const defaultTypographyConfig = {
-        fontUi: '"Inter", "Segoe UI", Arial, sans-serif',
-        fontUiWeight: "700",
-        fontContent: '"Source Serif 4", Georgia, serif',
-        fontContentWeight: "400",
-        lineHeight: "1.618",
-        letterSpacing: "0.008",
-        wordSpacing: "0.03",
       };
 
       const aestheticPresets = {
@@ -1105,7 +1095,7 @@ function hello() { return "world"; }</code></pre>
 
         datalist.replaceChildren();
         const needle = normalizeText(query.trim());
-        if (needle.length < 5) {
+        if (needle.length < minAutocompleteChars) {
           return;
         }
 
@@ -1127,7 +1117,7 @@ function hello() { return "world"; }</code></pre>
 
       const selectExactMatch = (select, query) => {
         const needle = normalizeText(query.trim());
-        if (needle.length < 5) {
+        if (needle.length < minSearchChars) {
           return;
         }
         const exact = Array.from(select.options).find((option) => {
@@ -1170,13 +1160,131 @@ function hello() { return "world"; }</code></pre>
       const resetAllTokens = () => {
         localStorage.removeItem("aesthetic-preset");
         localStorage.removeItem("color-config");
-        localStorage.removeItem("typography-config");
         localStorage.removeItem("font-ui-config");
         localStorage.removeItem("font-content-config");
 
         applyAestheticPreset(defaultAestheticPreset);
-        applyTypographyConfig(defaultTypographyConfig);
         resetFontsToDefault();
+      };
+
+      const colorValuePairs = [
+        [colorAccent, colorAccentValue],
+        [colorBg, colorBgValue],
+        [colorSurface, colorSurfaceValue],
+        [colorSurfaceAlt, colorSurfaceAltValue],
+        [colorInk, colorInkValue],
+        [colorInkSoft, colorInkSoftValue],
+        [colorLine, colorLineValue],
+        [colorLineStrong, colorLineStrongValue],
+      ];
+
+      const updateColorValueLabels = () => {
+        colorValuePairs.forEach(([input, output]) => {
+          if (input && output) {
+            output.value = String(input.value || "").toUpperCase();
+          }
+        });
+      };
+
+      const normalizeHex = (hex) => {
+        const cleaned = String(hex || "").trim().replace("#", "");
+        const normalized = cleaned.length === 3
+          ? cleaned.split("").map((char) => char + char).join("")
+          : cleaned;
+        if (!/^[0-9a-fA-F]{6}$/.test(normalized)) {
+          return null;
+        }
+        return "#" + normalized.toUpperCase();
+      };
+
+      const hexToRgb = (hex) => {
+        const normalized = normalizeHex(hex);
+        if (!normalized) {
+          return null;
+        }
+        return {
+          r: parseInt(normalized.slice(1, 3), 16),
+          g: parseInt(normalized.slice(3, 5), 16),
+          b: parseInt(normalized.slice(5, 7), 16),
+        };
+      };
+
+      const relativeLuminance = (rgb) => {
+        const normalizeChannel = (channel) => {
+          const srgb = channel / 255;
+          if (srgb <= 0.03928) {
+            return srgb / 12.92;
+          }
+          return ((srgb + 0.055) / 1.055) ** 2.4;
+        };
+
+        return 0.2126 * normalizeChannel(rgb.r) + 0.7152 * normalizeChannel(rgb.g) + 0.0722 * normalizeChannel(rgb.b);
+      };
+
+      const contrastRatio = (foregroundHex, backgroundHex) => {
+        const foreground = hexToRgb(foregroundHex);
+        const background = hexToRgb(backgroundHex);
+        if (!foreground || !background) {
+          return null;
+        }
+        const fgLum = relativeLuminance(foreground);
+        const bgLum = relativeLuminance(background);
+        const lighter = Math.max(fgLum, bgLum);
+        const darker = Math.min(fgLum, bgLum);
+        return (lighter + 0.05) / (darker + 0.05);
+      };
+
+      const updateContrastNotice = (inkHex, bgHex) => {
+        if (!contrastWarning || !colorFieldset) {
+          return;
+        }
+
+        const ratio = contrastRatio(inkHex, bgHex);
+        if (ratio !== null && ratio < 4.5) {
+          colorFieldset.classList.add("is-low-contrast");
+          contrastWarning.hidden = false;
+          contrastWarning.textContent = "Contraste texte/fond faible (" + ratio.toFixed(2) + ":1). Vise au moins 4.5:1.";
+        } else {
+          colorFieldset.classList.remove("is-low-contrast");
+          contrastWarning.hidden = true;
+          contrastWarning.textContent = "";
+        }
+      };
+
+      const paletteAsCssVars = () => {
+        const config = collectColorConfig();
+        return [
+          ":root {",
+          "  --accent: " + String(config.accent).toUpperCase() + ";",
+          "  --bg: " + String(config.bg).toUpperCase() + ";",
+          "  --surface: " + String(config.surface).toUpperCase() + ";",
+          "  --surface-alt: " + String(config.surfaceAlt).toUpperCase() + ";",
+          "  --ink: " + String(config.ink).toUpperCase() + ";",
+          "  --ink-soft: " + String(config.inkSoft).toUpperCase() + ";",
+          "  --line: " + String(config.line).toUpperCase() + ";",
+          "  --line-strong: " + String(config.lineStrong).toUpperCase() + ";",
+          "}",
+        ].join("\n");
+      };
+
+      const copyTextToClipboard = async (text) => {
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+          await navigator.clipboard.writeText(text);
+          return;
+        }
+
+        const helper = document.createElement("textarea");
+        helper.value = text;
+        helper.setAttribute("readonly", "");
+        helper.style.position = "fixed";
+        helper.style.top = "-9999px";
+        document.body.appendChild(helper);
+        helper.select();
+        const ok = document.execCommand("copy");
+        helper.remove();
+        if (!ok) {
+          throw new Error("Copy fallback failed");
+        }
       };
 
       const applyColorConfig = (config) => {
@@ -1229,6 +1337,13 @@ function hello() { return "world"; }</code></pre>
           line: config.line,
           lineStrong,
         }));
+
+        updateColorValueLabels();
+        updateContrastNotice(config.ink, config.bg);
+        if (paletteCopyState) {
+          paletteCopyState.textContent = "";
+          delete paletteCopyState.dataset.state;
+        }
       };
 
       const applyAestheticPreset = (presetKey) => {
@@ -1249,46 +1364,6 @@ function hello() { return "world"; }</code></pre>
         inkSoft: colorInkSoft ? colorInkSoft.value : defaultColorConfig.inkSoft,
         line: colorLine ? colorLine.value : defaultColorConfig.line,
         lineStrong: colorLineStrong ? colorLineStrong.value : defaultColorConfig.lineStrong,
-      });
-
-      const applyTypographyConfig = (config) => {
-        const normalized = {
-          fontUi: (config.fontUi || defaultTypographyConfig.fontUi).trim(),
-          fontUiWeight: String(Math.min(900, Math.max(100, Number(config.fontUiWeight) || Number(defaultTypographyConfig.fontUiWeight)))),
-          fontContent: (config.fontContent || defaultTypographyConfig.fontContent).trim(),
-          fontContentWeight: String(Math.min(900, Math.max(100, Number(config.fontContentWeight) || Number(defaultTypographyConfig.fontContentWeight)))),
-          lineHeight: String(Math.min(2.4, Math.max(1, Number(config.lineHeight) || Number(defaultTypographyConfig.lineHeight)))),
-          letterSpacing: String(Math.min(0.2, Math.max(-0.02, Number(config.letterSpacing) || Number(defaultTypographyConfig.letterSpacing)))),
-          wordSpacing: String(Math.min(0.4, Math.max(-0.05, Number(config.wordSpacing) || Number(defaultTypographyConfig.wordSpacing)))),
-        };
-
-        root.style.setProperty("--font-ui", normalized.fontUi);
-        root.style.setProperty("--font-ui-weight", normalized.fontUiWeight);
-        root.style.setProperty("--font-content", normalized.fontContent);
-        root.style.setProperty("--font-content-weight", normalized.fontContentWeight);
-        root.style.setProperty("--content-line-height", normalized.lineHeight);
-        root.style.setProperty("--content-letter-spacing", normalized.letterSpacing + "em");
-        root.style.setProperty("--content-word-spacing", normalized.wordSpacing + "em");
-
-        if (tokenFontUi) tokenFontUi.value = normalized.fontUi;
-        if (tokenFontUiWeight) tokenFontUiWeight.value = normalized.fontUiWeight;
-        if (tokenFontContent) tokenFontContent.value = normalized.fontContent;
-        if (tokenFontContentWeight) tokenFontContentWeight.value = normalized.fontContentWeight;
-        if (tokenLineHeight) tokenLineHeight.value = normalized.lineHeight;
-        if (tokenLetterSpacing) tokenLetterSpacing.value = normalized.letterSpacing;
-        if (tokenWordSpacing) tokenWordSpacing.value = normalized.wordSpacing;
-
-        localStorage.setItem("typography-config", JSON.stringify(normalized));
-      };
-
-      const collectTypographyConfig = () => ({
-        fontUi: tokenFontUi ? tokenFontUi.value : defaultTypographyConfig.fontUi,
-        fontUiWeight: tokenFontUiWeight ? tokenFontUiWeight.value : defaultTypographyConfig.fontUiWeight,
-        fontContent: tokenFontContent ? tokenFontContent.value : defaultTypographyConfig.fontContent,
-        fontContentWeight: tokenFontContentWeight ? tokenFontContentWeight.value : defaultTypographyConfig.fontContentWeight,
-        lineHeight: tokenLineHeight ? tokenLineHeight.value : defaultTypographyConfig.lineHeight,
-        letterSpacing: tokenLetterSpacing ? tokenLetterSpacing.value : defaultTypographyConfig.letterSpacing,
-        wordSpacing: tokenWordSpacing ? tokenWordSpacing.value : defaultTypographyConfig.wordSpacing,
       });
 
       const applyTheme = (mode) => {
@@ -1329,14 +1404,6 @@ function hello() { return "world"; }</code></pre>
           isUi ? "--font-ui-weight" : "--font-content-weight",
           normalizedWeight
         );
-
-        if (isUi) {
-          if (tokenFontUi) tokenFontUi.value = '"' + familyName.replace(/"/g, "") + '", ' + fallbackStack;
-          if (tokenFontUiWeight) tokenFontUiWeight.value = normalizedWeight;
-        } else {
-          if (tokenFontContent) tokenFontContent.value = '"' + familyName.replace(/"/g, "") + '", ' + fallbackStack;
-          if (tokenFontContentWeight) tokenFontContentWeight.value = normalizedWeight;
-        }
 
         const activeTarget = isUi ? uiActive : contentActive;
         if (activeTarget) {
@@ -1409,8 +1476,6 @@ function hello() { return "world"; }</code></pre>
           lineStrong: storedColorConfig?.lineStrong || defaultColorConfig.lineStrong,
         });
       }
-
-      const storedTypographyConfig = JSON.parse(localStorage.getItem("typography-config") || "null");
 
       applyButton.addEventListener("click", () => {
         applyFontConfig("ui");
@@ -1675,12 +1740,6 @@ function hello() { return "world"; }</code></pre>
           input.addEventListener("input", () => applyColorConfig(collectColorConfig()));
         });
 
-      if (applyTypographyTokensButton) {
-        applyTypographyTokensButton.addEventListener("click", () => {
-          applyTypographyConfig(collectTypographyConfig());
-        });
-      }
-
       if (aestheticPreset) {
         aestheticPreset.addEventListener("change", (event) => {
           applyAestheticPreset(event.target.value);
@@ -1689,6 +1748,23 @@ function hello() { return "world"; }</code></pre>
 
       if (colorReset) {
         colorReset.addEventListener("click", () => applyColorConfig(defaultColorConfig));
+      }
+
+      if (copyPaletteButton) {
+        copyPaletteButton.addEventListener("click", async () => {
+          try {
+            await copyTextToClipboard(paletteAsCssVars());
+            if (paletteCopyState) {
+              paletteCopyState.textContent = "Palette copiee.";
+              paletteCopyState.dataset.state = "success";
+            }
+          } catch (error) {
+            if (paletteCopyState) {
+              paletteCopyState.textContent = "Copie impossible ici.";
+              paletteCopyState.dataset.state = "error";
+            }
+          }
+        });
       }
 
       uiSearch.addEventListener("input", (event) => {
@@ -1719,9 +1795,7 @@ function hello() { return "world"; }</code></pre>
       applyFontConfig("ui");
       applyFontConfig("content");
 
-      if (storedTypographyConfig) {
-        applyTypographyConfig(storedTypographyConfig);
-      }
+      updateColorValueLabels();
     })();
   </script>
 </body>
