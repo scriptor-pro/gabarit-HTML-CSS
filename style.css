@@ -151,6 +151,16 @@ h1 {
   font-size: clamp(1.65rem, 3vw, 2.4rem);
 }
 
+.version-note {
+  margin-top: -0.3rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.version-note a {
+  font-family: "IBM Plex Mono", "DejaVu Sans Mono", monospace;
+}
+
 h2 {
   margin-bottom: var(--space-2);
   font-size: clamp(1.25rem, 2.3vw, 1.8rem);
@@ -282,6 +292,37 @@ nav ul {
   margin-top: var(--space-3);
   padding: 0;
   list-style: none;
+}
+
+.text-toc {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface-alt) 70%, var(--surface) 30%);
+}
+
+.text-toc ul {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.text-toc a {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.canvas-note {
+  margin-top: var(--space-1);
+  color: var(--ink-soft);
+  font-size: 0.92rem;
 }
 
 nav a {
@@ -498,6 +539,21 @@ a:visited {
 }
 
 main a:visited {
+  background-image: linear-gradient(
+    transparent 0 58%,
+    #fff4a8 58% 92%,
+    transparent 92% 100%
+  );
+  border-radius: 0.1rem;
+}
+
+.visited-link-sample {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.17em;
+  text-decoration-color: color-mix(in srgb, var(--accent) 48%, transparent);
   background-image: linear-gradient(
     transparent 0 58%,
     #fff4a8 58% 92%,
@@ -771,6 +827,77 @@ form p {
 .interactive-panel {
   display: grid;
   gap: var(--space-2);
+}
+
+.embedded-intro {
+  color: var(--ink-soft);
+}
+
+.embedded-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--space-3);
+}
+
+.embedded-card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 88%, var(--surface-alt) 12%);
+}
+
+.embedded-card h3 {
+  margin: 0;
+}
+
+.embedded-meta {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.embedded-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.embedded-actions button {
+  width: auto;
+}
+
+#iframe-demo-state,
+#template-demo-state {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.template-output {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.template-output:empty {
+  min-height: 4.5rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface-alt) 76%, var(--surface) 24%);
+  padding: var(--space-2);
+}
+
+.template-output:empty::before {
+  content: "Aucune carte inseree pour le moment.";
+  color: var(--ink-soft);
+}
+
+.embedded-template-card {
+  margin: 0;
+  padding: var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--line) 72%, var(--accent) 28%);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface) 94%);
 }
 
 #demo-popover {
@@ -1301,6 +1428,14 @@ body > footer {
 
   .interactive-grid {
     grid-template-columns: 1fr;
+  }
+
+  .embedded-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .embedded-actions button {
+    width: 100%;
   }
 
   body > footer {

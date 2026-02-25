@@ -33,6 +33,22 @@ Then open `http://localhost:5173`.
 - This project now follows SemVer (`MAJOR.MINOR.PATCH`).
 - Current version: `0.1.0`.
 
+### Manual test checklist
+
+- Keyboard navigation: tab through links/buttons/inputs and verify visible focus.
+- Link states: check unvisited (dotted), hover (solid), and visited (highlighted) styles.
+- Color safety: use palette controls and verify the low-contrast alert appears below 4.5:1.
+- Embedded demos: toggle iframe, insert/clear template cards, and verify status messages.
+- Responsive behavior: review at desktop + mobile widths.
+
+### Optional quality commands
+
+```bash
+npx prettier --check "*.{html,css,md}"
+npx prettier --write "*.{html,css,md}"
+npx html-validate index.html
+```
+
 ---
 
 ## FR
@@ -67,3 +83,19 @@ Puis ouvre `http://localhost:5173`.
 
 - Le projet suit desormais SemVer (`MAJOR.MINOR.PATCH`).
 - Version actuelle : `0.1.0`.
+
+### Checklist de test manuel
+
+- Navigation clavier : parcourir liens/boutons/champs et verifier le focus visible.
+- Etats de lien : verifier non visite (pointille), survol (ligne pleine) et visite (surlignage).
+- Securite couleur : utiliser les controles palette et verifier l'alerte sous 4.5:1.
+- Demos embarquees : basculer l'iframe, inserer/vider les cartes template, verifier les statuts.
+- Responsive : verifier en largeur desktop et mobile.
+
+### Commandes qualite (optionnelles)
+
+```bash
+npx prettier --check "*.{html,css,md}"
+npx prettier --write "*.{html,css,md}"
+npx html-validate index.html
+```
