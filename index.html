@@ -1,885 +1,1709 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DIY CSS v0.1.0</title>
-  <meta name="description" content="Page de test listant un grand nombre d’éléments HTML, pour vérifier styles, accessibilité et rendu." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%A7%B0%3C/text%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.bunny.net" />
-  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=literata:400,600,700&display=swap" />
-  <link id="font-ui-link" rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:100,200,300,400,500,600,700,800,900&display=swap" />
-  <link id="font-content-link" rel="stylesheet" href="https://fonts.bunny.net/css?family=source-serif-4:100,200,300,400,500,600,700,800,900&display=swap" />
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DIY CSS v0.1.0</title>
+    <meta
+      name="description"
+      content="Page de test listant un grand nombre d’éléments HTML, pour vérifier styles, accessibilité et rendu."
+   >
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%270.9em%27%20font-size%3D%2790%27%3E%F0%9F%A7%B0%3C%2Ftext%3E%3C%2Fsvg%3E"
+   >
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link
+      rel="stylesheet"
+      href="https://fonts.bunny.net/css?family=literata:400,600,700&display=swap"
+   >
+    <link
+      id="font-ui-link"
+      rel="stylesheet"
+      href="https://fonts.bunny.net/css?family=inter:100,200,300,400,500,600,700,800,900&display=swap"
+   >
+    <link
+      id="font-content-link"
+      rel="stylesheet"
+      href="https://fonts.bunny.net/css?family=source-serif-4:100,200,300,400,500,600,700,800,900&display=swap"
+   >
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-<body>
-  <a class="skip-link" href="#main">Aller au contenu</a>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <header>
-    <h1>DIY CSS v0.1.0</h1>
-    <p class="version-note">Version courante : <a href="VERSION">v0.1.0</a></p>
-    <p>Ceci est un terrain de test : il instancie beaucoup d’elements pour verifier les styles et le rendu.</p>
-
-    <form class="font-controls" aria-label="Reglages visuels">
-      <fieldset>
-        <legend>Interface</legend>
-        <p>
-          <label for="ui-font-search">Rechercher une police Bunny</label>
-          <input id="ui-font-search" name="ui-font-search" type="search" placeholder="Ex: Inter, Garamond, serif..." autocomplete="off" list="ui-font-suggestions" />
-        </p>
-        <datalist id="ui-font-suggestions"></datalist>
-        <p class="font-active" id="ui-font-active" aria-live="polite">Police active (interface) : Inter (700)</p>
-        <p hidden>
-          <label for="ui-font-family">Police</label>
-          <select id="ui-font-family" name="ui-font-family">
-            <optgroup label="Sans serif">
-              <option value="inter" data-name="Inter" data-class="sans" selected>Inter</option>
-              <option value="open-sans" data-name="Open Sans" data-class="sans">Open Sans</option>
-              <option value="nunito-sans" data-name="Nunito Sans" data-class="sans">Nunito Sans</option>
-              <option value="work-sans" data-name="Work Sans" data-class="sans">Work Sans</option>
-              <option value="dm-sans" data-name="DM Sans" data-class="sans">DM Sans</option>
-              <option value="rubik" data-name="Rubik" data-class="sans">Rubik</option>
-              <option value="roboto" data-name="Roboto" data-class="sans">Roboto</option>
-              <option value="lato" data-name="Lato" data-class="sans">Lato</option>
-              <option value="fira-sans" data-name="Fira Sans" data-class="sans">Fira Sans</option>
-              <option value="source-sans-3" data-name="Source Sans 3" data-class="sans">Source Sans 3</option>
-            </optgroup>
-            <optgroup label="Serif">
-              <option value="source-serif-4" data-name="Source Serif 4" data-class="serif">Source Serif 4</option>
-              <option value="lora" data-name="Lora" data-class="serif">Lora</option>
-              <option value="merriweather" data-name="Merriweather" data-class="serif">Merriweather</option>
-              <option value="pt-serif" data-name="PT Serif" data-class="serif">PT Serif</option>
-              <option value="crimson-text" data-name="Crimson Text" data-class="serif">Crimson Text</option>
-              <option value="libre-baskerville" data-name="Libre Baskerville" data-class="serif">Libre Baskerville</option>
-              <option value="bitter" data-name="Bitter" data-class="serif">Bitter</option>
-              <option value="vollkorn" data-name="Vollkorn" data-class="serif">Vollkorn</option>
-              <option value="cormorant-garamond" data-name="Cormorant Garamond" data-class="serif">Cormorant Garamond</option>
-              <option value="eb-garamond" data-name="EB Garamond" data-class="serif">EB Garamond</option>
-            </optgroup>
-          </select>
-        </p>
-        <p>
-          <label for="ui-font-weight">Poids</label>
-          <select id="ui-font-weight" name="ui-font-weight">
-            <option value="100">100</option>
-            <option value="200">200</option>
-            <option value="300">300</option>
-            <option value="400">400</option>
-            <option value="500">500</option>
-            <option value="600">600</option>
-            <option value="700" selected>700</option>
-            <option value="800">800</option>
-            <option value="900">900</option>
-          </select>
-        </p>
-      </fieldset>
-      <fieldset>
-        <legend>Contenu</legend>
-        <p>
-          <label for="content-font-search">Rechercher une police Bunny</label>
-          <input id="content-font-search" name="content-font-search" type="search" placeholder="Ex: Merriweather, sans..." autocomplete="off" list="content-font-suggestions" />
-        </p>
-        <datalist id="content-font-suggestions"></datalist>
-        <p class="font-active" id="content-font-active" aria-live="polite">Police active (contenu) : Source Serif 4 (400)</p>
-        <p hidden>
-          <label for="content-font-family">Police</label>
-          <select id="content-font-family" name="content-font-family">
-            <optgroup label="Serif">
-              <option value="source-serif-4" data-name="Source Serif 4" data-class="serif" selected>Source Serif 4</option>
-              <option value="lora" data-name="Lora" data-class="serif">Lora</option>
-              <option value="merriweather" data-name="Merriweather" data-class="serif">Merriweather</option>
-              <option value="pt-serif" data-name="PT Serif" data-class="serif">PT Serif</option>
-              <option value="crimson-text" data-name="Crimson Text" data-class="serif">Crimson Text</option>
-              <option value="libre-baskerville" data-name="Libre Baskerville" data-class="serif">Libre Baskerville</option>
-              <option value="bitter" data-name="Bitter" data-class="serif">Bitter</option>
-              <option value="vollkorn" data-name="Vollkorn" data-class="serif">Vollkorn</option>
-              <option value="cormorant-garamond" data-name="Cormorant Garamond" data-class="serif">Cormorant Garamond</option>
-              <option value="eb-garamond" data-name="EB Garamond" data-class="serif">EB Garamond</option>
-            </optgroup>
-            <optgroup label="Sans serif">
-              <option value="inter" data-name="Inter" data-class="sans">Inter</option>
-              <option value="open-sans" data-name="Open Sans" data-class="sans">Open Sans</option>
-              <option value="nunito-sans" data-name="Nunito Sans" data-class="sans">Nunito Sans</option>
-              <option value="work-sans" data-name="Work Sans" data-class="sans">Work Sans</option>
-              <option value="dm-sans" data-name="DM Sans" data-class="sans">DM Sans</option>
-              <option value="rubik" data-name="Rubik" data-class="sans">Rubik</option>
-              <option value="roboto" data-name="Roboto" data-class="sans">Roboto</option>
-              <option value="lato" data-name="Lato" data-class="sans">Lato</option>
-              <option value="fira-sans" data-name="Fira Sans" data-class="sans">Fira Sans</option>
-              <option value="source-sans-3" data-name="Source Sans 3" data-class="sans">Source Sans 3</option>
-            </optgroup>
-          </select>
-        </p>
-        <p>
-          <label for="content-font-weight">Poids</label>
-          <select id="content-font-weight" name="content-font-weight">
-            <option value="100">100</option>
-            <option value="200">200</option>
-            <option value="300">300</option>
-            <option value="400" selected>400</option>
-            <option value="500">500</option>
-            <option value="600">600</option>
-            <option value="700">700</option>
-            <option value="800">800</option>
-            <option value="900">900</option>
-          </select>
-        </p>
-      </fieldset>
-      <fieldset>
-        <legend>Ambiance visuelle</legend>
-        <p>
-          <label for="aesthetic-preset">Palette de depart</label>
-          <select id="aesthetic-preset" name="aesthetic-preset">
-            <option value="neutral">Vanilla neutre - base sobre et polyvalente</option>
-            <option value="editorial-soft">Editorial doux - contraste modere, lecture longue</option>
-            <option value="brutalist-bw">Brutaliste N/B - frontal, contraste fort</option>
-            <option value="bauhaus-functional">Bauhaus fonctionnel - geometrique et utilitaire</option>
-            <option value="nordic-calm">Nordique calme - froid, aerien, discret</option>
-            <option value="newspaper-classic">Presse classique - encre + papier</option>
-            <option value="terminal-mono">Terminal mono - technique, faible saturation</option>
-            <option value="warm-paper">Papier chaud - ton creme, ambiance douce</option>
-            <option value="oceanic-clean">Ocean propre - bleu propre et lisible</option>
-            <option value="forest-muted">Foret mutee - vert grise, naturel</option>
-            <option value="sunset-soft">Coucher doux - accents chauds, fond clair</option>
-            <option value="high-contrast">Haute lisibilite - separation maximale</option>
-            <option value="retro-console">Retro console - contraste vintage numerique</option>
-            <option value="museum-mineral">Musee mineral - pierre froide et sobre</option>
-            <option value="coffee-house">Coffee house - brun chaud, confortable</option>
-            <option value="neon-night">Neon night - accents vifs sur fond sombre</option>
-            <option value="pastel-lab">Pastel lab - doux, clair, pedagogique</option>
-            <option value="corporate-blue">Corporate blue - institutionnel, net</option>
-            <option value="mono-ink">Mono ink - monochrome editorial</option>
-            <option value="amber-ice">Amber ice - ambre chaud et bleus froids</option>
-            <option value="terracotta-mist">Terracotta mist - terre cuite et brume froide</option>
-            <option value="copper-lagoon">Copper lagoon - cuivre chaud et lagon frais</option>
-            <option value="sun-slate">Sun slate - soleil doux et ardoise froide</option>
-            <option value="peach-fjord">Peach fjord - peche chaude et fjord bleute</option>
-            <option value="spice-glacier">Spice glacier - epices douces et glacier net</option>
-            <option value="canyon-breeze">Canyon breeze - canyon chaud et souffle oceane</option>
-          </select>
-        </p>
-      </fieldset>
-      <fieldset class="fieldset-colors">
-        <legend>Couleurs</legend>
-        <p class="color-controls-intro">Ceci est la zone palette : ajuste les couleurs par usage, les valeurs HEX se mettent a jour en direct.</p>
-        <div class="color-controls">
-          <section class="color-group color-group-accent" aria-labelledby="color-group-accent-title">
-            <h3 id="color-group-accent-title">Accent</h3>
-            <p class="color-field">
-              <label for="color-accent">Accent principal <output class="color-value" id="color-accent-value" for="color-accent">#3B63D1</output></label>
-              <input id="color-accent" name="color-accent" type="color" value="#3b63d1" />
-              <small class="token-help">Couleur d'accent (liens, focus, accents UI).</small>
-            </p>
-          </section>
-
-          <section class="color-group" aria-labelledby="color-group-bg-title">
-            <h3 id="color-group-bg-title">Fonds</h3>
-            <p class="color-field">
-              <label for="color-bg">Fond <output class="color-value" id="color-bg-value" for="color-bg">#F6F6F6</output></label>
-              <input id="color-bg" name="color-bg" type="color" value="#f6f6f6" />
-              <small class="token-help">Fond global de la page.</small>
-            </p>
-            <p class="color-field">
-              <label for="color-surface">Surface <output class="color-value" id="color-surface-value" for="color-surface">#FFFFFF</output></label>
-              <input id="color-surface" name="color-surface" type="color" value="#ffffff" />
-              <small class="token-help">Fond des cartes et blocs principaux.</small>
-            </p>
-            <p class="color-field">
-              <label for="color-surface-alt">Surface alt <output class="color-value" id="color-surface-alt-value" for="color-surface-alt">#FAFAFA</output></label>
-              <input id="color-surface-alt" name="color-surface-alt" type="color" value="#fafafa" />
-              <small class="token-help">Variante de surface pour zones secondaires.</small>
-            </p>
-          </section>
-
-          <section class="color-group" aria-labelledby="color-group-text-title">
-            <h3 id="color-group-text-title">Texte</h3>
-            <p class="color-field">
-              <label for="color-ink">Texte principal <output class="color-value" id="color-ink-value" for="color-ink">#1F1F1F</output></label>
-              <input id="color-ink" name="color-ink" type="color" value="#1f1f1f" />
-              <small class="token-help">Couleur principale du texte.</small>
-            </p>
-            <p class="color-field">
-              <label for="color-ink-soft">Texte secondaire <output class="color-value" id="color-ink-soft-value" for="color-ink-soft">#595959</output></label>
-              <input id="color-ink-soft" name="color-ink-soft" type="color" value="#595959" />
-              <small class="token-help">Texte meta, aides, contenus secondaires.</small>
-            </p>
-          </section>
-
-          <section class="color-group" aria-labelledby="color-group-lines-title">
-            <h3 id="color-group-lines-title">Bordures</h3>
-            <p class="color-field">
-              <label for="color-line">Bordure <output class="color-value" id="color-line-value" for="color-line">#D4D4D4</output></label>
-              <input id="color-line" name="color-line" type="color" value="#d4d4d4" />
-              <small class="token-help">Bordures standards et separateurs.</small>
-            </p>
-            <p class="color-field">
-              <label for="color-line-strong">Bordure forte <output class="color-value" id="color-line-strong-value" for="color-line-strong">#B8B8B8</output></label>
-              <input id="color-line-strong" name="color-line-strong" type="color" value="#b8b8b8" />
-              <small class="token-help">Bordures renforcees / contraste fort.</small>
-            </p>
-          </section>
-        </div>
-        <p class="palette-actions">
-          <button type="button" id="copy-palette">Copier la palette (CSS)</button>
-          <button type="button" id="color-reset">Remettre les couleurs par defaut</button>
-          <span class="palette-copy-state" id="palette-copy-state" role="status" aria-live="polite"></span>
-        </p>
-        <p class="contrast-warning" id="contrast-warning" role="status" aria-live="polite" hidden>
-          Ceci est une alerte contraste : texte/fond faible. Vise au moins 4.5:1.
-        </p>
-      </fieldset>
-      <p class="font-controls-actions">
-        <button type="button" id="apply-fonts">Appliquer les polices choisies</button>
-        <button type="button" id="reset-fonts">Remettre les polices par defaut</button>
-        <button type="button" id="reset-all-tokens">Remettre palette et polices par defaut</button>
-        <button type="button" id="reset-demo-state">Reinitialiser les demos</button>
-        <button type="button" id="theme-toggle" aria-pressed="false">Passer en mode fonce</button>
-        <button type="button" id="export-current-theme">Exporter theme courant</button>
+    <header>
+      <h1>DIY CSS v0.1.0</h1>
+      <p class="version-note">
+        Version courante : <a href="VERSION">v0.1.0</a>
       </p>
-      <p class="font-controls-help">Ceci est une application automatique. Utilise "Appliquer les polices choisies" seulement pour forcer une mise a jour.</p>
-      <p class="font-catalog-status" id="font-catalog-status" role="status" aria-live="polite">Chargement du catalogue Bunny...</p>
-    </form>
+      <p>
+        Ceci est un terrain de test : il instancie beaucoup d’elements pour
+        verifier les styles et le rendu.
+      </p>
 
-    <nav aria-label="Navigation principale">
-      <ul>
-        <li><a href="#text">Texte</a></li>
-        <li><a href="#media">Média</a></li>
-        <li><a href="#forms">Formulaires</a></li>
-        <li><a href="#tables">Tableaux</a></li>
-        <li><a href="#interactive">Interactif</a></li>
-        <li><a href="#embedded">Embarqué</a></li>
-      </ul>
-    </nav>
-  </header>
+      <form class="font-controls" aria-label="Reglages visuels">
+        <fieldset>
+          <legend>Interface</legend>
+          <p>
+            <label for="ui-font-search">Rechercher une police Bunny</label>
+            <input
+              id="ui-font-search"
+              name="ui-font-search"
+              type="search"
+              placeholder="Ex: Inter, Garamond, serif..."
+              autocomplete="off"
+              list="ui-font-suggestions"
+           >
+          </p>
+          <datalist id="ui-font-suggestions"></datalist>
+          <p class="font-active" id="ui-font-active" aria-live="polite">
+            Police active (interface) : Inter (700)
+          </p>
+          <p hidden>
+            <label for="ui-font-family">Police</label>
+            <select id="ui-font-family" name="ui-font-family">
+              <optgroup label="Sans serif">
+                <option
+                  value="inter"
+                  data-name="Inter"
+                  data-class="sans"
+                  selected
+                >
+                  Inter
+                </option>
+                <option
+                  value="open-sans"
+                  data-name="Open Sans"
+                  data-class="sans"
+                >
+                  Open Sans
+                </option>
+                <option
+                  value="nunito-sans"
+                  data-name="Nunito Sans"
+                  data-class="sans"
+                >
+                  Nunito Sans
+                </option>
+                <option
+                  value="work-sans"
+                  data-name="Work Sans"
+                  data-class="sans"
+                >
+                  Work Sans
+                </option>
+                <option value="dm-sans" data-name="DM Sans" data-class="sans">
+                  DM Sans
+                </option>
+                <option value="rubik" data-name="Rubik" data-class="sans">
+                  Rubik
+                </option>
+                <option value="roboto" data-name="Roboto" data-class="sans">
+                  Roboto
+                </option>
+                <option value="lato" data-name="Lato" data-class="sans">
+                  Lato
+                </option>
+                <option
+                  value="fira-sans"
+                  data-name="Fira Sans"
+                  data-class="sans"
+                >
+                  Fira Sans
+                </option>
+                <option
+                  value="source-sans-3"
+                  data-name="Source Sans 3"
+                  data-class="sans"
+                >
+                  Source Sans 3
+                </option>
+              </optgroup>
+              <optgroup label="Serif">
+                <option
+                  value="source-serif-4"
+                  data-name="Source Serif 4"
+                  data-class="serif"
+                >
+                  Source Serif 4
+                </option>
+                <option value="lora" data-name="Lora" data-class="serif">
+                  Lora
+                </option>
+                <option
+                  value="merriweather"
+                  data-name="Merriweather"
+                  data-class="serif"
+                >
+                  Merriweather
+                </option>
+                <option
+                  value="pt-serif"
+                  data-name="PT Serif"
+                  data-class="serif"
+                >
+                  PT Serif
+                </option>
+                <option
+                  value="crimson-text"
+                  data-name="Crimson Text"
+                  data-class="serif"
+                >
+                  Crimson Text
+                </option>
+                <option
+                  value="libre-baskerville"
+                  data-name="Libre Baskerville"
+                  data-class="serif"
+                >
+                  Libre Baskerville
+                </option>
+                <option value="bitter" data-name="Bitter" data-class="serif">
+                  Bitter
+                </option>
+                <option
+                  value="vollkorn"
+                  data-name="Vollkorn"
+                  data-class="serif"
+                >
+                  Vollkorn
+                </option>
+                <option
+                  value="cormorant-garamond"
+                  data-name="Cormorant Garamond"
+                  data-class="serif"
+                >
+                  Cormorant Garamond
+                </option>
+                <option
+                  value="eb-garamond"
+                  data-name="EB Garamond"
+                  data-class="serif"
+                >
+                  EB Garamond
+                </option>
+              </optgroup>
+            </select>
+          </p>
+          <p>
+            <label for="ui-font-weight">Poids</label>
+            <select id="ui-font-weight" name="ui-font-weight">
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="300">300</option>
+              <option value="400">400</option>
+              <option value="500">500</option>
+              <option value="600">600</option>
+              <option value="700" selected>700</option>
+              <option value="800">800</option>
+              <option value="900">900</option>
+            </select>
+          </p>
+        </fieldset>
+        <fieldset>
+          <legend>Contenu</legend>
+          <p>
+            <label for="content-font-search">Rechercher une police Bunny</label>
+            <input
+              id="content-font-search"
+              name="content-font-search"
+              type="search"
+              placeholder="Ex: Merriweather, sans..."
+              autocomplete="off"
+              list="content-font-suggestions"
+           >
+          </p>
+          <datalist id="content-font-suggestions"></datalist>
+          <p class="font-active" id="content-font-active" aria-live="polite">
+            Police active (contenu) : Source Serif 4 (400)
+          </p>
+          <p hidden>
+            <label for="content-font-family">Police</label>
+            <select id="content-font-family" name="content-font-family">
+              <optgroup label="Serif">
+                <option
+                  value="source-serif-4"
+                  data-name="Source Serif 4"
+                  data-class="serif"
+                  selected
+                >
+                  Source Serif 4
+                </option>
+                <option value="lora" data-name="Lora" data-class="serif">
+                  Lora
+                </option>
+                <option
+                  value="merriweather"
+                  data-name="Merriweather"
+                  data-class="serif"
+                >
+                  Merriweather
+                </option>
+                <option
+                  value="pt-serif"
+                  data-name="PT Serif"
+                  data-class="serif"
+                >
+                  PT Serif
+                </option>
+                <option
+                  value="crimson-text"
+                  data-name="Crimson Text"
+                  data-class="serif"
+                >
+                  Crimson Text
+                </option>
+                <option
+                  value="libre-baskerville"
+                  data-name="Libre Baskerville"
+                  data-class="serif"
+                >
+                  Libre Baskerville
+                </option>
+                <option value="bitter" data-name="Bitter" data-class="serif">
+                  Bitter
+                </option>
+                <option
+                  value="vollkorn"
+                  data-name="Vollkorn"
+                  data-class="serif"
+                >
+                  Vollkorn
+                </option>
+                <option
+                  value="cormorant-garamond"
+                  data-name="Cormorant Garamond"
+                  data-class="serif"
+                >
+                  Cormorant Garamond
+                </option>
+                <option
+                  value="eb-garamond"
+                  data-name="EB Garamond"
+                  data-class="serif"
+                >
+                  EB Garamond
+                </option>
+              </optgroup>
+              <optgroup label="Sans serif">
+                <option value="inter" data-name="Inter" data-class="sans">
+                  Inter
+                </option>
+                <option
+                  value="open-sans"
+                  data-name="Open Sans"
+                  data-class="sans"
+                >
+                  Open Sans
+                </option>
+                <option
+                  value="nunito-sans"
+                  data-name="Nunito Sans"
+                  data-class="sans"
+                >
+                  Nunito Sans
+                </option>
+                <option
+                  value="work-sans"
+                  data-name="Work Sans"
+                  data-class="sans"
+                >
+                  Work Sans
+                </option>
+                <option value="dm-sans" data-name="DM Sans" data-class="sans">
+                  DM Sans
+                </option>
+                <option value="rubik" data-name="Rubik" data-class="sans">
+                  Rubik
+                </option>
+                <option value="roboto" data-name="Roboto" data-class="sans">
+                  Roboto
+                </option>
+                <option value="lato" data-name="Lato" data-class="sans">
+                  Lato
+                </option>
+                <option
+                  value="fira-sans"
+                  data-name="Fira Sans"
+                  data-class="sans"
+                >
+                  Fira Sans
+                </option>
+                <option
+                  value="source-sans-3"
+                  data-name="Source Sans 3"
+                  data-class="sans"
+                >
+                  Source Sans 3
+                </option>
+              </optgroup>
+            </select>
+          </p>
+          <p>
+            <label for="content-font-weight">Poids</label>
+            <select id="content-font-weight" name="content-font-weight">
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="300">300</option>
+              <option value="400" selected>400</option>
+              <option value="500">500</option>
+              <option value="600">600</option>
+              <option value="700">700</option>
+              <option value="800">800</option>
+              <option value="900">900</option>
+            </select>
+          </p>
+        </fieldset>
+        <fieldset>
+          <legend>Ambiance visuelle</legend>
+          <p>
+            <label for="aesthetic-preset">Palette de depart</label>
+            <select id="aesthetic-preset" name="aesthetic-preset">
+              <option value="neutral">
+                Vanilla neutre - base sobre et polyvalente
+              </option>
+              <option value="editorial-soft">
+                Editorial doux - contraste modere, lecture longue
+              </option>
+              <option value="brutalist-bw">
+                Brutaliste N/B - frontal, contraste fort
+              </option>
+              <option value="bauhaus-functional">
+                Bauhaus fonctionnel - geometrique et utilitaire
+              </option>
+              <option value="nordic-calm">
+                Nordique calme - froid, aerien, discret
+              </option>
+              <option value="newspaper-classic">
+                Presse classique - encre + papier
+              </option>
+              <option value="terminal-mono">
+                Terminal mono - technique, faible saturation
+              </option>
+              <option value="warm-paper">
+                Papier chaud - ton creme, ambiance douce
+              </option>
+              <option value="oceanic-clean">
+                Ocean propre - bleu propre et lisible
+              </option>
+              <option value="forest-muted">
+                Foret mutee - vert grise, naturel
+              </option>
+              <option value="sunset-soft">
+                Coucher doux - accents chauds, fond clair
+              </option>
+              <option value="high-contrast">
+                Haute lisibilite - separation maximale
+              </option>
+              <option value="retro-console">
+                Retro console - contraste vintage numerique
+              </option>
+              <option value="museum-mineral">
+                Musee mineral - pierre froide et sobre
+              </option>
+              <option value="coffee-house">
+                Coffee house - brun chaud, confortable
+              </option>
+              <option value="neon-night">
+                Neon night - accents vifs sur fond sombre
+              </option>
+              <option value="pastel-lab">
+                Pastel lab - doux, clair, pedagogique
+              </option>
+              <option value="corporate-blue">
+                Corporate blue - institutionnel, net
+              </option>
+              <option value="mono-ink">Mono ink - monochrome editorial</option>
+              <option value="amber-ice">
+                Amber ice - ambre chaud et bleus froids
+              </option>
+              <option value="terracotta-mist">
+                Terracotta mist - terre cuite et brume froide
+              </option>
+              <option value="copper-lagoon">
+                Copper lagoon - cuivre chaud et lagon frais
+              </option>
+              <option value="cuivre-atlantique">
+                Cuivre Atlantique - orange cuivre et bleus atlantiques
+              </option>
+              <option value="sun-slate">
+                Sun slate - soleil doux et ardoise froide
+              </option>
+              <option value="peach-fjord">
+                Peach fjord - peche chaude et fjord bleute
+              </option>
+              <option value="spice-glacier">
+                Spice glacier - epices douces et glacier net
+              </option>
+              <option value="canyon-breeze">
+                Canyon breeze - canyon chaud et souffle oceane
+              </option>
+            </select>
+          </p>
+        </fieldset>
+        <fieldset class="fieldset-colors">
+          <legend>Couleurs</legend>
+          <p class="color-controls-intro">
+            Ceci est la zone palette : ajuste les couleurs par usage, les
+            valeurs HEX se mettent a jour en direct.
+          </p>
+          <div class="color-controls">
+            <section
+              class="color-group color-group-accent"
+              aria-labelledby="color-group-accent-title"
+            >
+              <h2 id="color-group-accent-title">Accent</h2>
+              <p class="color-field">
+                <label for="color-accent">Accent principal</label>
+                <output class="color-value" id="color-accent-value"
+                  >#3B63D1</output
+                >
+                <input
+                  id="color-accent"
+                  name="color-accent"
+                  type="color"
+                  value="#3b63d1"
+               >
+                <small class="token-help"
+                  >Couleur d'accent (liens, focus, accents UI).</small
+                >
+              </p>
+            </section>
 
-  <main id="main">
-    <section id="text">
-      <header>
-        <h2>Texte, structure, sémantique</h2>
-      </header>
+            <section class="color-group" aria-labelledby="color-group-bg-title">
+              <h2 id="color-group-bg-title">Fonds</h2>
+              <p class="color-field">
+                <label for="color-bg">Fond</label>
+                <output class="color-value" id="color-bg-value">#F6F6F6</output>
+                <input
+                  id="color-bg"
+                  name="color-bg"
+                  type="color"
+                  value="#f6f6f6"
+               >
+                <small class="token-help">Fond global de la page.</small>
+              </p>
+              <p class="color-field">
+                <label for="color-surface">Surface</label>
+                <output class="color-value" id="color-surface-value"
+                  >#FFFFFF</output
+                >
+                <input
+                  id="color-surface"
+                  name="color-surface"
+                  type="color"
+                  value="#ffffff"
+               >
+                <small class="token-help"
+                  >Fond des cartes et blocs principaux.</small
+                >
+              </p>
+              <p class="color-field">
+                <label for="color-surface-alt">Surface alt</label>
+                <output class="color-value" id="color-surface-alt-value"
+                  >#FAFAFA</output
+                >
+                <input
+                  id="color-surface-alt"
+                  name="color-surface-alt"
+                  type="color"
+                  value="#fafafa"
+               >
+                <small class="token-help"
+                  >Variante de surface pour zones secondaires.</small
+                >
+              </p>
+            </section>
 
-      <nav class="text-toc" aria-label="Sommaire de la section texte">
+            <section
+              class="color-group"
+              aria-labelledby="color-group-text-title"
+            >
+              <h2 id="color-group-text-title">Texte</h2>
+              <p class="color-field">
+                <label for="color-ink">Texte principal</label>
+                <output class="color-value" id="color-ink-value"
+                  >#1F1F1F</output
+                >
+                <input
+                  id="color-ink"
+                  name="color-ink"
+                  type="color"
+                  value="#1f1f1f"
+               >
+                <small class="token-help">Couleur principale du texte.</small>
+              </p>
+              <p class="color-field">
+                <label for="color-ink-soft">Texte secondaire</label>
+                <output class="color-value" id="color-ink-soft-value"
+                  >#595959</output
+                >
+                <input
+                  id="color-ink-soft"
+                  name="color-ink-soft"
+                  type="color"
+                  value="#595959"
+               >
+                <small class="token-help"
+                  >Texte meta, aides, contenus secondaires.</small
+                >
+              </p>
+            </section>
+
+            <section
+              class="color-group"
+              aria-labelledby="color-group-lines-title"
+            >
+              <h2 id="color-group-lines-title">Bordures</h2>
+              <p class="color-field">
+                <label for="color-line">Bordure</label>
+                <output class="color-value" id="color-line-value"
+                  >#D4D4D4</output
+                >
+                <input
+                  id="color-line"
+                  name="color-line"
+                  type="color"
+                  value="#d4d4d4"
+               >
+                <small class="token-help"
+                  >Bordures standards et separateurs.</small
+                >
+              </p>
+              <p class="color-field">
+                <label for="color-line-strong">Bordure forte</label>
+                <output class="color-value" id="color-line-strong-value"
+                  >#B8B8B8</output
+                >
+                <input
+                  id="color-line-strong"
+                  name="color-line-strong"
+                  type="color"
+                  value="#b8b8b8"
+               >
+                <small class="token-help"
+                  >Bordures renforcees / contraste fort.</small
+                >
+              </p>
+            </section>
+          </div>
+          <p class="palette-actions">
+            <button type="button" id="copy-palette">
+              Copier la palette (CSS)
+            </button>
+            <button type="button" id="color-reset">
+              Remettre les couleurs par defaut
+            </button>
+            <span
+              class="palette-copy-state"
+              id="palette-copy-state"
+              role="status"
+              aria-live="polite"
+            ></span>
+          </p>
+          <p
+            class="contrast-warning"
+            id="contrast-warning"
+            role="status"
+            aria-live="polite"
+            hidden
+          >
+            Ceci est une alerte contraste : texte/fond faible. Vise au moins
+            4.5:1.
+          </p>
+        </fieldset>
+        <p class="font-controls-actions">
+          <button type="button" id="apply-fonts">
+            Appliquer les polices choisies
+          </button>
+          <button type="button" id="reset-fonts">
+            Remettre les polices par defaut
+          </button>
+          <button type="button" id="reset-all-tokens">
+            Remettre palette et polices par defaut
+          </button>
+          <button type="button" id="reset-demo-state">
+            Reinitialiser les demos
+          </button>
+          <button type="button" id="theme-toggle" aria-pressed="false">
+            Passer en mode fonce
+          </button>
+          <button type="button" id="export-current-theme">
+            Exporter theme courant
+          </button>
+        </p>
+        <p class="font-controls-help">
+          Ceci est une application automatique. Utilise "Appliquer les polices
+          choisies" seulement pour forcer une mise a jour.
+        </p>
+        <p
+          class="font-catalog-status"
+          id="font-catalog-status"
+          role="status"
+          aria-live="polite"
+        >
+          Chargement du catalogue Bunny...
+        </p>
+        <button type="submit" hidden aria-hidden="true" tabindex="-1">
+          Soumettre
+        </button>
+      </form>
+
+      <nav aria-label="Navigation principale">
         <ul>
-          <li><a href="#text-core">Article fil rouge</a></li>
-          <li><a href="#text-a11y-checklist">Checklist accessibilite</a></li>
+          <li><a href="#text">Texte</a></li>
+          <li><a href="#media">Média</a></li>
+          <li><a href="#forms">Formulaires</a></li>
+          <li><a href="#tables">Tableaux</a></li>
+          <li><a href="#interactive">Interactif</a></li>
+          <li><a href="#embedded">Embarqué</a></li>
         </ul>
       </nav>
+    </header>
 
-      <article id="text-core">
+    <main id="main">
+      <section id="text">
         <header>
-          <h3>Exemple fil rouge : publication d'un guide web</h3>
-          <p>
-            <strong>Date de publication</strong> : <time datetime="2026-02-25">25-02-2026</time><br />
-            <strong>Auteur</strong> : <span>Equipe documentation</span>
-          </p>
+          <h2>Texte, structure, sémantique</h2>
         </header>
 
-        <p><strong>Strong</strong> : Cette version est <strong>recommandee pour la production</strong>.</p>
-        <p><strong>Em</strong> : <em>Important</em>, active le mode contraste eleve pour les tests.</p>
-        <p><strong>B</strong> : Mot-cle visuel : <b>Beta</b>.</p>
-        <p><strong>I</strong> : Terme etranger : <i>progressive enhancement</i>.</p>
-        <p><strong>U</strong> : Point a verifier : <u>licence des assets</u>.</p>
-        <p><strong>S</strong> : Ancienne date : <s>01-03-2026</s>.</p>
-        <p><strong>Mark</strong> : Priorite actuelle : <mark>accessibilite clavier</mark>.</p>
-        <p><strong>Small</strong> : <small>Note legale : exemple demonstratif uniquement.</small></p>
-        <p><strong>Sub (H2O)</strong> : Exemple scientifique : H<sub>2</sub>O.</p>
-        <p><strong>Sup (2^10)</strong> : Exemple mathematique : 2<sup>10</sup> = 1024.</p>
-        <p><strong>Abbr</strong> : Le <abbr title="World Wide Web">WWW</abbr> repose sur des standards ouverts.</p>
-        <p><strong>Dfn</strong> : <dfn>Semantique</dfn> : usage d'une balise selon son sens, pas son style.</p>
-        <p><strong>Q</strong> : <q cite="https://www.w3.org/WAI/">L'accessibilite est une exigence de qualite.</q></p>
+        <nav class="text-toc" aria-label="Sommaire de la section texte">
+          <ul>
+            <li><a href="#text-core">Article fil rouge</a></li>
+            <li><a href="#text-a11y-checklist">Checklist accessibilite</a></li>
+          </ul>
+        </nav>
 
-        <h4>Paragraphe</h4>
-        <p>
-          Cette publication rassemble les bonnes pratiques de contenu, de structure et de style.
-          Elle couvre les liens, les raccourcis clavier, les exemples de code, les citations et les revisions.
-          Rupture manuelle utile<br />sur cette ligne de demonstration.
-        </p>
+        <article id="text-core">
+          <header>
+            <h3>Exemple fil rouge : publication d'un guide web</h3>
+            <p>
+              <strong>Date de publication</strong> :
+              <time datetime="2026-02-25">25-02-2026</time><br>
+              <strong>Auteur</strong> : <span>Equipe documentation</span>
+            </p>
+          </header>
 
-        <p><strong>Lien</strong> : <a href="https://example.com/docs" rel="noopener">Ouvrir la documentation du projet</a>.</p>
-        <p><strong>Demo etat de lien</strong> : <a href="https://example.com/lien-non-visite-demo" rel="noopener">Lien non visite (pointille)</a> — au survol, le pointille devient une ligne pleine.</p>
-        <p><strong>Demo lien visite</strong> : <span class="visited-link-sample">voici comment est affiche un lien deja visite</span>.</p>
-        <p><strong>span</strong> : Etat de livraison : <span>pret pour revue interne</span>.</p>
-        <p><strong>wbr</strong> : URL longue :
-          https://example.com/documentation/accessibilite<wbr>/navigation-clavier<wbr>/tests-automatises
-        </p>
+          <p>
+            <strong>Strong</strong> : Cette version est
+            <strong>recommandee pour la production</strong>.
+          </p>
+          <p>
+            <strong>Em</strong> : <em>Important</em>, active le mode contraste
+            eleve pour les tests.
+          </p>
+          <p><strong>B</strong> : Mot-cle visuel : <b>Beta</b>.</p>
+          <p>
+            <strong>I</strong> : Terme etranger :
+            <i>progressive enhancement</i>.
+          </p>
+          <p>
+            <strong>U</strong> : Point a verifier : <u>licence des assets</u>.
+          </p>
+          <p><strong>S</strong> : Ancienne date : <s>01-03-2026</s>.</p>
+          <p>
+            <strong>Mark</strong> : Priorite actuelle :
+            <mark>accessibilite clavier</mark>.
+          </p>
+          <p>
+            <strong>Small</strong> :
+            <small>Note legale : exemple demonstratif uniquement.</small>
+          </p>
+          <p>
+            <strong>Sub (H2O)</strong> : Exemple scientifique : H<sub>2</sub>O.
+          </p>
+          <p>
+            <strong>Sup (2^10)</strong> : Exemple mathematique : 2<sup>10</sup>
+            = 1024.
+          </p>
+          <p>
+            <strong>Abbr</strong> : Le
+            <abbr title="World Wide Web">WWW</abbr> repose sur des standards
+            ouverts.
+          </p>
+          <p>
+            <strong>Dfn</strong> : <dfn>Semantique</dfn> : usage d'une balise
+            selon son sens, pas son style.
+          </p>
+          <p>
+            <strong>Q</strong> :
+            <q cite="https://www.w3.org/WAI/"
+              >L'accessibilite est une exigence de qualite.</q
+            >
+          </p>
 
-        <p><strong>code</strong> : Lance <code>npm run audit:a11y</code>.</p>
-        <p><strong>kbd</strong> : Ouvre la recherche avec <kbd>Ctrl</kbd> + <kbd>K</kbd>.</p>
-        <p><strong>samp</strong> : Sortie attendue : <samp>42 checks passed</samp>.</p>
-        <p><strong>var</strong> : Score final : <var>score</var> = <var>passed</var> / <var>total</var>.</p>
+          <h4>Paragraphe</h4>
+          <p>
+            Cette publication rassemble les bonnes pratiques de contenu, de
+            structure et de style. Elle couvre les liens, les raccourcis
+            clavier, les exemples de code, les citations et les revisions.
+            Rupture manuelle utile<br>sur cette ligne de demonstration.
+          </p>
 
-        <pre><code>const passed = 42;
+          <p>
+            <strong>Lien</strong> :
+            <a href="https://example.com/docs" rel="noopener"
+              >Ouvrir la documentation du projet</a
+            >.
+          </p>
+          <p>
+            <strong>Demo etat de lien</strong> :
+            <a href="https://example.com/lien-non-visite-demo" rel="noopener"
+              >Lien non visite (pointille)</a
+            >
+            — au survol, le pointille devient une ligne pleine.
+          </p>
+          <p>
+            <strong>Demo lien visite</strong> :
+            <span class="visited-link-sample"
+              >voici comment est affiche un lien deja visite</span
+            >.
+          </p>
+          <p>
+            <strong>span</strong> : Etat de livraison :
+            <span>pret pour revue interne</span>.
+          </p>
+          <p>
+            <strong>wbr</strong> : URL longue :
+            https://example.com/documentation/accessibilite<wbr>/navigation-clavier<wbr>/tests-automatises
+          </p>
+
+          <p><strong>code</strong> : Lance <code>npm run audit:a11y</code>.</p>
+          <p>
+            <strong>kbd</strong> : Ouvre la recherche avec <kbd>Ctrl</kbd> +
+            <kbd>K</kbd>.
+          </p>
+          <p>
+            <strong>samp</strong> : Sortie attendue :
+            <samp>42 checks passed</samp>.
+          </p>
+          <p>
+            <strong>var</strong> : Score final : <var>score</var> =
+            <var>passed</var> / <var>total</var>.
+          </p>
+
+          <pre><code>const passed = 42;
 const total = 42;
 const score = passed / total;</code></pre>
 
-        <blockquote cite="https://www.w3.org/WAI/standards-guidelines/wcag/">
-          <p>Un contenu clair et navigable reste utile pour tout le monde, quel que soit le contexte d'usage.</p>
-          <cite>WCAG</cite>
-        </blockquote>
+          <blockquote cite="https://www.w3.org/WAI/standards-guidelines/wcag/">
+            <p>
+              Un contenu clair et navigable reste utile pour tout le monde, quel
+              que soit le contexte d'usage.
+            </p>
+            <cite>WCAG</cite>
+          </blockquote>
 
-        <p>Rupture thematique :</p>
-        <hr />
+          <p>Rupture thematique :</p>
+          <hr>
 
-        <p><strong>cite</strong> : Source : <cite>Web Content Accessibility Guidelines</cite>.</p>
-        <p><strong>data</strong> : Tickets clos : <data value="42">42 elements traites</data>.</p>
+          <p>
+            <strong>cite</strong> : Source :
+            <cite>Web Content Accessibility Guidelines</cite>.
+          </p>
+          <p>
+            <strong>data</strong> : Tickets clos :
+            <data value="42">42 elements traites</data>.
+          </p>
 
-        <p><bdi>Utilisateur 123</bdi> - <bdo dir="rtl">نص تجريبي من اليمين الى اليسار</bdo>.</p>
-        <p><ruby>漢<rt>kan</rt></ruby><ruby>字<rp>(</rp><rt>ji</rt><rp>)</rp></ruby></p>
+          <p>
+            <bdi>Utilisateur 123</bdi> -
+            <bdo dir="rtl">نص تجريبي من اليمين الى اليسار</bdo>.
+          </p>
+          <p>
+            <ruby>漢<rt>kan</rt></ruby
+            ><ruby>字<rp>(</rp><rt>ji</rt><rp>)</rp></ruby>
+          </p>
 
+          <p>
+            Historique :
+            <del datetime="2026-02-20">Publication prevue le 20-02-2026</del
+            ><br>
+            <ins datetime="2026-02-25">Publication validee le 25-02-2026</ins>
+          </p>
+
+          <details>
+            <summary>Voir le changelog editorial</summary>
+            <p>
+              Clarification des exemples, ajout d'une section QA et
+              harmonisation de la microcopy.
+            </p>
+          </details>
+
+          <p><strong>ul / li</strong> :</p>
+          <ul>
+            <li>
+              Checklist accessibilite (navigation clavier, focus visible,
+              contrastes).
+            </li>
+            <li>Deuxieme item : validation edito et QA.</li>
+          </ul>
+
+          <p><strong>ol / li</strong> :</p>
+          <ol>
+            <li>Publier la version candidate.</li>
+            <li>Deuxieme item : recueillir les retours de revue.</li>
+          </ol>
+
+          <p><strong>dt / dd</strong> :</p>
+          <dl>
+            <dt>SemVer</dt>
+            <dd>Convention de versionning: MAJOR.MINOR.PATCH.</dd>
+            <dt>WCAG</dt>
+            <dd>Referentiel pour verifier l'accessibilite du contenu.</dd>
+          </dl>
+
+          <p><strong>Texte monospace</strong> :</p>
+          <code
+            >tt (obsolete historiquement, encore parfois supporte - a eviter en
+            production)</code
+          >
+
+          <p><strong>figure</strong> : illustration dummy + legende.</p>
+          <figure>
+            <img
+              src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27640%27%20height%3D%27360%27%20viewBox%3D%270%200%20640%20360%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23dbe8ff%27%2F%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23ffe6d8%27%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%27640%27%20height%3D%27360%27%20fill%3D%27url%28%23g%29%27%2F%3E%3Ccircle%20cx%3D%27136%27%20cy%3D%27180%27%20r%3D%2772%27%20fill%3D%27%233b63d1%27%20fill-opacity%3D%27.88%27%2F%3E%3Crect%20x%3D%27246%27%20y%3D%27118%27%20width%3D%27286%27%20height%3D%27124%27%20rx%3D%2714%27%20fill%3D%27%23d06a4b%27%20fill-opacity%3D%27.85%27%2F%3E%3Ctext%20x%3D%27389%27%20y%3D%27188%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2728%27%20fill%3D%27%231f1f1f%27%3EFigure%20Dummy%3C%2Ftext%3E%3C%2Fsvg%3E"
+              alt="Illustration dummy: formes geometriques et fond en degrade"
+              width="640"
+              height="360"
+              loading="lazy"
+              decoding="async"
+              class="golden-landscape"
+            >
+            <figcaption>
+              Figure 1 - Illustration de test libre de droits, utile pour
+              verifier image + legende.
+            </figcaption>
+          </figure>
+
+          <p>
+            <strong>aside</strong> : exemple d'encart integre directement dans
+            le flux de l'article.
+          </p>
+          <aside class="aside-demo" aria-label="Exemple de contenu annexe">
+            <h3>aside</h3>
+            <p class="main-copy">
+              <strong>Texte principal (normal) :</strong> Ce paragraphe est le
+              fil principal de lecture de la page.
+            </p>
+            <p class="aside-copy">
+              <strong>Texte d'aside :</strong> Ce bloc apporte un contexte
+              annexe (note, precision, encart) sans faire partie du contenu
+              principal.
+            </p>
+          </aside>
+
+          <footer>
+            <p>Footer d'article.</p>
+          </footer>
+        </article>
+
+        <article id="text-a11y-checklist" aria-labelledby="text-a11y-title">
+          <h3 id="text-a11y-title">Accessibilite verifiable</h3>
+          <p>Checklist rapide pour valider ce bloc lors des tests manuels :</p>
+          <ul>
+            <li>
+              Navigation clavier : chaque lien, bouton et zone interactive est
+              atteignable.
+            </li>
+            <li>
+              Focus visible : l'outline est clairement percevable a chaque
+              etape.
+            </li>
+            <li>
+              Contraste : texte principal et secondaire restent lisibles selon
+              la palette active.
+            </li>
+            <li>
+              Etat de lien : non visite, survol et visite sont visuellement
+              distingues.
+            </li>
+            <li>
+              Lecteur d'ecran : titres et regions sont annonces dans un ordre
+              logique.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="media">
+        <h2>Média</h2>
+
+        <p>picture / source / img :</p>
+        <picture>
+          <source
+            media="(min-width: 800px)"
+            srcset="https://picsum.photos/seed/picsum/200/323"
+         >
+          <img
+            src="https://picsum.photos/seed/picsum/200/323"
+            alt="Exemple picture"
+            width="200"
+            height="323"
+            loading="lazy"
+            decoding="async"
+          >
+        </picture>
+
+        <p>audio :</p>
         <p>
-          Historique :
-          <del datetime="2026-02-20">Publication prevue le 20-02-2026</del><br />
-          <ins datetime="2026-02-25">Publication validee le 25-02-2026</ins>
+          <strong>Titre :</strong> Für Elise — Ludwig van Beethoven
+          (enregistrement libre)
+        </p>
+        <audio controls preload="metadata">
+          <source
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Fur-elise-beethoven-216331.ogg"
+            type="audio/ogg"
+         >
+          Votre navigateur ne supporte pas audio.
+        </audio>
+
+        <p>video :</p>
+        <p><strong>Titre :</strong> Big Buck Bunny (Blender Open Movie)</p>
+        <p><strong>Licence :</strong> Creative Commons CC BY 3.0</p>
+        <video controls width="320" preload="metadata">
+          <source
+            src="https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
+            type="video/mp4"
+         >
+          Votre navigateur ne supporte pas video.
+        </video>
+
+        <p>track (sous-titres WebVTT) :</p>
+        <video
+          id="video-with-track"
+          controls
+          width="320"
+          crossorigin="anonymous"
+          preload="metadata"
+        >
+          <source
+            src="https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
+            type="video/mp4"
+         >
+          <track
+            src="captions-fr.vtt"
+            kind="captions"
+            srclang="fr"
+            label="Francais"
+            default
+         >
+          Votre navigateur ne supporte pas la piste de sous-titres.
+        </video>
+        <p
+          id="track-demo-state"
+          class="canvas-note"
+          role="status"
+          aria-live="polite"
+        >
+          Sous-titres: chargement de la piste...
         </p>
 
-        <details>
-          <summary>Voir le changelog editorial</summary>
-          <p>Clarification des exemples, ajout d'une section QA et harmonisation de la microcopy.</p>
-        </details>
+        <p>canvas (demo avant/apres JavaScript) :</p>
+        <canvas id="demo-canvas" width="320" height="120"
+          >Canvas fallback: illustration non dessinee sans JavaScript.</canvas
+        >
+        <p class="canvas-note">
+          Sans JavaScript, seul ce texte fallback est disponible. Avec
+          JavaScript, une scene est dessinee dans le canvas.
+        </p>
 
-        <p><strong>ul / li</strong> :</p>
-        <ul>
-          <li>Checklist accessibilite (navigation clavier, focus visible, contrastes).</li>
-          <li>Deuxieme item : validation edito et QA.</li>
-        </ul>
+        <p>svg inline :</p>
+        <svg width="320" height="80" role="img" aria-label="SVG de test">
+          <rect x="0" y="0" width="320" height="80"></rect>
+          <text x="12" y="50">SVG inline</text>
+        </svg>
+      </section>
 
-        <p><strong>ol / li</strong> :</p>
-        <ol>
-          <li>Publier la version candidate.</li>
-          <li>Deuxieme item : recueillir les retours de revue.</li>
-        </ol>
+      <section id="forms">
+        <h2>Formulaires</h2>
 
-        <p><strong>dt / dd</strong> :</p>
-        <dl>
-          <dt>SemVer</dt>
-          <dd>Convention de versionning: MAJOR.MINOR.PATCH.</dd>
-          <dt>WCAG</dt>
-          <dd>Referentiel pour verifier l'accessibilite du contenu.</dd>
-        </dl>
+        <p>
+          Exemple de formulaire avec hiérarchie claire, libellés explicites et
+          zones d’action distinctes.
+        </p>
 
-        <p><strong>Texte monospace</strong> :</p>
-        <tt>tt (obsolete historiquement, encore parfois supporte - a eviter en production)</tt>
+        <form class="demo-form" action="#" method="post">
+          <fieldset>
+            <legend>Informations principales</legend>
+            <div class="form-grid">
+              <p>
+                <label for="t1">Nom complet</label>
+                <input
+                  id="t1"
+                  name="t1"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Ex: Alice Martin"
+               >
+              </p>
 
-        <p><strong>figure</strong> : illustration dummy + legende.</p>
-        <figure>
-          <img
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23dbe8ff'/%3E%3Cstop offset='100%25' stop-color='%23ffe6d8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23g)'/%3E%3Ccircle cx='136' cy='180' r='72' fill='%233b63d1' fill-opacity='.88'/%3E%3Crect x='246' y='118' width='286' height='124' rx='14' fill='%23d06a4b' fill-opacity='.85'/%3E%3Ctext x='389' y='188' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%231f1f1f'%3EFigure Dummy%3C/text%3E%3C/svg%3E"
-            alt="Illustration dummy: formes geometriques et fond en degrade"
-            width="640"
-            height="360"
-            class="golden-landscape"
-          />
-          <figcaption>Figure 1 - Illustration de test libre de droits, utile pour verifier image + legende.</figcaption>
-        </figure>
+              <p>
+                <label for="t2">Email</label>
+                <input
+                  id="t2"
+                  name="t2"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="nom@exemple.fr"
+               >
+              </p>
 
-        <p><strong>aside</strong> : exemple d'encart integre directement dans le flux de l'article.</p>
-        <aside class="aside-demo" aria-label="Exemple de contenu annexe">
-          <h3>aside</h3>
-          <p class="main-copy"><strong>Texte principal (normal) :</strong> Ce paragraphe est le fil principal de lecture de la page.</p>
-          <p class="aside-copy"><strong>Texte d'aside :</strong> Ce bloc apporte un contexte annexe (note, precision, encart) sans faire partie du contenu principal.</p>
-        </aside>
+              <p>
+                <label for="t3">Mot de passe</label>
+                <input
+                  id="t3"
+                  name="t3"
+                  type="password"
+                  autocomplete="current-password"
+               >
+              </p>
 
-        <footer>
-          <p>Footer d'article.</p>
-        </footer>
-      </article>
+              <p>
+                <label for="t4">Quantité</label>
+                <input id="t4" name="t4" type="number" min="0" max="10">
+              </p>
 
-      <article id="text-a11y-checklist" aria-labelledby="text-a11y-title">
-        <h3 id="text-a11y-title">Accessibilite verifiable</h3>
-        <p>Checklist rapide pour valider ce bloc lors des tests manuels :</p>
-        <ul>
-          <li>Navigation clavier : chaque lien, bouton et zone interactive est atteignable.</li>
-          <li>Focus visible : l'outline est clairement percevable a chaque etape.</li>
-          <li>Contraste : texte principal et secondaire restent lisibles selon la palette active.</li>
-          <li>Etat de lien : non visite, survol et visite sont visuellement distingues.</li>
-          <li>Lecteur d'ecran : titres et regions sont annonces dans un ordre logique.</li>
-        </ul>
-      </article>
-    </section>
+              <p>
+                <label for="t5">Date</label>
+                <input id="t5" name="t5" type="date">
+              </p>
 
-    <section id="media">
-      <h2>Média</h2>
+              <p>
+                <label for="t6">Heure</label>
+                <input id="t6" name="t6" type="time">
+              </p>
+            </div>
+          </fieldset>
 
-      <p>picture / source / img :</p>
-      <picture>
-        <source media="(min-width: 800px)" srcset="https://picsum.photos/seed/picsum/200/323" />
-        <img src="https://picsum.photos/seed/picsum/200/323"
-             alt="Exemple picture" width="200" height="323" />
-      </picture>
+          <fieldset>
+            <legend>Préférences</legend>
+            <div class="form-grid">
+              <p>
+                <label for="t7">Couleur</label>
+                <input id="t7" name="t7" type="color" value="#3366ff">
+              </p>
 
-      <p>audio :</p>
-      <p><strong>Titre :</strong> Für Elise — Ludwig van Beethoven (enregistrement libre)</p>
-      <audio controls>
-        <source src="https://commons.wikimedia.org/wiki/Special:FilePath/Fur-elise-beethoven-216331.ogg" type="audio/ogg" />
-        Votre navigateur ne supporte pas audio.
-      </audio>
+              <p>
+                <label for="t8">Intensité</label>
+                <input id="t8" name="t8" type="range" min="0" max="100">
+              </p>
 
-      <p>video :</p>
-      <p><strong>Titre :</strong> Big Buck Bunny (Blender Open Movie)</p>
-      <p><strong>Licence :</strong> Creative Commons CC BY 3.0</p>
-      <video controls width="320">
-        <source src="https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4" type="video/mp4" />
-        Votre navigateur ne supporte pas video.
-      </video>
+              <p>
+                <label for="t10">Sélection</label>
+                <select id="t10" name="t10">
+                  <optgroup label="Groupe A">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                  </optgroup>
+                  <optgroup label="Groupe B">
+                    <option>Option 3</option>
+                  </optgroup>
+                </select>
+              </p>
 
-      <p>track (sous-titres WebVTT) :</p>
-      <video id="video-with-track" controls width="320" crossorigin="anonymous">
-        <source src="https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4" type="video/mp4" />
-        <track src="captions-fr.vtt" kind="captions" srclang="fr" label="Francais" default />
-        Votre navigateur ne supporte pas la piste de sous-titres.
-      </video>
-      <p id="track-demo-state" class="canvas-note" role="status" aria-live="polite">Sous-titres: chargement de la piste...</p>
+              <p>
+                <label for="t11">Recherche rapide (datalist)</label>
+                <input
+                  id="t11"
+                  name="t11"
+                  type="text"
+                  list="dl1"
+                  placeholder="Alpha, Beta..."
+               >
+                <datalist id="dl1">
+                  <option value="Alpha"></option>
+                  <option value="Beta"></option>
+                  <option value="Gamma"></option>
+                </datalist>
+              </p>
 
-      <p>canvas (demo avant/apres JavaScript) :</p>
-      <canvas id="demo-canvas" width="320" height="120">Canvas fallback: illustration non dessinee sans JavaScript.</canvas>
-      <p class="canvas-note">Sans JavaScript, seul ce texte fallback est disponible. Avec JavaScript, une scene est dessinee dans le canvas.</p>
+              <p class="form-grid-wide">
+                <label for="t9">Message</label>
+                <textarea
+                  id="t9"
+                  name="t9"
+                  rows="3"
+                  placeholder="Ajoute un commentaire..."
+                ></textarea>
+              </p>
+            </div>
 
-      <p>svg inline :</p>
-      <svg width="320" height="80" role="img" aria-label="SVG de test">
-        <rect x="0" y="0" width="320" height="80" />
-        <text x="12" y="50">SVG inline</text>
-      </svg>
-    </section>
-
-    <section id="forms">
-      <h2>Formulaires</h2>
-
-      <p>Exemple de formulaire avec hiérarchie claire, libellés explicites et zones d’action distinctes.</p>
-
-      <form class="demo-form" action="#" method="post">
-        <fieldset>
-          <legend>Informations principales</legend>
-          <div class="form-grid">
-            <p>
-              <label for="t1">Nom complet</label>
-              <input id="t1" name="t1" type="text" autocomplete="name" placeholder="Ex: Alice Martin" />
+            <p class="form-inline-options">
+              <span>Choix :</span>
+              <input id="c1" name="c1" type="checkbox">
+              <label for="c1">Accepter les conditions</label>
+              <input id="r1" name="rg" type="radio">
+              <label for="r1">Option A</label>
+              <input id="r2" name="rg" type="radio">
+              <label for="r2">Option B</label>
             </p>
+          </fieldset>
 
+          <fieldset>
+            <legend>État et actions</legend>
             <p>
-              <label for="t2">Email</label>
-              <input id="t2" name="t2" type="email" autocomplete="email" placeholder="nom@exemple.fr" />
-            </p>
-
-            <p>
-              <label for="t3">Mot de passe</label>
-              <input id="t3" name="t3" type="password" />
-            </p>
-
-            <p>
-              <label for="t4">Quantité</label>
-              <input id="t4" name="t4" type="number" min="0" max="10" />
-            </p>
-
-            <p>
-              <label for="t5">Date</label>
-              <input id="t5" name="t5" type="date" />
-            </p>
-
-            <p>
-              <label for="t6">Heure</label>
-              <input id="t6" name="t6" type="time" />
-            </p>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Préférences</legend>
-          <div class="form-grid">
-            <p>
-              <label for="t7">Couleur</label>
-              <input id="t7" name="t7" type="color" value="#3366ff" />
+              <output name="out1">Output: prêt</output>
             </p>
 
             <p>
-              <label for="t8">Intensité</label>
-              <input id="t8" name="t8" type="range" min="0" max="100" />
+              <label for="m1">Meter</label>
+              <meter id="m1" value="0.6">0.6</meter>
             </p>
 
             <p>
-              <label for="t10">Sélection</label>
-              <select id="t10" name="t10">
-                <optgroup label="Groupe A">
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                </optgroup>
-                <optgroup label="Groupe B">
-                  <option>Option 3</option>
-                </optgroup>
-              </select>
+              <label for="p1">Progress</label>
+              <progress id="p1" value="35" max="100">35%</progress>
             </p>
 
-            <p>
-              <label for="t11">Recherche rapide (datalist)</label>
-              <input id="t11" name="t11" list="dl1" placeholder="Alpha, Beta..." />
-              <datalist id="dl1">
-                <option value="Alpha"></option>
-                <option value="Beta"></option>
-                <option value="Gamma"></option>
-              </datalist>
+            <p class="form-actions">
+              <button type="button">Action secondaire</button>
+              <button type="submit">Valider</button>
+              <button type="reset">Réinitialiser</button>
             </p>
+          </fieldset>
+        </form>
+      </section>
 
-            <p class="form-grid-wide">
-              <label for="t9">Message</label>
-              <textarea id="t9" name="t9" rows="3" placeholder="Ajoute un commentaire..."></textarea>
-            </p>
-          </div>
+      <section id="extended">
+        <h2>Éléments HTML étendus et rares</h2>
 
-          <p class="form-inline-options">
-            <span>Choix :</span>
-            <input id="c1" name="c1" type="checkbox" />
-            <label for="c1">Accepter les conditions</label>
-            <input id="r1" name="rg" type="radio" />
-            <label for="r1">Option A</label>
-            <input id="r2" name="rg" type="radio" />
-            <label for="r2">Option B</label>
-          </p>
-        </fieldset>
+        <article>
+          <h3>Éléments de structuration avancée</h3>
 
-        <fieldset>
-          <legend>État et actions</legend>
-          <p>
-            <output name="out1">Output: prêt</output>
-          </p>
-
-          <p>
-            <label for="m1">Meter</label>
-            <meter id="m1" value="0.6">0.6</meter>
-          </p>
-
-          <p>
-            <label for="p1">Progress</label>
-            <progress id="p1" value="35" max="100">35%</progress>
-          </p>
-
-          <p class="form-actions">
-            <button type="button">Action secondaire</button>
-            <input type="submit" value="Valider" />
-            <input type="reset" value="Réinitialiser" />
-          </p>
-        </fieldset>
-      </form>
-    </section>
-    
-    <section id="extended">
-  <h2>Éléments HTML étendus et rares</h2>
-
-  <article>
-    <h3>Éléments de structuration avancée</h3>
-
-    <search>
-      <form role="search">
-        <label for="q">Recherche</label>
-        <input id="q" type="search" name="q" />
-        <button type="submit">OK</button>
-      </form>
-    </search>
-
-    <main hidden>
-      <p>main avec attribut hidden</p>
-    </main>
-
-    <div>
-      <p>div (neutre mais encore nécessaire parfois)</p>
-    </div>
-  </article>
-
-  <article>
-    <h3>Éléments liés aux Web Components</h3>
-
-    <template id="tpl-card">
-      <article>
-        <h4>Titre dans template</h4>
-        <p>Contenu non rendu tant qu’il n’est pas instancié.</p>
-        <slot name="content"></slot>
-      </article>
-    </template>
-
-    <p>slot (hors shadow DOM, ici purement démonstratif) :</p>
-    <slot name="demo-slot">Fallback du slot</slot>
-  </article>
-
-  <article>
-    <h3>Éléments techniques divers</h3>
-
-    <p>Fallback
-      <object data="about:blank" type="text/html">
-        <param name="example" value="1" />
-        Fallback object.
-      </object>
-    </p>
-
-    <p>Iframe
-      <iframe srcdoc="<p>iframe srcdoc</p>" title="iframe srcdoc"></iframe>
-    </p>
-
-    <p>Embed
-      <embed src="about:blank" type="text/html" />
-    </p>
-  </article>
-
-  <article>
-    <h3>Éléments peu connus mais valides</h3>
-
-    <p>
-      <time datetime="2025-12-23T10:00">Temps lisible - ex: 2025-12-23T10:00</time>
-    </p>
-
-    <p>
-      <data value="2025">Année encodée ex: 2025 </data>
-    </p>
-
-    <p>Résultat Calculé
-      <output name="calc">Résultat calculé</output>
-    </p>
-  </article>
-</section>
-
-
-    <section id="tables">
-      <h2>Tableaux</h2>
-      <p>Exemple de tableau avec en-tête lisible, lignes alternées et survol pour faciliter la lecture.</p>
-      <div class="table-wrap" role="region" aria-label="Tableau de démonstration" tabindex="0">
-      <table class="demo-table">
-        <caption>Horaires de train (exemple)</caption>
-        <colgroup>
-          <col />
-          <col />
-          <col />
-          <col />
-          <col />
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col">Train</th>
-            <th scope="col">Départ</th>
-            <th scope="col">Arrivée</th>
-            <th scope="col">Voie</th>
-            <th scope="col">Statut</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>IC 530</td>
-            <td>08:12</td>
-            <td>08:47</td>
-            <td>5</td>
-            <td>À l'heure</td>
-          </tr>
-          <tr>
-            <td>S 2081</td>
-            <td>08:25</td>
-            <td>08:58</td>
-            <td>2</td>
-            <td>Retard +4 min</td>
-          </tr>
-          <tr>
-            <td>P 7612</td>
-            <td>08:41</td>
-            <td>09:16</td>
-            <td>7</td>
-            <td>À quai</td>
-          </tr>
-          <tr>
-            <td>IC 541</td>
-            <td>09:03</td>
-            <td>09:39</td>
-            <td>1</td>
-            <td>Embarquement</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5">4 départs planifiés sur la plage 08:00–09:10</td>
-          </tr>
-        </tfoot>
-      </table>
-      </div>
-    </section>
-
-    <section id="interactive">
-      <h2>Interactif</h2>
-
-      <p>Zone de test interactive: dialog, popover, accordion, édition inline et bascule inert.</p>
-
-      <div class="interactive-grid">
-        <article class="interactive-panel">
-          <h3>Dialog</h3>
-          <p>
-            <button type="button" id="open-dialog">Ouvrir dialog</button>
-            <button type="button" id="close-dialog">Fermer dialog</button>
-          </p>
-          <dialog id="demo-dialog">
-            <p>Dialogue de démonstration ouvert avec <code>showModal()</code>.</p>
-            <form method="dialog">
-              <button type="submit">Fermer</button>
+          <search>
+            <form role="search">
+              <label for="q">Recherche</label>
+              <input id="q" type="search" name="q">
+              <button type="submit">OK</button>
             </form>
-          </dialog>
-        </article>
+          </search>
 
-        <article class="interactive-panel">
-          <h3>Popover</h3>
-          <p>
-            <button type="button" popovertarget="demo-popover">Ouvrir popover</button>
-            <button type="button" popovertarget="demo-popover" popovertargetaction="hide">Masquer popover</button>
-          </p>
-          <div id="demo-popover" popover>
-            <p>Popover natif HTML.</p>
+          <section hidden aria-label="Zone de demonstration cachee">
+            <p>section avec attribut hidden</p>
+          </section>
+
+          <div>
+            <p>div (neutre mais encore nécessaire parfois)</p>
           </div>
         </article>
 
-        <article class="interactive-panel">
-          <h3>Details (accordion)</h3>
-          <details name="interactive-accordion">
-            <summary>Panneau A</summary>
-            <p>Contenu du panneau A.</p>
-          </details>
-          <details name="interactive-accordion">
-            <summary>Panneau B</summary>
-            <p>Contenu du panneau B.</p>
-          </details>
-        </article>
+        <article>
+          <h3>Éléments liés aux Web Components</h3>
 
-        <article class="interactive-panel">
-          <h3>Edition Inline</h3>
-          <p contenteditable="true" spellcheck="true">Ce texte est editable (contenteditable=true).</p>
-        </article>
-
-        <article class="interactive-panel">
-          <h3>Toggle Inert</h3>
-          <p>
-            <button type="button" id="toggle-inert">Basculer inert</button>
-          </p>
-          <div id="inert-zone">
-            <p>Cette zone devient inactive quand <code>inert</code> est actif.</p>
-            <button type="button">Bouton test</button>
-            <a href="#text">Lien test</a>
-          </div>
-          <p id="inert-state">Etat: actif</p>
-        </article>
-
-        <article class="interactive-panel">
-          <h3>Menu</h3>
-          <menu>
-            <li><button type="button">Action 1</button></li>
-            <li><button type="button">Action 2</button></li>
-          </menu>
-        </article>
-
-        <article class="interactive-panel">
-          <h3>Fullscreen API</h3>
-          <p>
-            <button type="button" id="enter-fullscreen">Entrer en plein ecran</button>
-            <button type="button" id="exit-fullscreen">Quitter plein ecran</button>
-          </p>
-          <div id="fullscreen-target" class="interactive-surface">
-            <p>Zone cible pour <code>requestFullscreen()</code>.</p>
-          </div>
-          <p id="fullscreen-state">Etat: fenetre normale</p>
-        </article>
-
-        <article class="interactive-panel">
-          <h3>Clipboard API</h3>
-          <p>
-            <label for="clipboard-text">Texte presse-papiers</label>
-            <input id="clipboard-text" type="text" value="DIY CSS clipboard sample" />
-          </p>
-          <p>
-            <button type="button" id="copy-clipboard">Copier</button>
-            <button type="button" id="paste-clipboard">Coller</button>
-          </p>
-          <p id="clipboard-state">Etat: inactif</p>
-        </article>
-
-        <article class="interactive-panel">
-          <h3>Web Share</h3>
-          <p>
-            <button type="button" id="share-page">Partager cette page</button>
-          </p>
-          <p id="share-state">Etat: en attente</p>
-        </article>
-
-        <article class="interactive-panel">
-          <h3>Drag and Drop</h3>
-          <p id="drag-source" draggable="true" class="draggable-chip">Glisser ce bloc</p>
-          <div id="drop-target" class="drop-zone">Depose ici</div>
-          <p id="drop-state">Etat: rien depose</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="embedded" aria-labelledby="embedded-title">
-      <h2 id="embedded-title">Contenu embarqué / scripting</h2>
-      <p class="embedded-intro" id="embedded-intro">Cette section montre des cas concrets : contenu embarque, zone cliquable, fallback, et injection via template.</p>
-
-      <div class="embedded-grid" aria-describedby="embedded-intro">
-        <article class="embedded-card" aria-labelledby="embedded-iframe-title" aria-describedby="embedded-iframe-desc embedded-iframe-meta">
-          <h3 id="embedded-iframe-title">iframe securisee (srcdoc + sandbox)</h3>
-          <p id="embedded-iframe-desc"><strong>Quand l'utiliser</strong> : isoler un mini contenu externe/interne sans casser la page parente.</p>
-          <p class="embedded-meta" id="embedded-iframe-meta">Ici, le contenu est injecte via <code>srcdoc</code>, charge en <code>lazy</code>, avec <code>sandbox</code>.</p>
-          <p class="embedded-actions">
-            <button type="button" id="toggle-iframe-demo" aria-controls="iframe-demo" aria-expanded="true">Basculer iframe (charger / vider)</button>
-            <span id="iframe-demo-state" role="status" aria-live="polite">Etat: iframe chargee</span>
-          </p>
-          <iframe id="iframe-demo" title="Demo iframe securisee" loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts" src="about:blank"></iframe>
-        </article>
-
-        <article class="embedded-card" aria-labelledby="embedded-embed-title" aria-describedby="embedded-embed-desc embedded-embed-meta">
-          <h3 id="embedded-embed-title">embed</h3>
-          <p id="embedded-embed-desc"><strong>Quand l'utiliser</strong> : embarquer rapidement une ressource plugin-like (image, PDF, media).</p>
-          <embed type="image/svg+xml" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23eef3ff'/%3E%3Ccircle cx='72' cy='90' r='42' fill='%233b63d1'/%3E%3Crect x='132' y='50' width='150' height='80' rx='12' fill='%23d06a4b'/%3E%3Ctext x='206' y='96' text-anchor='middle' font-family='sans-serif' font-size='15' fill='%231f1f1f'%3EEmbed SVG demo%3C/text%3E%3C/svg%3E" />
-          <p class="embedded-meta" id="embedded-embed-meta">Exemple libre de droits: SVG inline en data URI.</p>
-        </article>
-
-        <article class="embedded-card" aria-labelledby="embedded-object-title" aria-describedby="embedded-object-desc">
-          <h3 id="embedded-object-title">object + fallback</h3>
-          <p id="embedded-object-desc"><strong>Quand l'utiliser</strong> : embarquer une ressource avec contenu alternatif si echec.</p>
-          <object data="data:text/html,%3C!doctype%20html%3E%3Cmeta%20charset%3D'utf-8'%3E%3Cbody%20style%3D'margin%3A0%3Bfont%3A16px%20sans-serif%3Bdisplay%3Agrid%3Bplace-items%3Acenter%3Bheight%3A100%25%3Bbackground%3A%23f5f7ff'%3EObject%20charge%20avec%20succes%3C/body%3E" type="text/html">
-            <p>Fallback object: le navigateur ne peut pas afficher la ressource embarquee.</p>
-          </object>
-        </article>
-
-        <article class="embedded-card" aria-labelledby="embedded-map-title" aria-describedby="embedded-map-desc embedded-map-help">
-          <h3 id="embedded-map-title">map + area (zones cliquables)</h3>
-          <p id="embedded-map-desc"><strong>Quand l'utiliser</strong> : transformer une image en mini navigation par zones.</p>
-          <p class="embedded-meta" id="embedded-map-help">Astuce accessibilite : chaque <code>area</code> expose un texte alternatif.</p>
-          <img alt="Image map de navigation" width="320" height="120"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='120'%3E%3Crect width='160' height='120' fill='%23dbe8ff'/%3E%3Crect x='160' width='160' height='120' fill='%23ffe6d8'/%3E%3Ctext x='80' y='65' text-anchor='middle' font-family='sans-serif' font-size='14'%3EZone Texte%3C/text%3E%3Ctext x='240' y='65' text-anchor='middle' font-family='sans-serif' font-size='14'%3EZone Formulaires%3C/text%3E%3C/svg%3E"
-               usemap="#m1" />
-          <map name="m1">
-            <area shape="rect" coords="0,0,160,120" href="#text" alt="Aller a Texte" />
-            <area shape="rect" coords="160,0,320,120" href="#forms" alt="Aller a Formulaires" />
-          </map>
-        </article>
-
-        <article class="embedded-card" aria-labelledby="embedded-template-title" aria-describedby="embedded-template-desc">
-          <h3 id="embedded-template-title">template + insertion JS</h3>
-          <p id="embedded-template-desc"><strong>Quand l'utiliser</strong> : preparer un fragment HTML reutilisable, non rendu par defaut.</p>
-          <p class="embedded-actions">
-            <button type="button" id="insert-template-card" aria-controls="template-demo-output">Inserer une carte</button>
-            <button type="button" id="clear-template-cards" aria-controls="template-demo-output">Vider</button>
-            <span id="template-demo-state" role="status" aria-live="polite">Etat: 0 carte inseree</span>
-          </p>
-          <div id="template-demo-output" class="template-output" role="region" aria-label="Cartes generees depuis le template" aria-live="polite"></div>
-          <template id="embedded-card-template">
-            <article class="embedded-template-card">
-              <h4>Carte creee depuis template</h4>
-              <p>Ce contenu etait inactif, puis clone en JavaScript.</p>
-              <p><small class="template-created-at"></small></p>
+          <template id="tpl-card">
+            <article>
+              <h4>Titre dans template</h4>
+              <p>Contenu non rendu tant qu’il n’est pas instancié.</p>
+              <slot name="content"></slot>
             </article>
           </template>
+
+          <p>slot (hors shadow DOM, ici purement démonstratif) :</p>
+          <slot name="demo-slot">Fallback du slot</slot>
         </article>
-      </div>
 
-      <p><strong>noscript</strong> (visible uniquement sans JavaScript) :</p>
-      <noscript>JavaScript est desactive: les demos dynamiques (iframe toggle, insertion template) ne peuvent pas s'executer.</noscript>
-    </section>
-  </main>
+        <article>
+          <h3>Éléments techniques divers</h3>
 
-  <footer>
-    <p><small>fait avec 🍫 a Bruxelles</small></p>
-  </footer>
+          <div>
+            <p>Fallback</p>
+            <object data="about:blank" type="text/html" title="Objet HTML de demonstration">
+              <p>Fallback object.</p>
+            </object>
+          </div>
 
-  <script src="app.js"></script>
-</body>
+          <div>
+            <p>Iframe</p>
+            <iframe
+              srcdoc="<p>iframe srcdoc</p>"
+              title="iframe srcdoc"
+              loading="lazy"
+            ></iframe>
+          </div>
+
+          <div>
+            <p>Embed</p>
+            <embed
+              src="about:blank"
+              type="text/html"
+              title="Embed HTML de demonstration"
+           >
+          </div>
+        </article>
+
+        <article>
+          <h3>Éléments peu connus mais valides</h3>
+
+          <p>
+            <time datetime="2025-12-23T10:00"
+              >Temps lisible - ex: 2025-12-23T10:00</time
+            >
+          </p>
+
+          <p>
+            <data value="2025">Année encodée ex: 2025 </data>
+          </p>
+
+          <p>
+            Résultat Calculé
+            <output name="calc">Résultat calculé</output>
+          </p>
+        </article>
+      </section>
+
+      <section id="tables">
+        <h2>Tableaux</h2>
+        <p>
+          Exemple de tableau avec en-tête lisible, lignes alternées et survol
+          pour faciliter la lecture.
+        </p>
+        <section
+          class="table-wrap"
+          aria-label="Tableau de démonstration"
+          tabindex="0"
+        >
+          <table class="demo-table">
+            <caption>
+              Horaires de train (exemple)
+            </caption>
+            <colgroup>
+              <col>
+              <col>
+              <col>
+              <col>
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">Train</th>
+                <th scope="col">Départ</th>
+                <th scope="col">Arrivée</th>
+                <th scope="col">Voie</th>
+                <th scope="col">Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>IC 530</td>
+                <td>08:12</td>
+                <td>08:47</td>
+                <td>5</td>
+                <td>À l'heure</td>
+              </tr>
+              <tr>
+                <td>S 2081</td>
+                <td>08:25</td>
+                <td>08:58</td>
+                <td>2</td>
+                <td>Retard +4 min</td>
+              </tr>
+              <tr>
+                <td>P 7612</td>
+                <td>08:41</td>
+                <td>09:16</td>
+                <td>7</td>
+                <td>À quai</td>
+              </tr>
+              <tr>
+                <td>IC 541</td>
+                <td>09:03</td>
+                <td>09:39</td>
+                <td>1</td>
+                <td>Embarquement</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="5">
+                  4 départs planifiés sur la plage 08:00–09:10
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </section>
+      </section>
+
+      <section id="interactive">
+        <h2>Interactif</h2>
+
+        <p class="interactive-intro">
+          Zone de test interactive: dialog, popover, accordion, édition inline
+          et bascule inert.
+        </p>
+
+        <div class="interactive-grid">
+          <article class="interactive-panel">
+            <h3>Dialog</h3>
+            <p class="interactive-actions">
+              <button type="button" id="open-dialog">Ouvrir dialog</button>
+              <button type="button" id="close-dialog">Fermer dialog</button>
+            </p>
+            <dialog id="demo-dialog">
+              <p>
+                Dialogue de démonstration ouvert avec <code>showModal()</code>.
+              </p>
+              <form method="dialog">
+                <button type="submit">Fermer</button>
+              </form>
+            </dialog>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Popover</h3>
+            <p class="interactive-actions">
+              <button type="button" popovertarget="demo-popover">
+                Ouvrir popover
+              </button>
+              <button
+                type="button"
+                popovertarget="demo-popover"
+                popovertargetaction="hide"
+              >
+                Masquer popover
+              </button>
+            </p>
+            <div id="demo-popover" popover>
+              <p>Popover natif HTML.</p>
+            </div>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Details (accordion)</h3>
+            <details name="interactive-accordion">
+              <summary>Panneau A</summary>
+              <p>Contenu du panneau A.</p>
+            </details>
+            <details name="interactive-accordion">
+              <summary>Panneau B</summary>
+              <p>Contenu du panneau B.</p>
+            </details>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Edition Inline</h3>
+            <p class="interactive-editable" contenteditable="true" spellcheck="true">
+              Ce texte est editable (contenteditable=true).
+            </p>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Toggle Inert</h3>
+            <p class="interactive-actions">
+              <button type="button" id="toggle-inert">Basculer inert</button>
+            </p>
+            <div id="inert-zone">
+              <p>
+                Cette zone devient inactive quand <code>inert</code> est actif.
+              </p>
+              <button type="button">Bouton test</button>
+              <a href="#text">Lien test</a>
+            </div>
+            <p
+              id="inert-state"
+              class="interactive-state"
+              role="status"
+              aria-live="polite"
+            >
+              Etat: actif
+            </p>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Menu</h3>
+            <menu>
+              <li><button type="button">Action 1</button></li>
+              <li><button type="button">Action 2</button></li>
+            </menu>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Fullscreen API</h3>
+            <p class="interactive-actions">
+              <button type="button" id="enter-fullscreen">
+                Entrer en plein ecran
+              </button>
+              <button type="button" id="exit-fullscreen">
+                Quitter plein ecran
+              </button>
+            </p>
+            <div id="fullscreen-target" class="interactive-surface">
+              <p>Zone cible pour <code>requestFullscreen()</code>.</p>
+            </div>
+            <p
+              id="fullscreen-state"
+              class="interactive-state"
+              role="status"
+              aria-live="polite"
+            >
+              Etat: fenetre normale
+            </p>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Clipboard API</h3>
+            <p>
+              <label for="clipboard-text">Texte presse-papiers</label>
+              <input
+                id="clipboard-text"
+                type="text"
+                value="DIY CSS clipboard sample"
+             >
+            </p>
+            <p class="interactive-actions">
+              <button type="button" id="copy-clipboard">Copier</button>
+              <button type="button" id="paste-clipboard">Coller</button>
+            </p>
+            <p
+              id="clipboard-state"
+              class="interactive-state"
+              role="status"
+              aria-live="polite"
+            >
+              Etat: inactif
+            </p>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Web Share</h3>
+            <p class="interactive-actions">
+              <button type="button" id="share-page">Partager cette page</button>
+            </p>
+            <p
+              id="share-state"
+              class="interactive-state"
+              role="status"
+              aria-live="polite"
+            >
+              Etat: en attente
+            </p>
+          </article>
+
+          <article class="interactive-panel">
+            <h3>Drag and Drop</h3>
+            <p class="embedded-meta" id="drag-help">
+              Souris: glisser/deposer. Clavier: activer avec Entree ou Espace,
+              puis deposer sur la zone cible.
+            </p>
+            <p
+              id="drag-source"
+              draggable="true"
+              class="draggable-chip"
+              role="button"
+              tabindex="0"
+              aria-grabbed="false"
+              aria-describedby="drag-help drop-state"
+            >
+              Glisser ce bloc
+            </p>
+            <div
+              id="drop-target"
+              class="drop-zone"
+              role="button"
+              tabindex="0"
+              aria-describedby="drag-help drop-state"
+            >
+              Depose ici
+            </div>
+            <p
+              id="drop-state"
+              class="interactive-state"
+              role="status"
+              aria-live="polite"
+            >
+              Etat: rien depose
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="embedded" aria-labelledby="embedded-title">
+        <h2 id="embedded-title">Contenu embarqué / scripting</h2>
+        <p class="embedded-intro" id="embedded-intro">
+          Cette section montre des cas concrets : contenu embarque, zone
+          cliquable, fallback, et injection via template.
+        </p>
+
+        <div class="embedded-grid" aria-describedby="embedded-intro">
+          <article
+            class="embedded-card"
+            aria-labelledby="embedded-iframe-title"
+            aria-describedby="embedded-iframe-desc embedded-iframe-meta"
+          >
+            <h3 id="embedded-iframe-title">
+              iframe securisee (srcdoc + sandbox)
+            </h3>
+            <p id="embedded-iframe-desc">
+              <strong>Quand l'utiliser</strong> : isoler un mini contenu
+              externe/interne sans casser la page parente.
+            </p>
+            <p class="embedded-meta" id="embedded-iframe-meta">
+              Ici, le contenu est injecte via <code>srcdoc</code>, charge en
+              <code>lazy</code>, avec <code>sandbox</code>.
+            </p>
+            <p class="embedded-actions">
+              <button
+                type="button"
+                id="toggle-iframe-demo"
+                aria-controls="iframe-demo"
+                aria-expanded="true"
+              >
+                Basculer iframe (charger / vider)
+              </button>
+              <span id="iframe-demo-state" role="status" aria-live="polite"
+                >Etat: iframe chargee</span
+              >
+            </p>
+            <iframe
+              id="iframe-demo"
+              title="Demo iframe securisee"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              sandbox="allow-scripts"
+              src="about:blank"
+            ></iframe>
+          </article>
+
+          <article
+            class="embedded-card"
+            aria-labelledby="embedded-embed-title"
+            aria-describedby="embedded-embed-desc embedded-embed-meta"
+          >
+            <h3 id="embedded-embed-title">embed</h3>
+            <p id="embedded-embed-desc">
+              <strong>Quand l'utiliser</strong> : embarquer rapidement une
+              ressource plugin-like (image, PDF, media).
+            </p>
+            <embed
+              type="image/svg+xml"
+              src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27320%27%20height%3D%27180%27%20viewBox%3D%270%200%20320%20180%27%3E%3Crect%20width%3D%27320%27%20height%3D%27180%27%20fill%3D%27%23eef3ff%27%2F%3E%3Ccircle%20cx%3D%2772%27%20cy%3D%2790%27%20r%3D%2742%27%20fill%3D%27%233b63d1%27%2F%3E%3Crect%20x%3D%27132%27%20y%3D%2750%27%20width%3D%27150%27%20height%3D%2780%27%20rx%3D%2712%27%20fill%3D%27%23d06a4b%27%2F%3E%3Ctext%20x%3D%27206%27%20y%3D%2796%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2715%27%20fill%3D%27%231f1f1f%27%3EEmbed%20SVG%20demo%3C%2Ftext%3E%3C%2Fsvg%3E"
+              title="Embed SVG de demonstration"
+           >
+            <p class="embedded-meta" id="embedded-embed-meta">
+              Exemple libre de droits: SVG inline en data URI.
+            </p>
+          </article>
+
+          <article
+            class="embedded-card"
+            aria-labelledby="embedded-object-title"
+            aria-describedby="embedded-object-desc"
+          >
+            <h3 id="embedded-object-title">object + fallback</h3>
+            <p id="embedded-object-desc">
+              <strong>Quand l'utiliser</strong> : embarquer une ressource avec
+              contenu alternatif si echec.
+            </p>
+            <object
+              data="data:text/html,%3C!doctype%20html%3E%3Cmeta%20charset%3D'utf-8'%3E%3Cbody%20style%3D'margin%3A0%3Bfont%3A16px%20sans-serif%3Bdisplay%3Agrid%3Bplace-items%3Acenter%3Bheight%3A100%25%3Bbackground%3A%23f5f7ff'%3EObject%20charge%20avec%20succes%3C/body%3E"
+              type="text/html"
+              title="Demo object avec contenu alternatif"
+            >
+              <p>
+                Fallback object: le navigateur ne peut pas afficher la ressource
+                embarquee.
+              </p>
+            </object>
+          </article>
+
+          <article
+            class="embedded-card"
+            aria-labelledby="embedded-map-title"
+            aria-describedby="embedded-map-desc embedded-map-help"
+          >
+            <h3 id="embedded-map-title">map + area (zones cliquables)</h3>
+            <p id="embedded-map-desc">
+              <strong>Quand l'utiliser</strong> : transformer une image en mini
+              navigation par zones.
+            </p>
+            <p class="embedded-meta" id="embedded-map-help">
+              Astuce accessibilite : chaque <code>area</code> expose un texte
+              alternatif.
+            </p>
+            <img
+              alt="Image map de navigation"
+              width="320"
+              height="120"
+              src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27320%27%20height%3D%27120%27%3E%3Crect%20width%3D%27160%27%20height%3D%27120%27%20fill%3D%27%23dbe8ff%27%2F%3E%3Crect%20x%3D%27160%27%20width%3D%27160%27%20height%3D%27120%27%20fill%3D%27%23ffe6d8%27%2F%3E%3Ctext%20x%3D%2780%27%20y%3D%2765%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2714%27%3EZone%20Texte%3C%2Ftext%3E%3Ctext%20x%3D%27240%27%20y%3D%2765%27%20text-anchor%3D%27middle%27%20font-family%3D%27sans-serif%27%20font-size%3D%2714%27%3EZone%20Formulaires%3C%2Ftext%3E%3C%2Fsvg%3E"
+              loading="lazy"
+              decoding="async"
+              usemap="#m1"
+            >
+            <map name="m1">
+              <area
+                shape="rect"
+                coords="0,0,160,120"
+                href="#text"
+                alt="Aller a Texte"
+             >
+              <area
+                shape="rect"
+                coords="160,0,320,120"
+                href="#forms"
+                alt="Aller a Formulaires"
+             >
+            </map>
+          </article>
+
+          <article
+            class="embedded-card"
+            aria-labelledby="embedded-template-title"
+            aria-describedby="embedded-template-desc"
+          >
+            <h3 id="embedded-template-title">template + insertion JS</h3>
+            <p id="embedded-template-desc">
+              <strong>Quand l'utiliser</strong> : preparer un fragment HTML
+              reutilisable, non rendu par defaut.
+            </p>
+            <p class="embedded-actions">
+              <button
+                type="button"
+                id="insert-template-card"
+                aria-controls="template-demo-output"
+              >
+                Inserer une carte
+              </button>
+              <button
+                type="button"
+                id="clear-template-cards"
+                aria-controls="template-demo-output"
+              >
+                Vider
+              </button>
+              <span id="template-demo-state" role="status" aria-live="polite"
+                >Etat: 0 carte inseree</span
+              >
+            </p>
+            <section
+              id="template-demo-output"
+              class="template-output"
+              aria-label="Cartes generees depuis le template"
+              aria-live="polite"
+            ></section>
+            <template id="embedded-card-template">
+              <article class="embedded-template-card">
+                <h4>Carte creee depuis template</h4>
+                <p>Ce contenu etait inactif, puis clone en JavaScript.</p>
+                <p><small class="template-created-at"></small></p>
+              </article>
+            </template>
+          </article>
+        </div>
+
+        <p><strong>noscript</strong> (visible uniquement sans JavaScript) :</p>
+        <noscript
+          >JavaScript est desactive: les demos dynamiques (iframe toggle,
+          insertion template) ne peuvent pas s'executer.</noscript
+        >
+      </section>
+    </main>
+
+    <footer>
+      <p><small>fait avec 🍫 a Bruxelles</small></p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
 </html>
