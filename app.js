@@ -60,6 +60,20 @@
   const copyPaletteButton = document.getElementById("copy-palette");
   const paletteCopyState = document.getElementById("palette-copy-state");
   const contrastWarning = document.getElementById("contrast-warning");
+  const contrastRatioPrimary = document.getElementById(
+    "contrast-ratio-primary",
+  );
+  const contrastRatioSecondary = document.getElementById(
+    "contrast-ratio-secondary",
+  );
+  const contrastRatioAccent = document.getElementById("contrast-ratio-accent");
+  const contrastLevelPrimary = document.getElementById(
+    "contrast-level-primary",
+  );
+  const contrastLevelSecondary = document.getElementById(
+    "contrast-level-secondary",
+  );
+  const contrastLevelAccent = document.getElementById("contrast-level-accent");
   const applyButton = document.getElementById("apply-fonts");
   const themeToggle = document.getElementById("theme-toggle");
   const exportThemeButton = document.getElementById("export-current-theme");
@@ -83,6 +97,7 @@
   const demoCanvas = document.getElementById("demo-canvas");
   const videoWithTrack = document.getElementById("video-with-track");
   const trackDemoState = document.getElementById("track-demo-state");
+  const mediaSection = document.getElementById("media");
 
   if (
     !uiFamily ||
@@ -100,17 +115,27 @@
     return;
   }
 
-  const allWeights = "100,200,300,400,500,600,700,800,900";
+  const baselineWeights = ["400", "700"];
   const defaultFontConfig = {
     ui: { family: "inter", weight: "700" },
     content: { family: "source-serif-4", weight: "400" },
   };
-  const buildHref = (slug) =>
-    "https://fonts.bunny.net/css?family=" +
-    encodeURIComponent(slug) +
-    ":" +
-    allWeights +
-    "&display=swap";
+  const buildHref = (slug, preferredWeight) => {
+    const weights = Array.from(
+      new Set([...baselineWeights, String(preferredWeight || "400")]),
+    )
+      .map((value) => Number(value) || 400)
+      .sort((a, b) => a - b)
+      .join(",");
+
+    return (
+      "https://fonts.bunny.net/css?family=" +
+      encodeURIComponent(slug) +
+      ":" +
+      weights +
+      "&display=swap"
+    );
+  };
   const minSearchChars = 2;
   const minAutocompleteChars = 3;
 
@@ -955,6 +980,62 @@
     }
   };
 
+  const getContrastGrade = (ratio) => {
+    if (!Number.isFinite(ratio)) {
+      return { label: "--", grade: "" };
+    }
+    if (ratio >= 7) {
+      return { label: "AAA", grade: "aaa" };
+    }
+    if (ratio >= 4.5) {
+      return { label: "AA", grade: "aa" };
+    }
+    if (ratio >= 3) {
+      return { label: "AA large", grade: "aa-large" };
+    }
+    return { label: "Insuffisant", grade: "fail" };
+  };
+
+  const updateContrastMetric = (ratio, ratioNode, levelNode) => {
+    if (!ratioNode || !levelNode) {
+      return;
+    }
+    if (!Number.isFinite(ratio)) {
+      ratioNode.textContent = "--";
+      levelNode.textContent = "--";
+      levelNode.removeAttribute("data-grade");
+      return;
+    }
+
+    const { label, grade } = getContrastGrade(ratio);
+    ratioNode.textContent = ratio.toFixed(2) + ":1";
+    levelNode.textContent = label;
+    if (grade) {
+      levelNode.dataset.grade = grade;
+    } else {
+      levelNode.removeAttribute("data-grade");
+    }
+  };
+
+  const updateContrastDashboard = () => {
+    const config = collectColorConfig();
+    updateContrastMetric(
+      contrastRatio(config.ink, config.bg),
+      contrastRatioPrimary,
+      contrastLevelPrimary,
+    );
+    updateContrastMetric(
+      contrastRatio(config.inkSoft, config.bg),
+      contrastRatioSecondary,
+      contrastLevelSecondary,
+    );
+    updateContrastMetric(
+      contrastRatio(config.accent, config.bg),
+      contrastRatioAccent,
+      contrastLevelAccent,
+    );
+  };
+
   const paletteAsCssVars = () => {
     const config = collectColorConfig();
     return [
@@ -1053,6 +1134,7 @@
 
     updateColorValueLabels();
     updateContrastNotice(config.ink, config.bg);
+    updateContrastDashboard();
     if (paletteCopyState) {
       paletteCopyState.textContent = "";
       delete paletteCopyState.dataset.state;
@@ -1120,7 +1202,7 @@
         : '"Helvetica Neue", Arial, sans-serif';
 
     weightInput.value = normalizedWeight;
-    link.href = buildHref(slug);
+    link.href = buildHref(slug, normalizedWeight);
 
     root.style.setProperty(
       isUi ? "--font-ui" : "--font-content",
@@ -1539,6 +1621,48 @@
         }
       });
     }
+
+    colorValuePairs.forEach(([input, output]) => {
+      if (!output) {
+        return;
+      }
+
+      output.tabIndex = 0;
+      output.setAttribute("role", "button");
+      output.setAttribute("aria-label", "Copier la valeur HEX");
+      output.title = "Cliquer pour copier";
+
+      const copyCurrentHex = async () => {
+        const value = String(output.value || output.textContent || "").trim();
+        if (!value) {
+          return;
+        }
+        try {
+          await copyTextToClipboard(value);
+          if (paletteCopyState) {
+            paletteCopyState.textContent = "HEX " + value + " copie.";
+            paletteCopyState.dataset.state = "success";
+          }
+        } catch (error) {
+          if (paletteCopyState) {
+            paletteCopyState.textContent = "Copie HEX impossible ici.";
+            paletteCopyState.dataset.state = "error";
+          }
+        }
+      };
+
+      output.addEventListener("click", () => {
+        void copyCurrentHex();
+      });
+
+      output.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+        event.preventDefault();
+        void copyCurrentHex();
+      });
+    });
   };
 
   const extractBaseCssFromLoadedStylesheet = () => {
@@ -1679,11 +1803,47 @@
   initExportModule();
   initEmbeddedModule();
 
+  let mediaEnhancementsDone = false;
+  const runMediaEnhancements = () => {
+    if (mediaEnhancementsDone) {
+      return;
+    }
+    mediaEnhancementsDone = true;
+    drawCanvasDemo();
+    enableTrackDemo();
+  };
+
+  const scheduleMediaEnhancements = () => {
+    if (!mediaSection) {
+      runMediaEnhancements();
+      return;
+    }
+
+    if (typeof IntersectionObserver === "function") {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            runMediaEnhancements();
+          }
+        },
+        { rootMargin: "200px 0px" },
+      );
+      observer.observe(mediaSection);
+    }
+
+    const triggerIdle = () => runMediaEnhancements();
+    if (typeof window.requestIdleCallback === "function") {
+      window.requestIdleCallback(triggerIdle, { timeout: 2200 });
+    } else {
+      window.setTimeout(triggerIdle, 1200);
+    }
+  };
+
   applyFontConfig("ui");
   applyFontConfig("content");
 
   updateColorValueLabels();
-  drawCanvasDemo();
-  enableTrackDemo();
+  scheduleMediaEnhancements();
   updateTemplateDemoState();
 })();
